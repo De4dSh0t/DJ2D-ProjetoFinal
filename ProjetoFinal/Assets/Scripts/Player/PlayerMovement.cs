@@ -3,6 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    private CollisionDetector collisionDetector;
     
     //Movement Commands
     private MoveUp up;
@@ -16,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
         left = new MoveLeft(transform, speed);
         down = new MoveDown(transform, speed);
         right = new MoveRight(transform, speed);
+
+        collisionDetector = GetComponent<CollisionDetector>();
     }
     
     void Update()
@@ -27,22 +30,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            up.Execute();
+            if (collisionDetector.canMoveUp) up.Execute();
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            left.Execute();
+            if (collisionDetector.canMoveLeft) left.Execute();
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            down.Execute();
+            if (collisionDetector.canMoveDown) down.Execute();
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            right.Execute();
+            if (collisionDetector.canMoveRight) right.Execute();
         }
     }
 }
