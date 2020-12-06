@@ -4,15 +4,12 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     [SerializeField] private NodeGrid grid;
+    public Transform wayPoint;
+    public Stack<Node> path;
 
     void Start()
     {
-        FindPath(new Vector3Int(-5, -3, 0), new Vector3Int(7, -3, 0));
-    }
-    
-    void Update()
-    {
-        
+        FindPath(Vector3Int.RoundToInt(transform.position), Vector3Int.RoundToInt(wayPoint.position));
     }
 
     private void FindPath(Vector3Int startPos, Vector3Int targetPos)
@@ -43,7 +40,7 @@ public class Pathfinding : MonoBehaviour
             // Path Found
             if (currentNode == target)
             {
-                //RetracePath(start, target);
+                path = RetracePath(start, target);
                 
                 foreach (var node in RetracePath(start, target))
                 {
@@ -74,7 +71,7 @@ public class Pathfinding : MonoBehaviour
     {
         // Since the closedNodes contains every node that was "selected", it doesn't mean it has a connection with another node.
         // As so, we have to retrace the path, starting in the target node and updating the currentNode to its parent node.
-        // This ends when the currentNode is equal to the startNode. Finally, we have to invert the list.
+        // This ends when the currentNode is equal to the startNode.
 
         Node currentNode = target;
         Stack<Node> path = new Stack<Node>();
