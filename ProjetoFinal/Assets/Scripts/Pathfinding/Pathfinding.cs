@@ -9,6 +9,12 @@ public class Pathfinding : MonoBehaviour
     
     public void FindPath(Vector3Int startPos, Vector3Int targetPos)
     {
+        if (!CheckTargetNode(targetPos))
+        {
+            Debug.Log($"No walkable node in {targetPos}");
+            return;
+        }
+        
         Node start = grid.GetWalkableNode(startPos);
         Node target = grid.GetWalkableNode(targetPos);
 
@@ -87,5 +93,16 @@ public class Pathfinding : MonoBehaviour
         int distY = Mathf.Abs(a.gridPos.y - b.gridPos.y);
         
         return 14 * Mathf.Min(distX, distY) + 10 * Mathf.Abs(distX - distY);
+    }
+    
+    /// <summary>
+    /// Checks whether the target node is a walkable node or not
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    private bool CheckTargetNode(Vector3Int pos)
+    {
+        if (grid.GetWalkableNode(pos) != null) return true;
+        return false;
     }
 }

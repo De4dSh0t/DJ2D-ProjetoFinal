@@ -8,7 +8,7 @@ public class AISystem : StateMachine
     [SerializeField] private Pathfinding pathfinding;
     public float speed;
     private Stack<Node> path;
-    private Vector3 offset = new Vector3(0, 0.5f);
+    private Vector3 offset = new Vector3(0.5f, 0.5f);
     
     void Start()
     {
