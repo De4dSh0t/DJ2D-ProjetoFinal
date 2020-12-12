@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AIMove : IState, IWalk
+public class MoveState : IState
 {
-    private AISystem aiSystem;
+    private readonly AISystem aiSystem;
     private Stack<Node> path;
+    private float timeToUpdate;
     
     //Movement Commands
     private MoveUp up;
@@ -12,26 +14,32 @@ public class AIMove : IState, IWalk
     private MoveDown down;
     private MoveRight right;
 
-    public AIMove(AISystem system, Stack<Node> path)
+    public MoveState(AISystem system, Stack<Node> path)
     {
         this.path = path;
         aiSystem = system;
+        
         up = new MoveUp(system.transform, system.speed);
         left = new MoveLeft(system.transform, system.speed);
         down = new MoveDown(system.transform, system.speed);
         right = new MoveRight(system.transform, system.speed);
     }
 
-    public void Execute()
+    public IEnumerator Execute()
     {
-        Debug.Log("Execute");
-        Move(path);
+        while (path.Count > 0)
+        {
+            MoveTo(path.Peek());
+        }
+        
+        aiSystem.SetState(new IdleState(aiSystem));
+        yield break;
     }
 
-    public void Move(Stack<Node> path)
+    private void MoveTo(Node target)
     {
         Vector3Int currentPos = Vector3Int.RoundToInt(aiSystem.transform.position);
-        Vector3Int targetPos = path.Peek().gridPos;
+        Vector3Int targetPos = target.gridPos;
 
         if (currentPos == targetPos)
         {

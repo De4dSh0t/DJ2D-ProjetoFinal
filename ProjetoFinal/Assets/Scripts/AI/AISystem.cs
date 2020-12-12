@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class AISystem : StateMachine
 {
@@ -6,14 +7,12 @@ public class AISystem : StateMachine
     [SerializeField] private Transform waypoint;
     [SerializeField] private Pathfinding pathfinding;
     public float speed;
+    private Stack<Node> path;
+    private Vector3 offset = new Vector3(0, 0.5f);
     
     void Start()
     {
-        SetState(new AIMove(this, pathfinding.FindPath(Vector3Int.RoundToInt(transform.position), Vector3Int.RoundToInt(waypoint.position))));
-    }
-    
-    void Update()
-    {
-        
+        SetState(new FindState(this, pathfinding, 
+            Vector3Int.RoundToInt(transform.position), Vector3Int.RoundToInt(waypoint.position - offset)));
     }
 }

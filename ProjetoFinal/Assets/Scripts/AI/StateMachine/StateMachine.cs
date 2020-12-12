@@ -7,6 +7,6 @@ public class StateMachine : MonoBehaviour
     public void SetState(IState state)
     {
         currentState = state;
-        state.Execute();
+        StartCoroutine(state.Execute());
     }
 }

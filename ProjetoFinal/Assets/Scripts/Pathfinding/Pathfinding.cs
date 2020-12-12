@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
     [SerializeField] private NodeGrid grid;
+    public event Action<Stack<Node>> PathFound; 
     
-    public Stack<Node> FindPath(Vector3Int startPos, Vector3Int targetPos)
+    public void FindPath(Vector3Int startPos, Vector3Int targetPos)
     {
         Node start = grid.GetWalkableNode(startPos);
         Node target = grid.GetWalkableNode(targetPos);
@@ -37,8 +39,10 @@ public class Pathfinding : MonoBehaviour
                 {
                     Debug.Log(node.gridPos);
                 }
+                
+                Debug.Log("Path Found!");
 
-                return RetracePath(start, target);
+                if (PathFound != null) PathFound(RetracePath(start, target));
             }
 
             // Determine neighbour values (depending on the currentNode)
@@ -57,8 +61,6 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
-
-        return null;
     }
 
     private Stack<Node> RetracePath(Node start, Node target)

@@ -41,7 +41,7 @@ public class NodeGrid : MonoBehaviour
             if (node.gridPos == pos) return node;
         }
         
-        Debug.Log($"No node in {pos}!");
+        //Debug.Log($"No node in {pos}!");
         return null;
     }
 
