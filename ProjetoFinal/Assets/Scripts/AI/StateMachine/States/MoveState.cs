@@ -30,10 +30,10 @@ public class MoveState : IState
         while (path.Count > 0)
         {
             MoveTo(path.Peek());
+            yield return new WaitForFixedUpdate();
         }
         
         aiSystem.SetState(new IdleState(aiSystem));
-        yield break;
     }
 
     private void MoveTo(Node target)

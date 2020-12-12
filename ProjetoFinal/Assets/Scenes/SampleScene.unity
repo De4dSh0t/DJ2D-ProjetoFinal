@@ -2322,7 +2322,6 @@ GameObject:
   - component: {fileID: 1993295879}
   - component: {fileID: 1993295877}
   - component: {fileID: 1993295882}
-  - component: {fileID: 1993295883}
   m_Layer: 0
   m_Name: Guest
   m_TagString: Untagged
@@ -2447,26 +2446,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoint: {fileID: 1102976676}
   pathfinding: {fileID: 1993295877}
-  speed: 2
---- !u!114 &1993295883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993295876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a9c838e6d733046bf99ede168f3ac3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 0.5, y: 0.5}
-  offset: {x: 0.4, y: 0.4}
-  distance: 0.8
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  canMoveUp: 0
-  canMoveLeft: 0
-  canMoveDown: 0
-  canMoveRight: 0
+  speed: 3
