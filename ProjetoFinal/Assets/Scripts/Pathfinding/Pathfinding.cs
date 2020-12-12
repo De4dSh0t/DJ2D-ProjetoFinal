@@ -4,18 +4,8 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     [SerializeField] private NodeGrid grid;
-
-    void Start()
-    {
-        FindPath(new Vector3Int(-5, -3, 0), new Vector3Int(7, -3, 0));
-    }
     
-    void Update()
-    {
-        
-    }
-
-    private void FindPath(Vector3Int startPos, Vector3Int targetPos)
+    public Stack<Node> FindPath(Vector3Int startPos, Vector3Int targetPos)
     {
         Node start = grid.GetWalkableNode(startPos);
         Node target = grid.GetWalkableNode(targetPos);
@@ -43,13 +33,12 @@ public class Pathfinding : MonoBehaviour
             // Path Found
             if (currentNode == target)
             {
-                //RetracePath(start, target);
-                
                 foreach (var node in RetracePath(start, target))
                 {
                     Debug.Log(node.gridPos);
                 }
-                return;
+
+                return RetracePath(start, target);
             }
 
             // Determine neighbour values (depending on the currentNode)
@@ -68,6 +57,8 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
+
+        return null;
     }
 
     private Stack<Node> RetracePath(Node start, Node target)
