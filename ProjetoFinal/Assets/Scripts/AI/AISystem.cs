@@ -12,7 +12,8 @@ public class AISystem : StateMachine
     
     void Start()
     {
+        Debug.Log(Vector3Int.RoundToInt(transform.position - offset));
         SetState(new FindState(this, pathfinding, 
-            Vector3Int.RoundToInt(transform.position), Vector3Int.RoundToInt(waypoint.position - offset)));
+            Vector3Int.RoundToInt(transform.position - offset), Vector3Int.RoundToInt(waypoint.position - offset)));
     }
 }

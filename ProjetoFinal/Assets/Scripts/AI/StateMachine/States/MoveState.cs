@@ -5,14 +5,14 @@ using UnityEngine;
 public class MoveState : IState
 {
     private readonly AISystem aiSystem;
-    private Stack<Node> path;
+    private readonly Stack<Node> path;
     private float timeToUpdate;
     
     //Movement Commands
-    private MoveUp up;
-    private MoveLeft left;
-    private MoveDown down;
-    private MoveRight right;
+    private readonly MoveUp up;
+    private readonly MoveLeft left;
+    private readonly MoveDown down;
+    private readonly MoveRight right;
 
     public MoveState(AISystem system, Stack<Node> path)
     {
@@ -40,6 +40,10 @@ public class MoveState : IState
     {
         Vector3Int currentPos = Vector3Int.RoundToInt(aiSystem.transform.position);
         Vector3Int targetPos = target.gridPos;
+        
+        // Offset
+        if (targetPos.x > currentPos.y) currentPos -= new Vector3Int(1, 1, 0);
+        else currentPos -= new Vector3Int(0, 1, 0);
 
         if (currentPos == targetPos)
         {
