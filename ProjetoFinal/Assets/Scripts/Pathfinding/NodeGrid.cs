@@ -28,8 +28,12 @@ public class NodeGrid : MonoBehaviour
             for (int y = min.y; y < max.y; y++)
             {
                 var current = new Vector3Int(x, y, 0);
-                
-                if (ground.HasTile(current)) walkableNodes.Add(new Node(current)); // Creates a walkable node
+
+                if (ground.HasTile(current))
+                {
+                    Node node = new Node(current) { worldPos = ground.CellToWorld(current) + new Vector3(.5f, .5f) };
+                    walkableNodes.Add(node); // Creates a walkable node
+                }
             }
         }
     }

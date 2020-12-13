@@ -6,8 +6,7 @@ public class MoveState : IState
 {
     private readonly AISystem aiSystem;
     private readonly Stack<Node> path;
-    private float timeToUpdate;
-    
+
     //Movement Commands
     private readonly MoveUp up;
     private readonly MoveLeft left;
@@ -38,22 +37,18 @@ public class MoveState : IState
 
     private void MoveTo(Node target)
     {
-        Vector3Int currentPos = Vector3Int.RoundToInt(aiSystem.transform.position);
-        Vector3Int targetPos = target.gridPos;
-        
-        // Offset
-        if (targetPos.x > currentPos.y) currentPos -= new Vector3Int(1, 1, 0);
-        else currentPos -= new Vector3Int(0, 1, 0);
+        Vector3 currentPos = aiSystem.transform.position;
+        Vector3 targetPos = target.worldPos;
 
-        if (currentPos == targetPos)
+        if (Vector3.Distance(currentPos, targetPos) <= .1f)
         {
             path.Pop();
             return;
         }
         
-        if (currentPos.x < targetPos.x) right.Execute();
-        if (currentPos.x > targetPos.x) left.Execute();
-        if (currentPos.y < targetPos.y) up.Execute();
-        if (currentPos.y > targetPos.y) down.Execute();
+        if (currentPos.x < targetPos.x - .05f) right.Execute();
+        if (currentPos.x > targetPos.x + .05f) left.Execute();
+        if (currentPos.y < targetPos.y - .05f) up.Execute();
+        if (currentPos.y > targetPos.y + .05f) down.Execute();
     }
 }

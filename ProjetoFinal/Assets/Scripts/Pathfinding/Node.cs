@@ -3,6 +3,7 @@
 public class Node
 {
     public Vector3Int gridPos;
+    public Vector3 worldPos;
     public int gCost; //Distance from starting node
     public int hCost; //(heuristic) Distance from end node
     public Node parent;
