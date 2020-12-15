@@ -6,14 +6,32 @@ public class AISystem : StateMachine
     [Header("Movement Settings")] 
     [SerializeField] private Transform waypoint;
     [SerializeField] private Pathfinding pathfinding;
-    public float speed;
+    [SerializeField] private float speed;
+    private readonly Vector3 offset = new Vector3(0.5f, 0.5f);
     private Stack<Node> path;
-    private Vector3 offset = new Vector3(0.5f, 0.5f);
+
+    /// <summary>
+    /// Returns entity position in Vector3Int
+    /// </summary>
+    public Vector3Int PositionInt => Vector3Int.RoundToInt(transform.position - offset);
+
+    /// <summary>
+    /// Returns waypoint position in Vector3Int
+    /// </summary>
+    public Vector3Int WaypointInt => Vector3Int.RoundToInt(waypoint.position - offset);
+
+    /// <summary>
+    /// Returns predefined speed
+    /// </summary>
+    public float Speed => speed;
+
+    /// <summary>
+    /// Returns pathfinding component
+    /// </summary>
+    public Pathfinding Pathfinding => pathfinding;
     
     void Start()
     {
-        Debug.Log(Vector3Int.RoundToInt(transform.position - offset));
-        SetState(new FindState(this, pathfinding, 
-            Vector3Int.RoundToInt(transform.position - offset), Vector3Int.RoundToInt(waypoint.position - offset)));
+        SetState(new FindState(this, pathfinding, PositionInt, WaypointInt));
     }
 }

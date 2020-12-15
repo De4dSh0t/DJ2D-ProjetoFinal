@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class IdleState : IState
 {
-    private AISystem aiSystem;
+    private readonly AISystem aiSystem;
 
     public IdleState(AISystem system)
     {
@@ -13,7 +13,8 @@ public class IdleState : IState
     public IEnumerator Execute()
     {
         Idle();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(2);
+        aiSystem.SetState(new ChooseState(aiSystem));
     }
 
     private void Idle()

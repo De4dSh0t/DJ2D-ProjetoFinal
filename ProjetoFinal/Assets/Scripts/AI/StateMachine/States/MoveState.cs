@@ -18,10 +18,10 @@ public class MoveState : IState
         this.path = path;
         aiSystem = system;
         
-        up = new MoveUp(system.transform, system.speed);
-        left = new MoveLeft(system.transform, system.speed);
-        down = new MoveDown(system.transform, system.speed);
-        right = new MoveRight(system.transform, system.speed);
+        up = new MoveUp(system.transform, system.Speed);
+        left = new MoveLeft(system.transform, system.Speed);
+        down = new MoveDown(system.transform, system.Speed);
+        right = new MoveRight(system.transform, system.Speed);
     }
 
     public IEnumerator Execute()
