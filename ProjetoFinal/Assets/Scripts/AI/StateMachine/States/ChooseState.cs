@@ -27,9 +27,9 @@ public class ChooseState : IState
                 aiSystem.SetState(new IdleState(aiSystem));
                 break;
             }
-            case 1: // Find
+            case 1: // Choose Position
             {
-                aiSystem.SetState(new FindState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, aiSystem.WaypointInt));
+                aiSystem.SetState(new ChoosePositionState(aiSystem));
                 break;
             }
         }

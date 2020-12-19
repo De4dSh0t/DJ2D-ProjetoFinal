@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class AISystem : StateMachine
 {
+    [Header("Room Settings")]
+    public Room[] rooms;
+
     [Header("Movement Settings")] 
     [SerializeField] private Transform waypoint;
     [SerializeField] private Pathfinding pathfinding;
