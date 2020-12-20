@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ChoosePositionState : IState
+public class RandomPositionState : IState
 {
     private readonly AISystem aiSystem;
     private Room room;
 
-    public ChoosePositionState(AISystem system)
+    public RandomPositionState(AISystem system)
     {
         aiSystem = system;
     }
@@ -34,9 +34,7 @@ public class ChoosePositionState : IState
         // In case the "GetCurrentRoom" fails and returns a null, this will make the AI stay in its current position
         if (room == null) return aiSystem.PositionInt;
         
-        const bool isSearching = true;
-        
-        while (isSearching)
+        while (true)
         {
             int rX = Random.Range(r.room.cellBounds.xMin, r.room.cellBounds.xMax);
             int rY = Random.Range(r.room.cellBounds.yMin, r.room.cellBounds.yMax);

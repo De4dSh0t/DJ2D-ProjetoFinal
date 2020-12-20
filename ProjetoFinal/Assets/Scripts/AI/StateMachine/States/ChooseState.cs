@@ -29,7 +29,7 @@ public class ChooseState : IState
             }
             case 1: // Choose Position
             {
-                aiSystem.SetState(new ChoosePositionState(aiSystem));
+                aiSystem.SetState(new RandomPositionState(aiSystem));
                 break;
             }
         }
