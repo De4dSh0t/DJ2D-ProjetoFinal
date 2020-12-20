@@ -9,33 +9,32 @@ public class FindState : IState
     private readonly Vector3Int startPos;
     private readonly Vector3Int targetPos;
     private Stack<Node> path;
-    private bool pathFound;
-    
+
     public FindState(AISystem system, Pathfinding pathfinding, Vector3Int start, Vector3Int target)
     {
         aiSystem = system;
         this.pathfinding = pathfinding;
         startPos = start;
         targetPos = target;
-
-        this.pathfinding.PathFound += PathFound;
     }
     
     public IEnumerator Execute()
     {
-        FindPath(pathfinding);
-        yield return new WaitUntil(() => pathFound);
+        path = FindPath(pathfinding);
+        
+        // Path not found
+        if (path == null)
+        {
+            aiSystem.SetState(new IdleState(aiSystem));
+            yield break;
+        }
+        
+        // Path found
         aiSystem.SetState(new MoveState(aiSystem, path));
     }
 
-    private void FindPath(Pathfinding pathfinding)
+    private Stack<Node> FindPath(Pathfinding pf)
     {
-        pathfinding.FindPath(startPos, targetPos);
-    }
-
-    private void PathFound(Stack<Node> path)
-    {
-        pathFound = true;
-        this.path = path;
+        return pf.FindPath(startPos, targetPos);
     }
 }
