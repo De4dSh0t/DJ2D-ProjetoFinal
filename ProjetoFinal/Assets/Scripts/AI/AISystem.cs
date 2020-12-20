@@ -6,8 +6,7 @@ public class AISystem : StateMachine
     [Header("Room Settings")]
     public Room[] rooms;
 
-    [Header("Movement Settings")] 
-    [SerializeField] private Transform waypoint;
+    [Header("Movement Settings")]
     [SerializeField] private Pathfinding pathfinding;
     [SerializeField] private float speed;
     private readonly Vector3 offset = new Vector3(0.5f, 0.5f);
@@ -17,12 +16,7 @@ public class AISystem : StateMachine
     /// Returns entity position in Vector3Int
     /// </summary>
     public Vector3Int PositionInt => Vector3Int.RoundToInt(transform.position - offset);
-
-    /// <summary>
-    /// Returns waypoint position in Vector3Int
-    /// </summary>
-    public Vector3Int WaypointInt => Vector3Int.RoundToInt(waypoint.position - offset);
-
+    
     /// <summary>
     /// Returns predefined speed
     /// </summary>
@@ -32,9 +26,25 @@ public class AISystem : StateMachine
     /// Returns pathfinding component
     /// </summary>
     public Pathfinding Pathfinding => pathfinding;
+
+    /// <summary>
+    /// Returns current room scriptable object
+    /// </summary>
+    public Room CurrentRoom
+    {
+        get
+        {
+            foreach (var r in rooms)
+            {
+                if (r.room.HasTile(PositionInt)) return r;
+            }
+
+            return null;
+        }
+    }
     
     void Start()
     {
-        SetState(new FindState(this, pathfinding, PositionInt, WaypointInt));
+        SetState(new ChooseState(this));
     }
 }

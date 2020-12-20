@@ -41,10 +41,10 @@ public class Pathfinding : MonoBehaviour
             // Path Found
             if (currentNode == target)
             {
-                foreach (var node in RetracePath(start, target))
-                {
-                    Debug.Log(node.gridPos);
-                }
+                // foreach (var node in RetracePath(start, target))
+                // {
+                //     Debug.Log(node.gridPos);
+                // }
                 
                 Debug.Log("Path Found!");
 

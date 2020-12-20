@@ -4,7 +4,6 @@ using UnityEngine;
 public class RandomPositionState : IState
 {
     private readonly AISystem aiSystem;
-    private Room room;
 
     public RandomPositionState(AISystem system)
     {
@@ -13,26 +12,15 @@ public class RandomPositionState : IState
     
     public IEnumerator Execute()
     {
-        room = GetCurrentRoom(aiSystem.PositionInt);
-        Vector3Int target = ChooseRandomPosition(room);
+        Vector3Int target = ChooseRandomPosition(aiSystem.CurrentRoom);
         aiSystem.SetState(new FindState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, target));
         yield break;
-    }
-
-    private Room GetCurrentRoom(Vector3Int currentPos)
-    {
-        foreach (var r in aiSystem.rooms)
-        {
-            if (r.room.HasTile(currentPos)) return r;
-        }
-        
-        return null;
     }
 
     private Vector3Int ChooseRandomPosition(Room r)
     {
         // In case the "GetCurrentRoom" fails and returns a null, this will make the AI stay in its current position
-        if (room == null) return aiSystem.PositionInt;
+        if (aiSystem.CurrentRoom == null) return aiSystem.PositionInt;
         
         while (true)
         {
