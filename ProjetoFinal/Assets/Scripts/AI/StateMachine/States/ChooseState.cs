@@ -18,7 +18,7 @@ public class ChooseState : IState
 
     private void ChooseNextState()
     {
-        int nextState = Random.Range(0, 3);
+        int nextState = Random.Range(0, 4);
 
         switch (nextState)
         {
@@ -35,6 +35,11 @@ public class ChooseState : IState
             case 2: // Change Room
             {
                 aiSystem.SetState(new ChangeRoomState(aiSystem, aiSystem.rooms[Random.Range(0, aiSystem.rooms.Length)]));
+                break;
+            }
+            case 3: // Scan Room
+            {
+                aiSystem.SetState(new ScanRoomState(aiSystem, aiSystem.CurrentRoom, aiSystem.GarbageGen));
                 break;
             }
         }

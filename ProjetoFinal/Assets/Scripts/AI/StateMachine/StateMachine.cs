@@ -2,7 +2,7 @@
 
 public class StateMachine : MonoBehaviour
 {
-    protected IState currentState;
+    public IState currentState;
 
     public void SetState(IState state)
     {

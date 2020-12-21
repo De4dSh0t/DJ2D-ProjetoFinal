@@ -12,6 +12,9 @@ public class AISystem : StateMachine
     private readonly Vector3 offset = new Vector3(0.5f, 0.5f);
     private Stack<Node> path;
 
+    [Header("Garbage Settings")]
+    [SerializeField] private GarbageGenerator garbageGenerator;
+
     /// <summary>
     /// Returns entity position in Vector3Int
     /// </summary>
@@ -42,6 +45,11 @@ public class AISystem : StateMachine
             return null;
         }
     }
+
+    /// <summary>
+    /// Returns current GarbageGenerator reference
+    /// </summary>
+    public GarbageGenerator GarbageGen => garbageGenerator;
     
     void Start()
     {

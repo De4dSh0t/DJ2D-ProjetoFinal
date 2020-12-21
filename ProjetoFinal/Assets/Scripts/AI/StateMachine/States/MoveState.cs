@@ -5,7 +5,12 @@ using UnityEngine;
 public class MoveState : IState
 {
     private readonly AISystem aiSystem;
-    private readonly Stack<Node> path;
+    
+    // Pathfinding
+    private readonly Pathfinding pathfinding;
+    private readonly Vector3Int startNodePos;
+    private readonly Vector3Int targetNodePos;
+    private Stack<Node> path;
 
     //Movement Commands
     private readonly MoveUp up;
@@ -13,10 +18,12 @@ public class MoveState : IState
     private readonly MoveDown down;
     private readonly MoveRight right;
 
-    public MoveState(AISystem system, Stack<Node> path)
+    public MoveState(AISystem system, Pathfinding pathfinding, Vector3Int start, Vector3Int target)
     {
-        this.path = path;
         aiSystem = system;
+        this.pathfinding = pathfinding;
+        startNodePos = start;
+        targetNodePos = target;
         
         up = new MoveUp(system.transform, system.Speed);
         left = new MoveLeft(system.transform, system.Speed);
@@ -26,6 +33,16 @@ public class MoveState : IState
 
     public IEnumerator Execute()
     {
+        path = FindPath(pathfinding);
+        
+        // Path not found
+        if (path == null)
+        {
+            aiSystem.SetState(new IdleState(aiSystem));
+            yield break;
+        }
+        
+        // Path Found -> Move
         while (path.Count > 0)
         {
             MoveTo(path.Peek());
@@ -33,6 +50,11 @@ public class MoveState : IState
         }
         
         aiSystem.SetState(new IdleState(aiSystem));
+    }
+
+    private Stack<Node> FindPath(Pathfinding pf)
+    {
+        return pf.FindPath(startNodePos, targetNodePos);
     }
 
     private void MoveTo(Node target)
