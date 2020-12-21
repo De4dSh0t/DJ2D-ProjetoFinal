@@ -24,16 +24,17 @@ public class CameraBehaviour : MonoBehaviour
 
     void Update()
     {
-        // Disables camera drag and zoom when focused on a character
+        DragCamera();
+        
+        // Disables camera zoom when focused on a character
         if (canFocus) return; 
         
-        DragCamera();
         HandleZoom();
     }
 
     void LateUpdate()
     {
-        // Disables camera movement when not in focus on a character
+        // Disables camera drag when focusing on a character
         if (!canFocus) return;
         
         Focus();
@@ -54,12 +55,15 @@ public class CameraBehaviour : MonoBehaviour
     private void DragCamera()
     {
         // Set origin position when mouse button is first pressed
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(2))
         {
             dragOrigin = currentCamera.ScreenToWorldPoint(Input.mousePosition);
+            
+            // In case the player drags the camera while focusing on a character, it disables the focus
+            if (canFocus) canFocus = false;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(2))
         {
             // Distance between the origin and the current mouse position within the camera
             Vector3 dist = dragOrigin - currentCamera.ScreenToWorldPoint(Input.mousePosition);
