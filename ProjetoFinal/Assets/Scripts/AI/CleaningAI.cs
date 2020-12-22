@@ -39,6 +39,7 @@ public class CleaningAI : AISystem
 
     public void PickUp(Garbage garbage)
     {
+        garbageGenerator.spawnedGarbage.Remove(garbage);
         Destroy(garbage.gameObject);
     }
 }

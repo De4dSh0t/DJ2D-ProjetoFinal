@@ -3,7 +3,7 @@
 public class CleanState : IState
 {
     private readonly CleaningAI aiSystem;
-    private Garbage garbageToCollect;
+    private readonly Garbage garbageToCollect;
 
     public CleanState(CleaningAI system, Garbage garbage)
     {
@@ -13,11 +13,11 @@ public class CleanState : IState
 
     public IEnumerator Execute()
     {
-        IState move = new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.position);
-        yield return aiSystem.StartCoroutine(move.Execute()); // Waits for the AI entity to reach its destination
+        // Waits for the AI entity to reach its destination
+        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.position));
         
         Clean();
-        aiSystem.SetState(new IdleState(aiSystem));
+        //aiSystem.SetState(new IdleState(aiSystem));
     }
 
     private void Clean()

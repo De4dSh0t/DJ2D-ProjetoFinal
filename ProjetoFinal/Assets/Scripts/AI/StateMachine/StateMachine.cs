@@ -2,11 +2,8 @@
 
 public abstract class StateMachine : MonoBehaviour
 {
-    public IState currentState;
-
-    public void SetState(IState state)
+    public Coroutine SetState(IState state)
     {
-        currentState = state;
-        StartCoroutine(state.Execute());
+        return StartCoroutine(state.Execute());
     }
 }
