@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d2fb08e5f9a8a4cb80eeba4580dbbe, type: 3}
   m_Name: TestRoom2
   m_EditorClassIdentifier: 
+  roomID: Room 2
   entryWaypoint: {x: 12, y: -1, z: 0}
   room: {fileID: 5144254325790438618, guid: b92ed86343638784ba673c168b880fe7, type: 3}

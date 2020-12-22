@@ -14,7 +14,7 @@ public class IdleState : IState
     {
         Idle();
         yield return new WaitForSecondsRealtime(2);
-        aiSystem.SetState(new ChooseState(aiSystem));
+        aiSystem.SendMessage("DecisionMaking");
     }
 
     private void Idle()

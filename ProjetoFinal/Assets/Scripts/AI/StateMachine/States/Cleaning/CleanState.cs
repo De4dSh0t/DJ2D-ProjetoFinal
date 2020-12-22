@@ -1,12 +1,11 @@
 ﻿using System.Collections;
-using UnityEngine;
 
 public class CleanState : IState
 {
-    private readonly AISystem aiSystem;
+    private readonly CleaningAI aiSystem;
     private Garbage garbageToCollect;
 
-    public CleanState(AISystem system, Garbage garbage)
+    public CleanState(CleaningAI system, Garbage garbage)
     {
         aiSystem = system;
         garbageToCollect = garbage;
@@ -16,11 +15,13 @@ public class CleanState : IState
     {
         IState move = new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.position);
         yield return aiSystem.StartCoroutine(move.Execute()); // Waits for the AI entity to reach its destination
+        
         Clean();
+        aiSystem.SetState(new IdleState(aiSystem));
     }
 
     private void Clean()
     {
-        Debug.Log("Cleaned!");
+        aiSystem.PickUp(garbageToCollect);
     }
 }

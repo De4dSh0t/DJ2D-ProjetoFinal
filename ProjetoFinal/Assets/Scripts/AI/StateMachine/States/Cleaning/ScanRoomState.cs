@@ -2,12 +2,12 @@
 
 public class ScanRoomState : IState
 {
-    private readonly AISystem aiSystem;
+    private readonly CleaningAI aiSystem;
     private readonly Room room;
     private readonly GarbageGenerator garbageGenerator;
     private Garbage garbageToCollect;
 
-    public ScanRoomState(AISystem system, Room currentRoom, GarbageGenerator garbageGen)
+    public ScanRoomState(CleaningAI system, Room currentRoom, GarbageGenerator garbageGen)
     {
         aiSystem = system;
         room = currentRoom;
@@ -22,11 +22,13 @@ public class ScanRoomState : IState
         if (garbageToCollect == null)
         {
             aiSystem.SetState(new IdleState(aiSystem));
+            aiSystem.GarbageFound = false;
             yield break;
         }
         
         // Garbage found
         aiSystem.SetState(new CleanState(aiSystem, garbageToCollect));
+        aiSystem.GarbageFound = true;
     }
 
     private void ScanGarbage(Room r)

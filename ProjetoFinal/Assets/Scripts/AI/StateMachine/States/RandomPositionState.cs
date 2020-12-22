@@ -4,15 +4,17 @@ using UnityEngine;
 public class RandomPositionState : IState
 {
     private readonly AISystem aiSystem;
+    private readonly Room room;
 
-    public RandomPositionState(AISystem system)
+    public RandomPositionState(AISystem system, Room currentRoom)
     {
         aiSystem = system;
+        room = currentRoom;
     }
     
     public IEnumerator Execute()
     {
-        Vector3Int target = ChooseRandomPosition(aiSystem.CurrentRoom);
+        Vector3Int target = ChooseRandomPosition(room);
         aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, target));
         yield break;
     }

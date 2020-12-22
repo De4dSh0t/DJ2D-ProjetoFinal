@@ -42,13 +42,10 @@ public class GarbageGenerator : MonoBehaviour
         Room spawnRoom = GetRandomRoom(rooms);
         Vector3Int rPos = GetRandomPosition(spawnRoom);
         
-        // Create garbage gameobject
-        GameObject garbage = garbagePrefab;
+        // Spawn and Set variables
+        GameObject garbage = Instantiate(garbagePrefab, new Vector3(rPos.x + .5f, rPos.y + .5f, rPos.z), Quaternion.identity);
         garbage.GetComponent<Garbage>().room = spawnRoom;
         garbage.GetComponent<Garbage>().position = rPos;
-
-        // Spawn
-        Instantiate(garbage, new Vector3(rPos.x + .5f, rPos.y + .5f, rPos.z), Quaternion.identity);
         
         // Save the reference to spawnedGarbage list
         spawnedGarbage.Add(garbage.GetComponent<Garbage>());

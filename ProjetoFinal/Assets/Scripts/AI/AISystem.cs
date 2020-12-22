@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class AISystem : StateMachine
+public abstract class AISystem : StateMachine
 {
     [Header("Room Settings")]
     public Room[] rooms;
@@ -11,10 +11,7 @@ public class AISystem : StateMachine
     [SerializeField] private float speed;
     private readonly Vector3 offset = new Vector3(0.5f, 0.5f);
     private Stack<Node> path;
-
-    [Header("Garbage Settings")]
-    [SerializeField] private GarbageGenerator garbageGenerator;
-
+    
     /// <summary>
     /// Returns entity position in Vector3Int
     /// </summary>
@@ -46,13 +43,5 @@ public class AISystem : StateMachine
         }
     }
 
-    /// <summary>
-    /// Returns current GarbageGenerator reference
-    /// </summary>
-    public GarbageGenerator GarbageGen => garbageGenerator;
-    
-    void Start()
-    {
-        SetState(new ChooseState(this));
-    }
+    public virtual void DecisionMaking() {}
 }

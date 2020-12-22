@@ -151,6 +151,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &107646239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107646241}
+  - component: {fileID: 107646240}
+  m_Layer: 0
+  m_Name: GarbageGen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &107646240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107646239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78721e87519faab4fa0dfdf9aef98824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbagePrefab: {fileID: 6557166956273759308, guid: a3a246f588948b84bb2607eaab33c7fb,
+    type: 3}
+  rooms:
+  - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
+  - {fileID: 11400000, guid: 17a40b151d2c00a429f12d7cbe9a228c, type: 2}
+  spawnedGarbage: []
+--- !u!4 &107646241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107646239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &108121513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,7 +2906,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 700286475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b88e2c2adfb5d408742c8921244d43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fe4f25093fd9534cb916b9cc0e02ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
@@ -2865,6 +2914,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17a40b151d2c00a429f12d7cbe9a228c, type: 2}
   pathfinding: {fileID: 700286481}
   speed: 3
+  garbageGenerator: {fileID: 107646240}
 --- !u!212 &700286477
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2903,7 +2953,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7e5eca4ce31f1a84dab0a815e992b344, type: 3}
   m_Color: {r: 0.11792451, g: 0.3258723, b: 1, a: 1}
   m_FlipX: 0
@@ -3063,7 +3113,7 @@ GameObject:
   - component: {fileID: 1993295880}
   - component: {fileID: 1993295879}
   - component: {fileID: 1993295877}
-  - component: {fileID: 1993295882}
+  - component: {fileID: 1993295878}
   m_Layer: 9
   m_Name: Guest
   m_TagString: Untagged
@@ -3084,6 +3134,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 555458553}
+--- !u!114 &1993295878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993295876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18b5c72d932cf1479cf2864279d68ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rooms:
+  - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
+  - {fileID: 11400000, guid: 17a40b151d2c00a429f12d7cbe9a228c, type: 2}
+  pathfinding: {fileID: 1993295877}
+  speed: 3
 --- !u!61 &1993295879
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3148,7 +3215,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7e5eca4ce31f1a84dab0a815e992b344, type: 3}
   m_Color: {r: 1, g: 0.5893745, b: 0, a: 1}
   m_FlipX: 0
@@ -3174,23 +3241,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1993295882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993295876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b88e2c2adfb5d408742c8921244d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rooms:
-  - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
-  - {fileID: 11400000, guid: 17a40b151d2c00a429f12d7cbe9a228c, type: 2}
-  pathfinding: {fileID: 1993295877}
-  speed: 3
 --- !u!1001 &3612085927900061189
 PrefabInstance:
   m_ObjectHideFlags: 0
