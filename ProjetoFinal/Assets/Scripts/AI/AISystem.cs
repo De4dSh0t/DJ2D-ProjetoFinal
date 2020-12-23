@@ -43,5 +43,23 @@ public abstract class AISystem : StateMachine
         }
     }
 
+    /// <summary>
+    /// Searches for a room by the specified ID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public Room SearchRoom(string id)
+    {
+        foreach (var room in rooms)
+        {
+            if (room.roomID == id)
+            {
+                return room;
+            }
+        }
+
+        return null;
+    }
+
     public virtual void DecisionMaking() {}
 }
