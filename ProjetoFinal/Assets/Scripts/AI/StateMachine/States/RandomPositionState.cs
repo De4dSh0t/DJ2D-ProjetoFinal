@@ -15,8 +15,8 @@ public class RandomPositionState : IState
     public IEnumerator Execute()
     {
         Vector3Int target = ChooseRandomPosition(room);
-        aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, target));
-        yield break;
+        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, target));
+        aiSystem.SetState(new IdleState(aiSystem));
     }
 
     private Vector3Int ChooseRandomPosition(Room r)

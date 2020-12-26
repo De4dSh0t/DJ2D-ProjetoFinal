@@ -25,7 +25,8 @@ public class ChangeRoomState : IState
         Debug.Log("Change Room");
         
         targetWaypoint = GetEntryWaypoint(targetRoom);
-        aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, targetWaypoint));
+        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, targetWaypoint));
+        aiSystem.SetState(new IdleState(aiSystem));
     }
 
     private bool CurrentRoomIsEqual(Room target)

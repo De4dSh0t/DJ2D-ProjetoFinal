@@ -17,7 +17,7 @@ public class CleanState : IState
         yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.position));
         
         Clean();
-        //aiSystem.SetState(new IdleState(aiSystem));
+        aiSystem.SetState(new IdleState(aiSystem));
     }
 
     private void Clean()

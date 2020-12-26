@@ -48,8 +48,6 @@ public class MoveState : IState
             MoveTo(path.Peek());
             yield return new WaitForFixedUpdate();
         }
-        
-        aiSystem.SetState(new IdleState(aiSystem));
     }
 
     private Stack<Node> FindPath(Pathfinding pf)
