@@ -18,6 +18,7 @@ public class DeliverState : IState
     {
         yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, room.deliverWaypoint));
         Debug.Log("Food Delivered.");
+        aiSystem.IsCooking = false;
         
         // Notifies the guest that his order has been delivered
         guestAI.PickUpOrder();

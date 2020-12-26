@@ -4503,7 +4503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0bf5e2ca5ad83f94d94659898a58c2f9, type: 2}
   pathfinding: {fileID: 549747513}
   speed: 3
 --- !u!114 &549747513
