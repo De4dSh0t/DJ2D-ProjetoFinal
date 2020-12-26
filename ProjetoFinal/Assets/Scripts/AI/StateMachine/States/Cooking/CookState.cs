@@ -15,7 +15,10 @@ public class CookState : IState
     public IEnumerator Execute()
     {
         yield return new WaitForSeconds(order.food.cookingTime);
-        Debug.Log("Order done!");
+        
+        // Remove order from order list
+        aiSystem.OrderManager.RemoveOrder(order);
+        
         aiSystem.SetState(new DeliverState(aiSystem, order.guest, aiSystem.CurrentRoom));
     }
 }

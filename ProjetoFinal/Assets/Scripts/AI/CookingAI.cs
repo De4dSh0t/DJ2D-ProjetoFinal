@@ -6,6 +6,11 @@ public class CookingAI : AISystem
     private Order currentOrder;
 
     public bool IsCooking { get; set; }
+
+    /// <summary>
+    /// Returns OrderManager reference to interact with the order list
+    /// </summary>
+    public OrderManager OrderManager => orderManager;
     
     void Start()
     {
