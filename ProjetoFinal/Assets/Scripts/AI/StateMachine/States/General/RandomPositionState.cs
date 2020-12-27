@@ -27,11 +27,11 @@ public class RandomPositionState : IState
         // Randomly chooses a position within the room tilemap
         while (true)
         {
-            int rX = Random.Range(r.room.cellBounds.xMin, r.room.cellBounds.xMax);
-            int rY = Random.Range(r.room.cellBounds.yMin, r.room.cellBounds.yMax);
+            int rX = Random.Range(r.RoomTilemap.cellBounds.xMin, r.RoomTilemap.cellBounds.xMax);
+            int rY = Random.Range(r.RoomTilemap.cellBounds.yMin, r.RoomTilemap.cellBounds.yMax);
             Vector3Int rPos = new Vector3Int(rX, rY, 0);
 
-            if (r.room.HasTile(rPos))
+            if (r.RoomTilemap.HasTile(rPos))
             {
                 return rPos;
             }

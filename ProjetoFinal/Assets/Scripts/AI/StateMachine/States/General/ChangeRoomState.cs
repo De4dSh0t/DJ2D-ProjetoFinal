@@ -36,6 +36,6 @@ public class ChangeRoomState : IState
 
     private Vector3Int GetEntryWaypoint(Room target)
     {
-        return target.entryWaypoint;
+        return target.EntryWaypoint;
     }
 }

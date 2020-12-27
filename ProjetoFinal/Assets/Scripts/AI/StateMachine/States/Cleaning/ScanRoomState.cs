@@ -36,7 +36,7 @@ public class ScanRoomState : IState
         foreach (var garbage in garbageGenerator.spawnedGarbage)
         {
             // Check if the garbage is in the same room as the AI entity
-            if (garbage.room.roomID == r.roomID)
+            if (garbage.room.RoomID == r.RoomID)
             {
                 garbageToCollect = garbage;
                 return;

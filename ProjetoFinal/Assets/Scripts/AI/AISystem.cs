@@ -36,7 +36,7 @@ public abstract class AISystem : StateMachine
         {
             foreach (var r in rooms)
             {
-                if (r.room.HasTile(PositionInt)) return r;
+                if (r.RoomTilemap.HasTile(PositionInt)) return r;
             }
 
             return null;
@@ -52,7 +52,7 @@ public abstract class AISystem : StateMachine
     {
         foreach (var room in rooms)
         {
-            if (room.roomID == id)
+            if (room.RoomID == id)
             {
                 return room;
             }
