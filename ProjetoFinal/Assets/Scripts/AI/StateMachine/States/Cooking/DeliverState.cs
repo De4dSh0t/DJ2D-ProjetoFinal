@@ -5,18 +5,18 @@ public class DeliverState : IState
 {
     private readonly CookingAI aiSystem;
     private readonly GuestAI guestAI;
-    private readonly Room room;
+    private readonly Zone zone;
 
-    public DeliverState(CookingAI system, GuestAI guest, Room currentRoom)
+    public DeliverState(CookingAI system, GuestAI guest, Zone currentZone)
     {
         aiSystem = system;
         guestAI = guest;
-        room = currentRoom;
+        zone = currentZone;
     }
 
     public IEnumerator Execute()
     {
-        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, room.deliverWaypoint));
+        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, zone.ActionWaypoint));
         Debug.Log("Food Delivered.");
         aiSystem.IsCooking = false;
         

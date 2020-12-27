@@ -4,7 +4,7 @@ using UnityEngine;
 public class GarbageGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject garbagePrefab;
-    [SerializeField] private Room[] rooms;
+    [SerializeField] private Zone[] zones;
     public List<Garbage> spawnedGarbage;
 
     void Start()
@@ -17,20 +17,20 @@ public class GarbageGenerator : MonoBehaviour
         
     }
 
-    private Room GetRandomRoom(Room[] r)
+    private Zone GetRandomRoom(Zone[] r)
     {
         return r[Random.Range(0, r.Length)];
     }
 
-    private Vector3Int GetRandomPosition(Room r)
+    private Vector3Int GetRandomPosition(Zone r)
     {
         while (true)
         {
-            int rX = Random.Range(r.RoomTilemap.cellBounds.xMin, r.RoomTilemap.cellBounds.xMax);
-            int rY = Random.Range(r.RoomTilemap.cellBounds.yMin, r.RoomTilemap.cellBounds.yMax);
+            int rX = Random.Range(r.ZoneTilemap.cellBounds.xMin, r.ZoneTilemap.cellBounds.xMax);
+            int rY = Random.Range(r.ZoneTilemap.cellBounds.yMin, r.ZoneTilemap.cellBounds.yMax);
             Vector3Int rPos = new Vector3Int(rX, rY, 0);
 
-            if (r.RoomTilemap.HasTile(rPos))
+            if (r.ZoneTilemap.HasTile(rPos))
             {
                 return rPos;
             }
@@ -39,15 +39,16 @@ public class GarbageGenerator : MonoBehaviour
 
     private void SpawnGarbage()
     {
-        Room spawnRoom = GetRandomRoom(rooms);
-        Vector3Int rPos = GetRandomPosition(spawnRoom);
+        Zone spawnZone = GetRandomRoom(zones);
+        Vector3Int rPos = GetRandomPosition(spawnZone);
         
         // Spawn and Set variables
-        GameObject garbage = Instantiate(garbagePrefab, new Vector3(rPos.x + .5f, rPos.y + .5f, rPos.z), Quaternion.identity);
-        garbage.GetComponent<Garbage>().room = spawnRoom;
-        garbage.GetComponent<Garbage>().position = rPos;
+        GameObject garbageObj = Instantiate(garbagePrefab, new Vector3(rPos.x + .5f, rPos.y + .5f, rPos.z), Quaternion.identity);
+        Garbage garbage = garbageObj.GetComponent<Garbage>();
+        garbage.zone = spawnZone;
+        garbage.position = rPos;
         
         // Save the reference to spawnedGarbage list
-        spawnedGarbage.Add(garbage.GetComponent<Garbage>());
+        spawnedGarbage.Add(garbage);
     }
 }

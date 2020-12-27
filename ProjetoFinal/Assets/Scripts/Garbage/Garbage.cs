@@ -2,6 +2,6 @@
 
 public class Garbage : MonoBehaviour
 {
-    public Room room;
+    public Zone zone;
     public Vector3Int position;
 }

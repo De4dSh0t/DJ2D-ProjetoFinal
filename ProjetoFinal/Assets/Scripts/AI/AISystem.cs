@@ -3,8 +3,8 @@ using UnityEngine;
 
 public abstract class AISystem : StateMachine
 {
-    [Header("Room Settings")]
-    public Room[] rooms;
+    [Header("Zone Settings")]
+    public Zone[] zones;
 
     [Header("Movement Settings")]
     [SerializeField] private Pathfinding pathfinding;
@@ -28,15 +28,15 @@ public abstract class AISystem : StateMachine
     public Pathfinding Pathfinding => pathfinding;
 
     /// <summary>
-    /// Returns current room scriptable object
+    /// Returns current zone scriptable object
     /// </summary>
-    public Room CurrentRoom
+    public Zone CurrentZone
     {
         get
         {
-            foreach (var r in rooms)
+            foreach (var zone in zones)
             {
-                if (r.RoomTilemap.HasTile(PositionInt)) return r;
+                if (zone.ZoneTilemap.HasTile(PositionInt)) return zone;
             }
 
             return null;
@@ -44,17 +44,17 @@ public abstract class AISystem : StateMachine
     }
 
     /// <summary>
-    /// Searches for a room by the specified ID
+    /// Searches for a area by the specified ID
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public Room SearchRoom(string id)
+    public Zone SearchZone(string id)
     {
-        foreach (var room in rooms)
+        foreach (var zone in zones)
         {
-            if (room.RoomID == id)
+            if (zone.ZoneID == id)
             {
-                return room;
+                return zone;
             }
         }
 

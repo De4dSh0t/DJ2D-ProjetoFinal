@@ -5,7 +5,7 @@ public class GuestAI : AISystem
 {
     [Header("Food Settings")]
     [SerializeField] private List<Food> foodList;
-    private Room restaurant;
+    private Zone restaurant;
     
     // Decision Settings
     private int sIndex;
@@ -24,7 +24,7 @@ public class GuestAI : AISystem
     void Start()
     {
         OrderManager = FindObjectOfType<OrderManager>();
-        restaurant = SearchRoom("Restaurant");
+        restaurant = SearchZone("Restaurant");
         
         DecisionMaking();
     }
@@ -37,23 +37,23 @@ public class GuestAI : AISystem
         {
             case 0: // Random Position
             {
-                SetState(new RandomPositionState(this, CurrentRoom));
+                SetState(new RandomPositionState(this, CurrentZone));
                 break;
             }
             case 1: // Change Room
             {
-                SetState(new ChangeRoomState(this, rooms[Random.Range(0, rooms.Length)]));
+                SetState(new ChangeRoomState(this, zones[Random.Range(0, zones.Length)]));
                 break;
             }
-            case 2: // Order Food (goto Random Position State)
+            case 2: // Order Food (goto Random Position)
             {
                 SetState(new OrderState(this));
                 sIndex = 0;
                 break;
             }
-            case 3: // Pick Food (goto Random Position State)
+            case 3: // Pick Food (goto Random Position)
             {
-                SetState(new MoveState(this, Pathfinding, PositionInt, restaurant.deliverWaypoint));
+                SetState(new MoveState(this, Pathfinding, PositionInt, restaurant.ActionWaypoint));
                 sIndex = 0;
                 break;
             }
@@ -71,7 +71,7 @@ public class GuestAI : AISystem
     private void HandleStates()
     {
         // Check if the entity is in the restaurant and if it hasn't already odered food
-        if (CurrentRoom == restaurant && !hasOrdered)
+        if (CurrentZone == restaurant && !hasOrdered)
         {
             sIndex = 2;
             hasOrdered = true;

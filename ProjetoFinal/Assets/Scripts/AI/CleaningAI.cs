@@ -29,18 +29,18 @@ public class CleaningAI : AISystem
         {
             case 0: // Scan Room
             {
-                SetState(new ScanRoomState(this, CurrentRoom, garbageGenerator));
+                SetState(new ScanRoomState(this, CurrentZone, garbageGenerator));
                 break;
             }
             case 1: // Change Room (Randomly)
             {
-                SetState(new ChangeRoomState(this, rooms[Random.Range(0, rooms.Length)]));
+                SetState(new ChangeRoomState(this, zones[Random.Range(0, zones.Length)]));
                 break;
             }
             case 2: // Go to Garbage Room
             {
-                Room gRoom = SearchRoom("GarbageRoom");
-                if (gRoom != null) SetState(new ChangeRoomState(this, gRoom));
+                Zone gZone = SearchZone("GarbageRoom");
+                if (gZone != null) SetState(new ChangeRoomState(this, gZone));
                 break;
             }
         }

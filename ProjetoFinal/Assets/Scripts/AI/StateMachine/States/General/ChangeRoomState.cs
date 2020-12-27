@@ -4,10 +4,10 @@ using UnityEngine;
 public class ChangeRoomState : IState
 {
     private readonly AISystem aiSystem;
-    private readonly Room targetRoom;
+    private readonly Zone targetRoom;
     private Vector3Int targetWaypoint;
 
-    public ChangeRoomState(AISystem system, Room target)
+    public ChangeRoomState(AISystem system, Zone target)
     {
         aiSystem = system;
         targetRoom = target;
@@ -29,12 +29,12 @@ public class ChangeRoomState : IState
         aiSystem.SetState(new IdleState(aiSystem));
     }
 
-    private bool CurrentRoomIsEqual(Room target)
+    private bool CurrentRoomIsEqual(Zone target)
     {
-        return aiSystem.CurrentRoom == target;
+        return aiSystem.CurrentZone == target;
     }
 
-    private Vector3Int GetEntryWaypoint(Room target)
+    private Vector3Int GetEntryWaypoint(Zone target)
     {
         return target.EntryWaypoint;
     }

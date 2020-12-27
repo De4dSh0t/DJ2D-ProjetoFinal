@@ -33,7 +33,7 @@
             }
             case 1: // Random Position
             {
-                SetState(new RandomPositionState(this, CurrentRoom));
+                SetState(new RandomPositionState(this, CurrentZone));
                 break;
             }
         }

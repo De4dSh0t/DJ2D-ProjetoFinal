@@ -3,11 +3,11 @@
 public class ScanRoomState : IState
 {
     private readonly CleaningAI aiSystem;
-    private readonly Room room;
+    private readonly Zone room;
     private readonly GarbageGenerator garbageGenerator;
     private Garbage garbageToCollect;
 
-    public ScanRoomState(CleaningAI system, Room currentRoom, GarbageGenerator garbageGen)
+    public ScanRoomState(CleaningAI system, Zone currentRoom, GarbageGenerator garbageGen)
     {
         aiSystem = system;
         room = currentRoom;
@@ -31,12 +31,12 @@ public class ScanRoomState : IState
         aiSystem.GarbageFound = true;
     }
 
-    private void ScanGarbage(Room r)
+    private void ScanGarbage(Zone r)
     {
         foreach (var garbage in garbageGenerator.spawnedGarbage)
         {
             // Check if the garbage is in the same room as the AI entity
-            if (garbage.room.RoomID == r.RoomID)
+            if (garbage.zone.ZoneID == r.ZoneID)
             {
                 garbageToCollect = garbage;
                 return;
