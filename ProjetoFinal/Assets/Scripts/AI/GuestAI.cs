@@ -31,7 +31,7 @@ public class GuestAI : AISystem
     
     public override void DecisionMaking()
     {
-        HandleFoodOrder();
+        HandleStates();
 
         switch (sIndex)
         {
@@ -45,14 +45,16 @@ public class GuestAI : AISystem
                 SetState(new ChangeRoomState(this, rooms[Random.Range(0, rooms.Length)]));
                 break;
             }
-            case 2: // Order Food
+            case 2: // Order Food (goto Random Position State)
             {
                 SetState(new OrderState(this));
+                sIndex = 0;
                 break;
             }
-            case 3: // Pick Food
+            case 3: // Pick Food (goto Random Position State)
             {
                 SetState(new MoveState(this, Pathfinding, PositionInt, restaurant.deliverWaypoint));
+                sIndex = 0;
                 break;
             }
         }
@@ -66,7 +68,7 @@ public class GuestAI : AISystem
         sIndex = 3;
     }
 
-    private void HandleFoodOrder()
+    private void HandleStates()
     {
         // Check if the entity is in the restaurant and if it hasn't already odered food
         if (CurrentRoom == restaurant && !hasOrdered)

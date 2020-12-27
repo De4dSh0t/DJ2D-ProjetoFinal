@@ -1,9 +1,10 @@
-﻿using UnityEngine;
-
-public class CookingAI : AISystem
+﻿public class CookingAI : AISystem
 {
     private OrderManager orderManager;
     private Order currentOrder;
+    
+    // Decision Settings
+    private int sIndex;
 
     public bool IsCooking { get; set; }
 
@@ -21,14 +22,33 @@ public class CookingAI : AISystem
 
     public override void DecisionMaking()
     {
+        HandleStates();
+        
+        switch (sIndex)
+        {
+            case 0: // Cook
+            {
+                SetState(new CookState(this, currentOrder));
+                break;
+            }
+            case 1: // Random Position
+            {
+                SetState(new RandomPositionState(this, CurrentRoom));
+                break;
+            }
+        }
+    }
+    
+    private void HandleStates()
+    {
         // Check if there is a new order to cook (if no order is being prepared)
         if (orderManager.HasOrders && !IsCooking)
         {
             currentOrder = orderManager.GetOrder();
             IsCooking = true;
         }
-
-        if (IsCooking) SetState(new CookState(this, currentOrder));
-        else SetState(new RandomPositionState(this, CurrentRoom));
+        
+        if (IsCooking) sIndex = 0;
+        else sIndex = 1;
     }
 }
