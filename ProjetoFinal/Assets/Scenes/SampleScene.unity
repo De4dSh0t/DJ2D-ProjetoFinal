@@ -5217,6 +5217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zones:
   - {fileID: 11400000, guid: d7281843bbe0ebc47af749d0782444de, type: 2}
+  - {fileID: 11400000, guid: a6c0086638c20034dbc841fd3417453d, type: 2}
+  - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
   pathfinding: {fileID: 1631792210}
   speed: 3
   foodList:

@@ -5,12 +5,14 @@ public class DeliverState : IState
 {
     private readonly CookingAI aiSystem;
     private readonly GuestAI guestAI;
+    private readonly Food food;
     private readonly Zone zone;
 
-    public DeliverState(CookingAI system, GuestAI guest, Zone currentZone)
+    public DeliverState(CookingAI system, GuestAI guest, Food foodToDeliver, Zone currentZone)
     {
         aiSystem = system;
         guestAI = guest;
+        food = foodToDeliver;
         zone = currentZone;
     }
 

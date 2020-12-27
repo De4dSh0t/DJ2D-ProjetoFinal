@@ -21,6 +21,8 @@ public class GuestAI : AISystem
     /// </summary>
     public List<Food> FoodList => foodList;
 
+    public bool HasEaten { get; set; }
+
     void Start()
     {
         OrderManager = FindObjectOfType<OrderManager>();
@@ -53,8 +55,7 @@ public class GuestAI : AISystem
             }
             case 3: // Pick Food (goto Random Position)
             {
-                SetState(new MoveState(this, Pathfinding, PositionInt, restaurant.ActionWaypoint));
-                sIndex = 0;
+                SetState(new EatState(this, restaurant.ActionWaypoint, SearchZone("EatingZone").ActionWaypoint));
                 break;
             }
         }
@@ -75,6 +76,13 @@ public class GuestAI : AISystem
         {
             sIndex = 2;
             hasOrdered = true;
+        }
+
+        // Once the entity has eaten, it should go to another room
+        if (HasEaten)
+        {
+            sIndex = 1;
+            HasEaten = false;
         }
     }
 }
