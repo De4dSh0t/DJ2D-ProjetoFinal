@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37d2fb08e5f9a8a4cb80eeba4580dbbe, type: 3}
-  m_Name: TestRoom
+  m_Name: TestGarbageRoom
   m_EditorClassIdentifier: 
-  roomID: Room 1
-  entryWaypoint: {x: 4, y: -3, z: 0}
-  room: {fileID: 3612085929532408133, guid: bd1df1e4078a9bf4c944a79255e15c73, type: 3}
+  zoneID: GarbageRoom
+  entryWaypoint: {x: 11, y: 11, z: 0}
+  zoneTilemap: {fileID: 6279166139978644860, guid: 2ec4138a4951c9d42a69010758c66b17,
+    type: 3}
+  actionWaypoint: {x: 0, y: 0, z: 0}

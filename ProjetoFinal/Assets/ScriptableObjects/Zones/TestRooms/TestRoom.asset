@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37d2fb08e5f9a8a4cb80eeba4580dbbe, type: 3}
-  m_Name: Kitchen
+  m_Name: TestRoom
   m_EditorClassIdentifier: 
-  roomID: Kitchen
-  entryWaypoint: {x: 0, y: 0, z: 0}
-  room: {fileID: 5366561617941736071, guid: 05db8b1634202cb429db1b782e915599, type: 3}
-  deliverWaypoint: {x: 12, y: -14, z: 0}
+  zoneID: Room1
+  entryWaypoint: {x: 4, y: -3, z: 0}
+  zoneTilemap: {fileID: 3612085929532408133, guid: bd1df1e4078a9bf4c944a79255e15c73,
+    type: 3}
+  actionWaypoint: {x: 0, y: 0, z: 0}
