@@ -20,7 +20,7 @@ public class CharacterSelector : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             // Checks whether the mouse is touching a character or not (if not, returns null)
-            hitInfo = Physics2D.Raycast(main.ScreenToWorldPoint(Input.mousePosition), Vector2.up, 12, characterLayer);
+            hitInfo = Physics2D.Raycast(main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, characterLayer);
 
             // Updates the current camera target
             camera.UpdateTarget(hitInfo.transform);
