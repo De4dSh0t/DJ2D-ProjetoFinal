@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GuestAI : AISystem
 {
@@ -10,6 +11,7 @@ public class GuestAI : AISystem
     // Decision Settings
     private int sIndex;
     private bool hasOrdered;
+    private Vector3Int pickUpPos;
 
     /// <summary>
     /// Returns OrderManager reference to interact with the order list
@@ -55,7 +57,8 @@ public class GuestAI : AISystem
             }
             case 3: // Pick Food (goto Random Position)
             {
-                SetState(new EatState(this, restaurant.ActionWaypoint, SearchZone("EatingZone").ActionWaypoint));
+                ActionZone seat = restaurant.AvailableActionZone;
+                SetState(new EatState(this, pickUpPos, seat));
                 break;
             }
         }
@@ -64,9 +67,34 @@ public class GuestAI : AISystem
     /// <summary>
     /// Notifies the guest AI when the order has been prepared
     /// </summary>
-    public void PickUpOrder()
+    public void PickUpOrder(Vector3Int deliverPos)
     {
         sIndex = 3;
+        Tilemap currentZone = CurrentZone.ZoneTilemap;
+        
+        // Determine Pick-Up position
+        if (currentZone.HasTile(deliverPos + new Vector3Int(-2, 0, 0)))
+        {
+            pickUpPos = deliverPos + new Vector3Int(-2, 0, 0);
+            return;
+        }
+        if (currentZone.HasTile(deliverPos + new Vector3Int(2, 0, 0)))
+        {
+            pickUpPos = deliverPos + new Vector3Int(2, 0, 0);
+            return;
+        }
+        if (currentZone.HasTile(deliverPos + new Vector3Int(0, 2, 0)))
+        {
+            pickUpPos = deliverPos + new Vector3Int(0, 2, 0);
+            return;
+        }
+        if (currentZone.HasTile(deliverPos + new Vector3Int(0, -2, 0)))
+        {
+            pickUpPos = deliverPos + new Vector3Int(0, -2, 0);
+            return;
+        }
+        
+        print("Delivery not found!");
     }
 
     private void HandleStates()

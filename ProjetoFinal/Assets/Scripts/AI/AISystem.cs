@@ -44,7 +44,7 @@ public abstract class AISystem : StateMachine
     }
 
     /// <summary>
-    /// Searches for a area by the specified ID
+    /// Searches for a zone by the specified ID
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -59,6 +59,21 @@ public abstract class AISystem : StateMachine
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Searches for an ActionZone by ID in the CurrentZone
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public ActionZone SearchActionZone(string id)
+    {
+        foreach (var zone in CurrentZone.ActionZones)
+        {
+            if (zone.ActionID == id) return zone;
+        }
+
+        return new ActionZone();
     }
 
     public virtual void DecisionMaking() {}
