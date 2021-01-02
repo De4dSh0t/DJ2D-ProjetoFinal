@@ -57,8 +57,7 @@ public class GuestAI : AISystem
             }
             case 3: // Pick Food (goto Random Position)
             {
-                ActionZone seat = restaurant.AvailableActionZone;
-                SetState(new EatState(this, pickUpPos, seat));
+                SetState(new EatState(this, SearchActionZone("PickUp1").Waypoint, restaurant.AvailableActionZone));
                 break;
             }
         }
@@ -67,34 +66,9 @@ public class GuestAI : AISystem
     /// <summary>
     /// Notifies the guest AI when the order has been prepared
     /// </summary>
-    public void PickUpOrder(Vector3Int deliverPos)
+    public void PickUpOrder()
     {
         sIndex = 3;
-        Tilemap currentZone = CurrentZone.ZoneTilemap;
-        
-        // Determine Pick-Up position
-        if (currentZone.HasTile(deliverPos + new Vector3Int(-2, 0, 0)))
-        {
-            pickUpPos = deliverPos + new Vector3Int(-2, 0, 0);
-            return;
-        }
-        if (currentZone.HasTile(deliverPos + new Vector3Int(2, 0, 0)))
-        {
-            pickUpPos = deliverPos + new Vector3Int(2, 0, 0);
-            return;
-        }
-        if (currentZone.HasTile(deliverPos + new Vector3Int(0, 2, 0)))
-        {
-            pickUpPos = deliverPos + new Vector3Int(0, 2, 0);
-            return;
-        }
-        if (currentZone.HasTile(deliverPos + new Vector3Int(0, -2, 0)))
-        {
-            pickUpPos = deliverPos + new Vector3Int(0, -2, 0);
-            return;
-        }
-        
-        print("Delivery not found!");
     }
 
     private void HandleStates()

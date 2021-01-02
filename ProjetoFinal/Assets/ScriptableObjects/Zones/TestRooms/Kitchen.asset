@@ -16,4 +16,7 @@ MonoBehaviour:
   entryWaypoint: {x: 0, y: 0, z: 0}
   zoneTilemap: {fileID: 5366561617941736071, guid: 05db8b1634202cb429db1b782e915599,
     type: 3}
-  actionWaypoint: {x: 12, y: -13, z: 0}
+  actionZones:
+  - actionID: Deliver
+    waypoint: {x: 12, y: -13, z: 0}
+    inUse: 0

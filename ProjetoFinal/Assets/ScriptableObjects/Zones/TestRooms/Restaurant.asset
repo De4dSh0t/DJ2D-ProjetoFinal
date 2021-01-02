@@ -16,9 +16,13 @@ MonoBehaviour:
   entryWaypoint: {x: 9, y: -10, z: 0}
   zoneTilemap: {fileID: 3448394666018776111, guid: 1f976773dd2bc4345b2d8f0fc753531b,
     type: 3}
-  actionWaypoint: {x: 10, y: -13, z: 0}
   actionZones:
   - actionID: Seat1
     waypoint: {x: 4, y: -12, z: 0}
+    inUse: 0
   - actionID: Seat2
     waypoint: {x: 9, y: -12, z: 0}
+    inUse: 0
+  - actionID: PickUp1
+    waypoint: {x: 10, y: -13, z: 0}
+    inUse: 1

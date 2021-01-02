@@ -18,13 +18,13 @@ public class DeliverState : IState
 
     public IEnumerator Execute()
     {
-        Vector3Int deliveryPos = aiSystem.SearchActionZone("Deliver").Waypoint;
-        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, deliveryPos));
+        // Go to delivery pos
+        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, aiSystem.SearchActionZone("Deliver").Waypoint));
         Debug.Log("Food Delivered.");
         aiSystem.IsCooking = false;
         
         // Notifies the guest that his order has been delivered
-        guestAI.PickUpOrder(deliveryPos);
+        guestAI.PickUpOrder();
         
         aiSystem.SetState(new IdleState(aiSystem));
     }
