@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
-    private List<Order> orders = new List<Order>();
+    [SerializeField] private Food[] foodList;
+    private readonly List<Order> orders = new List<Order>();
+
+    public Food[] FoodList => foodList;
 
     /// <summary>
     /// Used to check if there are new orders

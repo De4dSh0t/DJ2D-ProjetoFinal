@@ -121,6 +121,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &241905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241907}
+  - component: {fileID: 241906}
+  m_Layer: 0
+  m_Name: IngredientsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &241906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010450bb2b11e6344bab1bee0c2b3bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingIngredients:
+  - ingredientType: 0
+    quantity: 2
+  - ingredientType: 1
+    quantity: 2
+  - ingredientType: 2
+    quantity: 2
+  - ingredientType: 3
+    quantity: 2
+--- !u!4 &241907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &107646239
 GameObject:
   m_ObjectHideFlags: 0
@@ -5168,6 +5220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cdbf0549af1d441b78583e3942401d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodList:
+  - {fileID: 11400000, guid: 694a59c5de4da9e4dbe162afd681cd1a, type: 2}
 --- !u!4 &1311222859
 Transform:
   m_ObjectHideFlags: 0
@@ -5176,7 +5230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311222857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.4087734, y: 5.6278186, z: -0.72265625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5219,8 +5273,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
   pathfinding: {fileID: 1631792210}
   speed: 3
-  foodList:
-  - {fileID: 11400000, guid: 694a59c5de4da9e4dbe162afd681cd1a, type: 2}
 --- !u!114 &1631792210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5375,8 +5427,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d7281843bbe0ebc47af749d0782444de, type: 2}
   pathfinding: {fileID: 1993295877}
   speed: 3
-  foodList:
-  - {fileID: 11400000, guid: 694a59c5de4da9e4dbe162afd681cd1a, type: 2}
 --- !u!61 &1993295879
 BoxCollider2D:
   m_ObjectHideFlags: 0

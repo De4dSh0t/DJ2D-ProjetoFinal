@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OrderState : IState
@@ -13,13 +12,13 @@ public class OrderState : IState
     
     public IEnumerator Execute()
     {
-        aiSystem.OrderManager.AddOrder(ChooseRandomFood(aiSystem.FoodList));
+        aiSystem.OrderManager.AddOrder(ChooseRandomFood(aiSystem.OrderManager.FoodList));
         aiSystem.SetState(new IdleState(aiSystem));
         yield break;
     }
 
-    private Order ChooseRandomFood(List<Food> fList)
+    private Order ChooseRandomFood(Food[] fList)
     {
-        return new Order(aiSystem, fList[Random.Range(0, fList.Count)]);
+        return new Order(aiSystem, fList[Random.Range(0, fList.Length)]);
     }
 }

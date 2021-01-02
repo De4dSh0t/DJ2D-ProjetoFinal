@@ -13,3 +13,10 @@ MonoBehaviour:
   m_Name: TestFood
   m_EditorClassIdentifier: 
   cookingTime: 5
+  ingredients:
+  - ingredientType: 0
+    quantity: 1
+  - ingredientType: 1
+    quantity: 1
+  - ingredientType: 3
+    quantity: 1

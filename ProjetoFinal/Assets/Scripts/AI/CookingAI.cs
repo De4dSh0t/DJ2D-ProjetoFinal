@@ -1,7 +1,11 @@
 ﻿public class CookingAI : AISystem
 {
+    // Order Settings
     private OrderManager orderManager;
     private Order currentOrder;
+
+    //Ingredients Settings
+    private IngredientsManager ingredientsManager;
     
     // Decision Settings
     private int sIndex;
@@ -12,10 +16,16 @@
     /// Returns OrderManager reference to interact with the order list
     /// </summary>
     public OrderManager OrderManager => orderManager;
+
+    /// <summary>
+    /// Returns IngredientsManager reference to interact with available ingredients list
+    /// </summary>
+    public IngredientsManager IngredientsManager => ingredientsManager;
     
     void Start()
     {
         orderManager = FindObjectOfType<OrderManager>();
+        ingredientsManager = FindObjectOfType<IngredientsManager>();
         
         DecisionMaking();
     }

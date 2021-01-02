@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Tilemaps;
+﻿using UnityEngine;
 
 public class GuestAI : AISystem
 {
-    [Header("Food Settings")]
-    [SerializeField] private List<Food> foodList;
+    // Food Settings
     private Zone restaurant;
     
     // Decision Settings
@@ -17,12 +14,7 @@ public class GuestAI : AISystem
     /// Returns OrderManager reference to interact with the order list
     /// </summary>
     public OrderManager OrderManager { get; private set; }
-
-    /// <summary>
-    /// Returns the list of available food to order
-    /// </summary>
-    public List<Food> FoodList => foodList;
-
+    
     public bool HasEaten { get; set; }
 
     void Start()
