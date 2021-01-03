@@ -5,7 +5,7 @@ public class CookState : IState
 {
     private readonly CookingAI aiSystem;
     private readonly Order order;
-
+    
     public CookState(CookingAI system, Order order)
     {
         aiSystem = system;
@@ -26,8 +26,12 @@ public class CookState : IState
             aiSystem.SetState(new IdleState(aiSystem));
             yield break;
         }
-
-        yield return new WaitForSeconds(order.food.CookingTime);
+        
+        // Cook (normal food cooking time + extra cooking time)
+        yield return new WaitForSeconds(order.food.CookingTime + aiSystem.ExtraCookingTime);
+        
+        // Update energy levels
+        aiSystem.EmotionalSystem.UpdateEnergy(-order.food.EnergyToPrepare);
         
         // Remove order from order list
         aiSystem.OrderManager.RemoveOrder(order);
@@ -38,7 +42,7 @@ public class CookState : IState
     private bool HasIngredients()
     {
         Ingredient[] necessaryIngredients = order.food.Ingredients;
-
+        
         foreach (var ingredient in necessaryIngredients)
         {
             // Check if there aren't enough ingredients in stock to prepare the pretended food
@@ -48,14 +52,14 @@ public class CookState : IState
                 return false;
             }
         }
-
+        
         return true;
     }
-
+    
     private void UseIngredients()
     {
         Ingredient[] ingredients = order.food.Ingredients;
-
+        
         foreach (var ingredient in ingredients)
         {
             aiSystem.IngredientsManager.RemoveIngredient(ingredient.IngredientType, ingredient.Quantity);

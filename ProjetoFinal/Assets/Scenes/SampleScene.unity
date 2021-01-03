@@ -4830,6 +4830,7 @@ GameObject:
   - component: {fileID: 549747515}
   - component: {fileID: 549747514}
   - component: {fileID: 549747513}
+  - component: {fileID: 549747517}
   - component: {fileID: 549747512}
   m_Layer: 9
   m_Name: Chef
@@ -4957,6 +4958,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &549747517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549747511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7019cd3828658b54a8dca82c1117319f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 60
+  maxEmotion: 100
 --- !u!1 &555458552
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,8 +4,11 @@
     private OrderManager orderManager;
     private Order currentOrder;
 
-    //Ingredients Settings
+    // Ingredients Settings
     private IngredientsManager ingredientsManager;
+    
+    // Emotional State Settings
+    private EmotionalSystem emotionalSystem;
     
     // Decision Settings
     private int sIndex;
@@ -21,11 +24,40 @@
     /// Returns IngredientsManager reference to interact with available ingredients list
     /// </summary>
     public IngredientsManager IngredientsManager => ingredientsManager;
+
+    /// <summary>
+    /// Returns EmotionSystem reference
+    /// </summary>
+    public EmotionalSystem EmotionalSystem => emotionalSystem;
+
+    /// <summary>
+    /// Returns the extra cooking time that veries depending on the entity's emotional state
+    /// </summary>
+    public float ExtraCookingTime
+    {
+        get
+        {
+            EmotionalStates eState = emotionalSystem.EmotionalState;
+
+            switch (eState)
+            {
+                case EmotionalStates.Happy:
+                    return -1;
+                case EmotionalStates.Normal:
+                    return 0;
+                case EmotionalStates.Angry:
+                    return 5;
+                default:
+                    return 0;
+            }
+        }
+    }
     
     void Start()
     {
         orderManager = FindObjectOfType<OrderManager>();
         ingredientsManager = FindObjectOfType<IngredientsManager>();
+        emotionalSystem = GetComponent<EmotionalSystem>();
         
         DecisionMaking();
     }

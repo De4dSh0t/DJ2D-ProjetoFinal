@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "Zone", menuName = "ScriptableObjects/Zone/Zone", order = 1)]
+[CreateAssetMenu(fileName = "Zone", menuName = "ScriptableObjects/Zone", order = 1)]
 public class Zone : ScriptableObject
 {
     [Header("General Settings")] [SerializeField]

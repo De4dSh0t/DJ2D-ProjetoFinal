@@ -11,6 +11,7 @@ public class IngredientsManager : MonoBehaviour
 
     private void Start()
     {
+        // Add starting ingredients to the dictionary
         foreach (var ingredient in startingIngredients)
         {
             availableIngredients.Add(ingredient.IngredientType, ingredient.Quantity);
