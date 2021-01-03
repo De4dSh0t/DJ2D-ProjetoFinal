@@ -36,7 +36,7 @@ public class CookState : IState
         // Remove order from order list
         aiSystem.OrderManager.RemoveOrder(order);
         
-        aiSystem.SetState(new DeliverState(aiSystem, order.guest, order.food, aiSystem.CurrentZone));
+        aiSystem.SetState(new DeliverState(aiSystem, order.guest, order.food));
     }
 
     private bool HasIngredients()

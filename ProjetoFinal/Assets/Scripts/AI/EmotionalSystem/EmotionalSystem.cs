@@ -14,6 +14,11 @@ public class EmotionalSystem : MonoBehaviour
     [SerializeField] private float level3 = -1;
     private float energyLevel;
     
+    [Header("Emotion Level Settings")]
+    [Tooltip("X: Min Energy | Y: Max Energy ")] [SerializeField] private Vector2 happy;
+    [Tooltip("X: Min Energy | Y: Max Energy ")] [SerializeField] private Vector2 normal;
+    [Tooltip("X: Min Energy | Y: Max Energy ")] [SerializeField] private Vector2 angry;
+
     // Emotional States Settings
     private EmotionalStates emotionalState;
     
@@ -28,8 +33,6 @@ public class EmotionalSystem : MonoBehaviour
     
     void Update()
     {
-        print(energyMeter);
-        print(emotionMeter);
         // Energy level increases 0.5 per second
         UpdateEnergy(0.5f * Time.deltaTime);
         
@@ -53,12 +56,12 @@ public class EmotionalSystem : MonoBehaviour
         emotionMeter = Mathf.Clamp(emotionMeter + value, 0, maxEmotion);
         
         // Happy (80 - 100)
-        if (emotionMeter >= 80 && emotionMeter <= 100) emotionalState = EmotionalStates.Happy;
+        if (emotionMeter >= happy.x && emotionMeter <= happy.y) emotionalState = EmotionalStates.Happy;
         
         // Normal (40 - 79)
-        if (emotionMeter >= 40 && emotionMeter < 80) emotionalState = EmotionalStates.Normal;
+        if (emotionMeter >= normal.x && emotionMeter < normal.y) emotionalState = EmotionalStates.Normal;
         
         //Angry (0 - 39)
-        if (emotionMeter >= 0 && emotionMeter < 40) emotionalState = EmotionalStates.Angry;
+        if (emotionMeter >= angry.x && emotionMeter < angry.y) emotionalState = EmotionalStates.Angry;
     }
 }

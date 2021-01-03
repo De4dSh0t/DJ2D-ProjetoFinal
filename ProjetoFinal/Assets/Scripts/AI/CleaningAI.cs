@@ -8,6 +8,9 @@ public class CleaningAI : AISystem
     private bool firstScan = true;
     private int garbageCount;
     
+    // Emotional System Settings
+    private EmotionalSystem emotionalSystem;
+    
     // Decision Settings
     private int sIndex;
 
@@ -16,8 +19,15 @@ public class CleaningAI : AISystem
     /// </summary>
     public bool GarbageFound { get; set; }
 
+    /// <summary>
+    /// Returns EmotionalSystem reference
+    /// </summary>
+    public EmotionalSystem EmotionalSystem => emotionalSystem;
+
     private void Start()
     {
+        emotionalSystem = GetComponent<EmotionalSystem>();
+        
         DecisionMaking();
     }
 
@@ -39,8 +49,8 @@ public class CleaningAI : AISystem
             }
             case 2: // Go to Garbage Room
             {
-                Zone gZone = SearchZone("GarbageRoom");
-                if (gZone != null) SetState(new ChangeRoomState(this, gZone));
+                Zone gRoom = SearchZone("GarbageRoom");
+                if (gRoom != null) SetState(new ChangeRoomState(this, gRoom));
                 break;
             }
         }

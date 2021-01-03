@@ -4972,6 +4972,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 60
   maxEmotion: 100
+  level1: 0.5
+  level2: -0.5
+  level3: -1
+  happy: {x: 80, y: 100}
+  normal: {x: 40, y: 80}
+  angry: {x: 0, y: 40}
 --- !u!1 &555458552
 GameObject:
   m_ObjectHideFlags: 0
@@ -5029,6 +5035,7 @@ GameObject:
   - component: {fileID: 700286479}
   - component: {fileID: 700286481}
   - component: {fileID: 700286476}
+  - component: {fileID: 700286480}
   m_Layer: 9
   m_Name: CleaningLady
   m_TagString: Untagged
@@ -5147,6 +5154,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &700286480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700286475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7019cd3828658b54a8dca82c1117319f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 60
+  maxEmotion: 100
+  level1: 0.5
+  level2: -0.5
+  level3: -1
+  happy: {x: 80, y: 100}
+  normal: {x: 10, y: 80}
+  angry: {x: 0, y: 10}
 --- !u!114 &700286481
 MonoBehaviour:
   m_ObjectHideFlags: 0

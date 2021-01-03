@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestFood
   m_EditorClassIdentifier: 
   cookingTime: 5
-  energyToPrepare: 5
+  energyToPrepare: 60
   ingredients:
   - ingredientType: 0
     quantity: 1
