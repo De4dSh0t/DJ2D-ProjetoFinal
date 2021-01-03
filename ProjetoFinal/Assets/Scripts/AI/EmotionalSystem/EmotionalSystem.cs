@@ -24,7 +24,7 @@ public class EmotionalSystem : MonoBehaviour
     
     public EmotionalStates EmotionalState => emotionalState;
     
-    void Start()
+    void Awake()
     {
         energyMeter = maxEnergy;
         emotionMeter = maxEmotion;
@@ -49,6 +49,11 @@ public class EmotionalSystem : MonoBehaviour
     public void UpdateEnergy(float value)
     {
         energyMeter = Mathf.Clamp(energyMeter + value, 0, maxEnergy);
+    }
+
+    public float GetEnergy()
+    {
+        return energyMeter;
     }
     
     private void UpdateEmotion(float value)

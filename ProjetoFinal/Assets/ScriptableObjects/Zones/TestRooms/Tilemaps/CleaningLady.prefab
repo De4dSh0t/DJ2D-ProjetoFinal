@@ -140,6 +140,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17a40b151d2c00a429f12d7cbe9a228c, type: 2}
   - {fileID: 11400000, guid: b2dc022ee2cda91449d58a560e63d40a, type: 2}
   - {fileID: 11400000, guid: d7281843bbe0ebc47af749d0782444de, type: 2}
+  - {fileID: 11400000, guid: bdb47c3a875c18543baa9f2f57e54e9f, type: 2}
   pathfinding: {fileID: 6768414732226602911}
   speed: 3
   garbageGenerator: {fileID: 0}

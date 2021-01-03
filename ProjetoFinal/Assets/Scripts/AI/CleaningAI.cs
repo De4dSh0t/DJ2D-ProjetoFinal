@@ -53,6 +53,20 @@ public class CleaningAI : AISystem
                 if (gRoom != null) SetState(new ChangeRoomState(this, gRoom));
                 break;
             }
+            case 3: // Go to Breakroom
+            {
+                Zone bRoom = SearchZone("BreakRoom");
+                
+                // Is already in the breakroom
+                if (CurrentZone == bRoom)
+                {
+                    SetState(new IdleState(this));
+                    return;
+                }
+                
+                if (bRoom != null) SetState(new ChangeRoomState(this, bRoom));
+                break;
+            }
         }
     }
 
@@ -69,6 +83,13 @@ public class CleaningAI : AISystem
 
     private void HandleStates()
     {
+        // Tired
+        if (emotionalSystem.GetEnergy() <= 10)
+        {
+            sIndex = 3;
+            return;
+        }
+        
         // Goes to the garbage room if the entity has reached its full carrying capacity
         if (garbageCount >= maxCarryingCapacity)
         {
