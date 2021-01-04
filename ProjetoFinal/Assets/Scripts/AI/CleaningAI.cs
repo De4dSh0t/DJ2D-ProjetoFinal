@@ -8,9 +8,6 @@ public class CleaningAI : AISystem
     private bool firstScan = true;
     private int garbageCount;
     
-    // Emotional System Settings
-    private EmotionalSystem emotionalSystem;
-    
     // Decision Settings
     private int sIndex;
 
@@ -19,15 +16,8 @@ public class CleaningAI : AISystem
     /// </summary>
     public bool GarbageFound { get; set; }
 
-    /// <summary>
-    /// Returns EmotionalSystem reference
-    /// </summary>
-    public EmotionalSystem EmotionalSystem => emotionalSystem;
-
     private void Start()
     {
-        emotionalSystem = GetComponent<EmotionalSystem>();
-        
         DecisionMaking();
     }
 
@@ -83,13 +73,6 @@ public class CleaningAI : AISystem
 
     private void HandleStates()
     {
-        // Tired
-        if (emotionalSystem.GetEnergy() <= 10)
-        {
-            sIndex = 3;
-            return;
-        }
-        
         // Goes to the garbage room if the entity has reached its full carrying capacity
         if (garbageCount >= maxCarryingCapacity)
         {

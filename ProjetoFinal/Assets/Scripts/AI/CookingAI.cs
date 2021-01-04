@@ -7,9 +7,6 @@
     // Ingredients Settings
     private IngredientsManager ingredientsManager;
     
-    // Emotional State Settings
-    private EmotionalSystem emotionalSystem;
-    
     // Decision Settings
     private int sIndex;
 
@@ -25,16 +22,10 @@
     /// </summary>
     public IngredientsManager IngredientsManager => ingredientsManager;
 
-    /// <summary>
-    /// Returns EmotionSystem reference
-    /// </summary>
-    public EmotionalSystem EmotionalSystem => emotionalSystem;
-
     void Start()
     {
         orderManager = FindObjectOfType<OrderManager>();
         ingredientsManager = FindObjectOfType<IngredientsManager>();
-        emotionalSystem = GetComponent<EmotionalSystem>();
         
         DecisionMaking();
     }

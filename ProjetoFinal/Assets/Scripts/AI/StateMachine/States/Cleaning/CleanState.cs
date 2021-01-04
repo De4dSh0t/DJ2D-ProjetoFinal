@@ -16,9 +16,6 @@ public class CleanState : IState
         // Waits for the AI entity to reach its destination
         yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.position));
         
-        // Update energy levels
-        aiSystem.EmotionalSystem.UpdateEnergy(-10);
-        
         Clean();
         aiSystem.SetState(new IdleState(aiSystem));
     }
