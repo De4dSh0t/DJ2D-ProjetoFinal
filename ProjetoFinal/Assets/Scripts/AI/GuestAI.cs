@@ -15,11 +15,17 @@ public class GuestAI : AISystem
     /// </summary>
     public OrderManager OrderManager { get; private set; }
     
+    /// <summary>
+    /// Returns GarbageManager reference
+    /// </summary>
+    public GarbageManager GarbageManager { get; private set; }
+    
     public bool HasEaten { get; set; }
 
     void Start()
     {
         OrderManager = FindObjectOfType<OrderManager>();
+        GarbageManager = FindObjectOfType<GarbageManager>();
         restaurant = SearchZone("Restaurant");
         
         DecisionMaking();
@@ -47,9 +53,15 @@ public class GuestAI : AISystem
                 sIndex = 0;
                 break;
             }
-            case 3: // Pick Food (goto Random Position)
+            case 3: // Pick Food
             {
                 SetState(new EatState(this, SearchActionZone("PickUp1").Waypoint, restaurant.AvailableActionZone));
+                break;
+            }
+            case 4: // Spawn Garbage (goto Change Room)
+            {
+                SetState(new SpawnGarbageState(this));
+                sIndex = 1;
                 break;
             }
         }
@@ -65,7 +77,7 @@ public class GuestAI : AISystem
 
     private void HandleStates()
     {
-        // Check if the entity is in the restaurant and if it hasn't already odered food
+        // Check if the entity is in the restaurant and if it hasn't already ordered food
         if (CurrentZone == restaurant && !hasOrdered)
         {
             sIndex = 2;
@@ -75,7 +87,7 @@ public class GuestAI : AISystem
         // Once the entity has eaten, it should go to another room
         if (HasEaten)
         {
-            sIndex = 1;
+            sIndex = 4;
             HasEaten = false;
         }
     }

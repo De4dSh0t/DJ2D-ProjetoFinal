@@ -4,7 +4,7 @@ using UnityEngine;
 public class GarbageManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] garbagePrefabs;
-    private readonly List<Garbage> spawnedGarbage;
+    private readonly List<Garbage> spawnedGarbage = new List<Garbage>();
     
     /// <summary>
     /// Returns an array of spawnable garbage prefabs
@@ -15,7 +15,7 @@ public class GarbageManager : MonoBehaviour
     /// Returns spawnedGarbage list
     /// </summary>
     public List<Garbage> SpawnedGarbage => spawnedGarbage;
-
+    
     /// <summary>
     /// Spawns a specific garbage element
     /// </summary>

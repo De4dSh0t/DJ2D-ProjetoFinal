@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneID: Restaurant
   entryWaypoint: {x: 9, y: -10, z: 0}
-  zoneTilemap: {fileID: 3448394666018776111, guid: 1f976773dd2bc4345b2d8f0fc753531b,
+  zoneTilemap: {fileID: 4819605737184776491, guid: 1f976773dd2bc4345b2d8f0fc753531b,
     type: 3}
   actionZones:
   - actionID: Seat1
