@@ -202,13 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78721e87519faab4fa0dfdf9aef98824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  garbagePrefab: {fileID: 6557166956273759308, guid: a3a246f588948b84bb2607eaab33c7fb,
-    type: 3}
-  zones:
-  - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
-  - {fileID: 11400000, guid: 17a40b151d2c00a429f12d7cbe9a228c, type: 2}
-  - {fileID: 11400000, guid: d7281843bbe0ebc47af749d0782444de, type: 2}
-  spawnedGarbage: []
+  garbagePrefabs:
+  - {fileID: 6557166956273759308, guid: a3a246f588948b84bb2607eaab33c7fb, type: 3}
 --- !u!4 &107646241
 Transform:
   m_ObjectHideFlags: 0

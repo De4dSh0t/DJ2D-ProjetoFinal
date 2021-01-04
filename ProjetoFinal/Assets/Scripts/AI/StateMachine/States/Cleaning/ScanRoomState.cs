@@ -36,7 +36,7 @@ public class ScanRoomState : IState
         foreach (var garbage in garbageManager.SpawnedGarbage)
         {
             // Check if the garbage is in the same room as the AI entity
-            if (garbage.zone.ZoneID == r.ZoneID)
+            if (garbage.Zone.ZoneID == r.ZoneID)
             {
                 garbageToCollect = garbage;
                 return;

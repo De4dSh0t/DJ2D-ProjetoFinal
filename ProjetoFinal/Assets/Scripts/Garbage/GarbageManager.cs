@@ -24,11 +24,13 @@ public class GarbageManager : MonoBehaviour
     /// <param name="spawnPos"></param>
     public void SpawnGarbage(GameObject garbageElement, Zone spawnZone, Vector3Int spawnPos)
     {
-        // Spawn and Set variables
+        // Spawn
         GameObject garbageObj = Instantiate(garbageElement, new Vector3(spawnPos.x + .5f, spawnPos.y + .5f, spawnPos.z), Quaternion.identity);
+        
+        // Set properties
         Garbage garbage = garbageObj.GetComponent<Garbage>();
-        garbage.zone = spawnZone;
-        garbage.position = spawnPos;
+        garbage.Zone = spawnZone;
+        garbage.Position = spawnPos;
         
         // Save the reference to spawnedGarbage list
         spawnedGarbage.Add(garbage);

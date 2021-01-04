@@ -14,7 +14,7 @@ public class CleanState : IState
     public IEnumerator Execute()
     {
         // Waits for the AI entity to reach its destination
-        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.position));
+        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.Position));
         
         Clean();
         aiSystem.SetState(new IdleState(aiSystem));
