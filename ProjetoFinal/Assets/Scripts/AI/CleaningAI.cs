@@ -3,7 +3,7 @@
 public class CleaningAI : AISystem
 {
     [Header("Garbage Settings")]
-    [SerializeField] private GarbageGenerator garbageGenerator;
+    [SerializeField] private GarbageManager garbageManager;
     [SerializeField] private int maxCarryingCapacity;
     private bool firstScan = true;
     private int garbageCount;
@@ -29,7 +29,7 @@ public class CleaningAI : AISystem
         {
             case 0: // Scan Room
             {
-                SetState(new ScanRoomState(this, CurrentZone, garbageGenerator));
+                SetState(new ScanRoomState(this, CurrentZone, garbageManager));
                 break;
             }
             case 1: // Change Room (Randomly)
@@ -67,7 +67,7 @@ public class CleaningAI : AISystem
         garbageCount++;
         
         //Destroy & Remove from list
-        garbageGenerator.spawnedGarbage.Remove(garbage);
+        garbageManager.RemoveGarbage(garbage);
         Destroy(garbage.gameObject);
     }
 

@@ -14,10 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookingTime: 5
   energyToPrepare: 60
-  ingredients:
-  - ingredientType: 0
-    quantity: 1
-  - ingredientType: 1
-    quantity: 1
-  - ingredientType: 3
-    quantity: 1
+  ingredients: []
