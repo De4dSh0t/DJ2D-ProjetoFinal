@@ -28,10 +28,7 @@ public class CookState : IState
         }
         
         // Cook (normal food cooking time + extra cooking time)
-        yield return new WaitForSeconds(order.food.CookingTime + aiSystem.ExtraCookingTime);
-        
-        // Update energy levels
-        aiSystem.EmotionalSystem.UpdateEnergy(-order.food.EnergyToPrepare);
+        yield return new WaitForSeconds(order.food.CookingTime);
         
         // Remove order from order list
         aiSystem.OrderManager.RemoveOrder(order);
