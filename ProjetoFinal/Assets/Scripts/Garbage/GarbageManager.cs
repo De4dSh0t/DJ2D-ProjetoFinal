@@ -3,15 +3,29 @@ using UnityEngine;
 
 public class GarbageManager : MonoBehaviour
 {
-    [SerializeField] private GameObject garbagePrefab;
+    [SerializeField] private GameObject[] garbagePrefabs;
     private readonly List<Garbage> spawnedGarbage;
     
-    public List<Garbage> SpawnedGarbage => spawnedGarbage;
+    /// <summary>
+    /// Returns an array of spawnable garbage prefabs
+    /// </summary>
+    public GameObject[] GarbagePrefabs => garbagePrefabs;
     
-    public void SpawnGarbage(Zone spawnZone, Vector3Int spawnPos)
+    /// <summary>
+    /// Returns spawnedGarbage list
+    /// </summary>
+    public List<Garbage> SpawnedGarbage => spawnedGarbage;
+
+    /// <summary>
+    /// Spawns a specific garbage element
+    /// </summary>
+    /// <param name="garbageElement"></param>
+    /// <param name="spawnZone"></param>
+    /// <param name="spawnPos"></param>
+    public void SpawnGarbage(GameObject garbageElement, Zone spawnZone, Vector3Int spawnPos)
     {
         // Spawn and Set variables
-        GameObject garbageObj = Instantiate(garbagePrefab, new Vector3(spawnPos.x + .5f, spawnPos.y + .5f, spawnPos.z), Quaternion.identity);
+        GameObject garbageObj = Instantiate(garbageElement, new Vector3(spawnPos.x + .5f, spawnPos.y + .5f, spawnPos.z), Quaternion.identity);
         Garbage garbage = garbageObj.GetComponent<Garbage>();
         garbage.zone = spawnZone;
         garbage.position = spawnPos;
@@ -19,7 +33,11 @@ public class GarbageManager : MonoBehaviour
         // Save the reference to spawnedGarbage list
         spawnedGarbage.Add(garbage);
     }
-
+    
+    /// <summary>
+    /// Remove a specific garbage element from the spawnedGarbage list
+    /// </summary>
+    /// <param name="garbage"></param>
     public void RemoveGarbage(Garbage garbage)
     {
         spawnedGarbage.Remove(garbage);
