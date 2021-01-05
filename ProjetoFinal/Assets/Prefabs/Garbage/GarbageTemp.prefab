@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3687548519282661358}
   - component: {fileID: 1756447712239690423}
   - component: {fileID: 7066338267163793957}
-  m_Layer: 0
+  - component: {fileID: -4812602455566084937}
+  m_Layer: 10
   m_Name: GarbageTemp
-  m_TagString: Untagged
+  m_TagString: Garbage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2970838f1528fc14b8159e3073064aea, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -94,5 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e74effcc5d02e4b95935243cedb1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomReference: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
+--- !u!58 &-4812602455566084937
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557166956273759308}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
