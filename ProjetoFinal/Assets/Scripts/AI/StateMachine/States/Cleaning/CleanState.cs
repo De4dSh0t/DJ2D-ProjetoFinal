@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 
 public class CleanState : IState
 {
@@ -16,7 +17,10 @@ public class CleanState : IState
         // Waits for the AI entity to reach its destination
         yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, garbageToCollect.Position));
         
+        // Cleaning Time
+        yield return new WaitForSeconds(garbageToCollect.CleaningTime);
         Clean();
+        
         aiSystem.SetState(new IdleState(aiSystem));
     }
 
