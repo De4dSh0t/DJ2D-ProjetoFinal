@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GarbagePickUp : MonoBehaviour
+public class PlayerAction : MonoBehaviour
 {
     [Header("Collider Settings")]
     [SerializeField] private float radius;
@@ -12,6 +12,7 @@ public class GarbagePickUp : MonoBehaviour
     
     // Pick-Up Settings
     private float holdingTime;
+    private CleaningProduct requiredProduct;
 
     void Start()
     {
@@ -26,16 +27,27 @@ public class GarbagePickUp : MonoBehaviour
 
     private void HandlePickUp()
     {
+        if (playerInfo.IsFull) return;
         if (garbageToPick == null) return;
         
         // Pick-Up
         if (Input.GetKey(KeyCode.E))
         {
+            // Check if player contains required cleaning product
+            requiredProduct = garbageToPick.RequiredProduct;
+            if (playerInfo.GetProduct(requiredProduct.ProductID) == null)
+            {
+                print("Player doesn't contain the required cleaning product!");
+                return;
+            }
+            
+            // Cleaning Time
             holdingTime += Time.deltaTime;
             
             if (holdingTime < garbageToPick.CleaningTime) return;
             
             Destroy(garbageToPick.gameObject);
+            playerInfo.AvailableProducts[requiredProduct]--;
             playerInfo.CarryingCount++;
         }
         

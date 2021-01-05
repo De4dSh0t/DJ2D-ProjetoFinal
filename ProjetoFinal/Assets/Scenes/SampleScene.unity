@@ -5503,7 +5503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2691edb0da25940864df8a9e126b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCarryingCapacity: 2
+  maxCarryingCapacity: 1
+  cleaningProducts:
+  - {fileID: 11400000, guid: 5fc7e05503d36724dbc6c8cbed0d0291, type: 2}
 --- !u!1 &700286475
 GameObject:
   m_ObjectHideFlags: 0
