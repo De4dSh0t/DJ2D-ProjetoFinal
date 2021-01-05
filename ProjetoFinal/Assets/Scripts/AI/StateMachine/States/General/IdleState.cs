@@ -19,6 +19,6 @@ public class IdleState : IState
 
     private void Idle()
     {
-        Debug.Log("Idle");
+        // Idle Behaviour
     }
 }

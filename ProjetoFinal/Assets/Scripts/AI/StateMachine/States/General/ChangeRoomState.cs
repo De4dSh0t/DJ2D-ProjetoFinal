@@ -22,8 +22,6 @@ public class ChangeRoomState : IState
             yield break;
         }
         
-        Debug.Log("Change Room");
-        
         targetWaypoint = GetEntryWaypoint(targetRoom);
         yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, targetWaypoint));
         aiSystem.SetState(new IdleState(aiSystem));

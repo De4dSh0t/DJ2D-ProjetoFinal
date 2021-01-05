@@ -40,8 +40,6 @@ public class Pathfinding : MonoBehaviour
             // Path Found
             if (currentNode == target)
             {
-                Debug.Log("Path Found!");
-                
                 return RetracePath(start, target);
             }
 
