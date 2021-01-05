@@ -9,6 +9,9 @@ public class GarbagePickUp : MonoBehaviour
     [Header("Player Info Settings")]
     [SerializeField] private PlayerInfo playerInfo;
     private Garbage garbageToPick;
+    
+    // Pick-Up Settings
+    private float holdingTime;
 
     void Start()
     {
@@ -26,11 +29,18 @@ public class GarbagePickUp : MonoBehaviour
         if (garbageToPick == null) return;
         
         // Pick-Up
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
+            holdingTime += Time.deltaTime;
+            
+            if (holdingTime < garbageToPick.CleaningTime) return;
+            
             Destroy(garbageToPick.gameObject);
             playerInfo.CarryingCount++;
         }
+        
+        // Reset holding time
+        if (Input.GetKeyUp(KeyCode.E)) holdingTime = 0;
     }
 
     private void CheckCollision()
