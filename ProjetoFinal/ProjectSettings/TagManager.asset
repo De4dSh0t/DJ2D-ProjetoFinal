@@ -16,8 +16,8 @@ TagManager:
   - 
   - Collision
   - SelectableCharacters
-  - PickableObjects
-  - 
+  - Garbage
+  - GarbageCan
   - 
   - 
   - 

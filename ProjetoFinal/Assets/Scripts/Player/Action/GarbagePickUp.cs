@@ -4,6 +4,7 @@ public class GarbagePickUp : PlayerAction
 {
     [Header("Collider Settings")]
     [SerializeField] private LayerMask garbageLayer;
+    [SerializeField] private LayerMask garbageCanLayer;
     
     [Header("Discard Settings")]
     [SerializeField] private Zone garbageRoom;
@@ -15,15 +16,27 @@ public class GarbagePickUp : PlayerAction
     private float holdingTime;
     private bool hasCleaned;
     
+    // Garbage discard settings
+    private ContactFilter2D garbageCanFilter;
+    
     void Start()
     {
         // Get player collider
         pCollider = GetComponent<Collider2D>();
         
+        // Garbage Filter
         // Configure filter to ignore other collisions (except with the "contactLayer")
         garbageFilter = new ContactFilter2D
         {
             layerMask = garbageLayer,
+            useLayerMask = true,
+            useTriggers = true
+        };
+        
+        // Garbage Can Filter
+        garbageCanFilter = new ContactFilter2D
+        {
+            layerMask = garbageCanLayer,
             useLayerMask = true,
             useTriggers = true
         };
@@ -32,6 +45,7 @@ public class GarbagePickUp : PlayerAction
     void Update()
     {
         HandlePickUp();
+        HandleDiscard();
     }
     
     private void HandlePickUp()
@@ -88,5 +102,23 @@ public class GarbagePickUp : PlayerAction
         
         // Update the carrying count
         playerInfo.CarryingCount++;
+    }
+    
+    private void HandleDiscard()
+    {
+        // Checks if player has any garbage to discard
+        if (playerInfo.CarryingCount <= 0) return;
+        
+        // Tries to get a garbage can gameObject
+        GameObject closestObject = GetClosestObject(garbageCanFilter);
+        if (closestObject == null) return;
+        
+        // Discards garbage
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // Reset carrying count
+            playerInfo.CarryingCount = 0;
+            print("Garbage discarded!");
+        }
     }
 }
