@@ -4,10 +4,9 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     [Header("Collider Settings")]
-    [SerializeField] private float radius;
     [SerializeField] private LayerMask contactLayer;
-    private Collider2D collider;
-
+    private Collider2D pCollider;
+    
     [Header("Player Info Settings")]
     [SerializeField] private PlayerInfo playerInfo;
     private Garbage garbageToPick;
@@ -22,7 +21,7 @@ public class PlayerAction : MonoBehaviour
     
     void Start()
     {
-        collider = GetComponent<Collider2D>();
+        pCollider = GetComponent<Collider2D>();
     }
     
     void Update()
@@ -84,19 +83,19 @@ public class PlayerAction : MonoBehaviour
         
         // Save all the colliders that the entity is currently colliding with
         List<Collider2D> contacts = new List<Collider2D>();
-        collider.OverlapCollider(filter, contacts);
+        pCollider.OverlapCollider(filter, contacts);
         
         // Returns null if no collider has been detected
         if (contacts.Count <= 0) return null;
         
         // This is used as a reference to calculate the closest object
         int iClosest = 0;
-        ColliderDistance2D closest = contacts[0].Distance(collider);
+        ColliderDistance2D closest = contacts[0].Distance(pCollider);
         
         // Calculates the closest object
         for (int i = 0; i < contacts.Count; i++)
         {
-            ColliderDistance2D temp = contacts[i].Distance(collider);
+            ColliderDistance2D temp = contacts[i].Distance(pCollider);
             
             if (temp.distance < closest.distance)
             {
