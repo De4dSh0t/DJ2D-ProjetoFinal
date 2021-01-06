@@ -1,32 +1,36 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerAction : MonoBehaviour
+public class GarbagePickUp : PlayerAction
 {
     [Header("Collider Settings")]
-    [SerializeField] private LayerMask contactLayer;
-    private Collider2D pCollider;
-    
-    [Header("Player Info Settings")]
-    [SerializeField] private PlayerInfo playerInfo;
-    private Garbage garbageToPick;
+    [SerializeField] private LayerMask garbageLayer;
     
     [Header("Discard Settings")]
     [SerializeField] private Zone garbageRoom;
     
-    // Pick-Up Settings
-    private float holdingTime;
+    // Garbage pick-up settings
+    private ContactFilter2D garbageFilter;
     private CleaningProduct requiredProduct;
+    private Garbage garbageToPick;
+    private float holdingTime;
     private bool hasCleaned;
     
     void Start()
     {
+        // Get player collider
         pCollider = GetComponent<Collider2D>();
+        
+        // Configure filter to ignore other collisions (except with the "contactLayer")
+        garbageFilter = new ContactFilter2D
+        {
+            layerMask = garbageLayer,
+            useLayerMask = true,
+            useTriggers = true
+        };
     }
     
     void Update()
     {
-        GetClosestGarbage();
         HandlePickUp();
     }
     
@@ -34,13 +38,16 @@ public class PlayerAction : MonoBehaviour
     {
         if (playerInfo.IsFull) return;
         
-        // Tries to get the closest garbage
-        garbageToPick = GetClosestGarbage();
-        if (garbageToPick == null) return;
+        // Tries to get the closest object
+        GameObject closestObject = GetClosestObject(garbageFilter);
+        if (closestObject == null) return;
         
         // Check if contains product to clean
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // Get garbage component from the closestObject variable
+            garbageToPick = closestObject.GetComponent<Garbage>();
+            
             // Check if player contains required cleaning product
             requiredProduct = garbageToPick.RequiredProduct;
             if (playerInfo.GetProduct(requiredProduct.ProductID) == null)
@@ -69,43 +76,6 @@ public class PlayerAction : MonoBehaviour
         
         // Reset holding time
         if (Input.GetKeyUp(KeyCode.E)) holdingTime = 0;
-    }
-    
-    private Garbage GetClosestGarbage()
-    {
-        // Configure filter to ignore other collisions (except with the "contactLayer")
-        ContactFilter2D filter = new ContactFilter2D
-        {
-            layerMask = contactLayer,
-            useLayerMask = true,
-            useTriggers = true
-        };
-        
-        // Save all the colliders that the entity is currently colliding with
-        List<Collider2D> contacts = new List<Collider2D>();
-        pCollider.OverlapCollider(filter, contacts);
-        
-        // Returns null if no collider has been detected
-        if (contacts.Count <= 0) return null;
-        
-        // This is used as a reference to calculate the closest object
-        int iClosest = 0;
-        ColliderDistance2D closest = contacts[0].Distance(pCollider);
-        
-        // Calculates the closest object
-        for (int i = 0; i < contacts.Count; i++)
-        {
-            ColliderDistance2D temp = contacts[i].Distance(pCollider);
-            
-            if (temp.distance < closest.distance)
-            {
-                closest = temp;
-                iClosest = i;
-            }
-        }
-        
-        // Returns the closest garbage object
-        return contacts[iClosest].GetComponent<Garbage>();
     }
     
     private void Clean(Garbage garbage)
