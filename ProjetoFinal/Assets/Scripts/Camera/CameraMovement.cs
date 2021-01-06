@@ -13,6 +13,9 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         currentCamera = GetComponent<Camera>();
+        
+        // Set camera position to the target position
+        currentCamera.transform.position = target.position + offset;
     }
 
     void LateUpdate()
