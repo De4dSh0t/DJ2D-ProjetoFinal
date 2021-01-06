@@ -64,7 +64,11 @@ public class PlayerInfo : MonoBehaviour
         foreach (var product in AvailableProducts.Keys)
         {
             // Remove product if number of uses reaches zero
-            if (AvailableProducts[product] <= 0) AvailableProducts.Remove(product);
+            if (AvailableProducts[product] <= 0)
+            {
+                AvailableProducts.Remove(product);
+                break;
+            }
             
             // Return specified product
             if (product.ProductID == id) return product;

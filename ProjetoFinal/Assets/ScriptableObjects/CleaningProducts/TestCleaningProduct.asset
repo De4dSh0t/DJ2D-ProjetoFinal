@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productID: TestCleaningProduct
   cost: 5
-  numberOfUses: 2
+  numberOfUses: 1
