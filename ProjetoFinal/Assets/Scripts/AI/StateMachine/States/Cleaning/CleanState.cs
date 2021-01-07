@@ -26,6 +26,6 @@ public class CleanState : IState
 
     private void Clean()
     {
-        aiSystem.PickUp(garbageToCollect);
+        if (garbageToCollect != null) aiSystem.PickUp(garbageToCollect);
     }
 }
