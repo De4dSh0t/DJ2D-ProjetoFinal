@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 
-public class GarbagePickUp : PlayerAction
+public class Cleaning : PlayerAction
 {
     [Header("Collider Settings")]
     [SerializeField] private LayerMask garbageLayer;
     [SerializeField] private LayerMask garbageCanLayer;
-    
-    [Header("Discard Settings")]
-    [SerializeField] private Zone garbageRoom;
     
     // Garbage pick-up settings
     private ContactFilter2D garbageFilter;
