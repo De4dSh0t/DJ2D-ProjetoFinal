@@ -5391,7 +5391,6 @@ MonoBehaviour:
   garbageCanLayer:
     serializedVersion: 2
     m_Bits: 2048
-  garbageRoom: {fileID: 11400000, guid: b2dc022ee2cda91449d58a560e63d40a, type: 2}
 --- !u!212 &685558138
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5851,6 +5850,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
   pathfinding: {fileID: 1631792210}
   speed: 3
+  garbageLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &1631792210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6005,6 +6007,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d7281843bbe0ebc47af749d0782444de, type: 2}
   pathfinding: {fileID: 1993295877}
   speed: 3
+  garbageLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!61 &1993295879
 BoxCollider2D:
   m_ObjectHideFlags: 0

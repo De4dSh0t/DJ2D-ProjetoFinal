@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GuestAI : AISystem
 {
@@ -9,6 +10,13 @@ public class GuestAI : AISystem
     private int sIndex;
     private bool hasOrdered;
     private Vector3Int pickUpPos;
+    
+    // Garbage Detection Settings
+    [Header("Garbage Detection Settings")] 
+    [SerializeField] private LayerMask garbageLayer;
+    private HashSet<GameObject> encounteredGarbage;
+    private ContactFilter2D garbageFilter;
+    private Collider2D gCollider;
 
     /// <summary>
     /// Returns OrderManager reference to interact with the order list
@@ -28,7 +36,23 @@ public class GuestAI : AISystem
         GarbageManager = FindObjectOfType<GarbageManager>();
         restaurant = SearchZone("Restaurant");
         
+        // Garbage Detection
+        // Using hashset to avoid gameObject repetitions
+        encounteredGarbage = new HashSet<GameObject>();
+        gCollider = GetComponent<Collider2D>();
+        garbageFilter = new ContactFilter2D
+        {
+            layerMask = garbageLayer,
+            useLayerMask = true,
+            useTriggers = true
+        };
+        
         DecisionMaking();
+    }
+
+    void Update()
+    {
+        GarbageDetection();
     }
     
     public override void DecisionMaking()
@@ -89,6 +113,25 @@ public class GuestAI : AISystem
         {
             sIndex = 4;
             HasEaten = false;
+        }
+    }
+    
+    /// <summary>
+    /// Detects garbage when in range and saves in a hashset
+    /// </summary>
+    private void GarbageDetection()
+    {
+        // Save all the colliders that the entity is currently colliding with
+        List<Collider2D> contacts = new List<Collider2D>();
+        gCollider.OverlapCollider(garbageFilter, contacts);
+        
+        // Returns null if no collider has been detected
+        if (contacts.Count <= 0) return;
+        
+        // Fills the hashset with the garbage gameObject
+        foreach (var garbage in contacts)
+        {
+            encounteredGarbage.Add(garbage.gameObject);
         }
     }
 }
