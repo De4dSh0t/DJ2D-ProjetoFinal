@@ -42,6 +42,7 @@ public class GarbageManager : MonoBehaviour
     /// <param name="garbage"></param>
     public void RemoveGarbage(Garbage garbage)
     {
+        if (!spawnedGarbage.Contains(garbage)) return;
         spawnedGarbage.Remove(garbage);
     }
 }
