@@ -25,7 +25,7 @@ public class PlayerInfo : MonoBehaviour
                 return;
             }
             
-            carryingCount += value;
+            carryingCount = value;
         }
     }
     

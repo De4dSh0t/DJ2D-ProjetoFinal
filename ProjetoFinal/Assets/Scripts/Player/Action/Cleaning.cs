@@ -11,7 +11,6 @@ public class Cleaning : PlayerAction
     
     // Garbage pick-up settings
     private ContactFilter2D garbageFilter;
-    private CleaningProduct requiredProduct;
     private Garbage garbageToPick;
     private float holdingTime;
     private bool hasCleaned;
@@ -56,21 +55,12 @@ public class Cleaning : PlayerAction
         GameObject closestObject = GetClosestObject(garbageFilter);
         if (closestObject == null) return;
         
-        // Check if contains product to clean
+        // Gets the Garbage component
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Get garbage component from the closestObject variable
             garbageToPick = closestObject.GetComponent<Garbage>();
             
-            // Check if player contains required cleaning product
-            requiredProduct = garbageToPick.RequiredProduct;
-            if (playerInfo.GetProduct(requiredProduct.ProductID) == null)
-            {
-                print("Player doesn't contain the required cleaning product!");
-                return;
-            }
-            
-            // Prevents the player from "cleaning" without first checking if contains the required cleaning product
             hasCleaned = false;
         }
         
@@ -84,7 +74,8 @@ public class Cleaning : PlayerAction
             if (holdingTime < garbageToPick.CleaningTime) return;
             
             Clean(garbageToPick);
-            
+
+            holdingTime = 0;
             hasCleaned = true;
         }
         
@@ -96,9 +87,6 @@ public class Cleaning : PlayerAction
     {
         // Destroy gameObject
         Destroy(garbage.gameObject);
-        
-        // Update available products to removed the product that has been used to clean
-        if (playerInfo.AvailableProducts.ContainsKey(requiredProduct)) playerInfo.AvailableProducts[requiredProduct]--;
         
         // Update the carrying count
         playerInfo.CarryingCount++;
@@ -123,5 +111,8 @@ public class Cleaning : PlayerAction
             playerInfo.CarryingCount = 0;
             print("Garbage discarded!");
         }
+        
+        // Reset variable
+        garbageToPick = null;
     }
 }
