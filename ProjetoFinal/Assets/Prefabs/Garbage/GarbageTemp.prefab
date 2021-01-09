@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cleaningTime: 1
   requiredProduct: {fileID: 11400000, guid: 5fc7e05503d36724dbc6c8cbed0d0291, type: 2}
+  cleaningReward: 1
 --- !u!58 &-4812602455566084937
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ public class Cleaning : PlayerAction
     [SerializeField] private LayerMask garbageLayer;
     [SerializeField] private LayerMask garbageCanLayer;
     
+    [Header("Currency Settings")]
+    [SerializeField] private CurrencyManager currencyManager;
+    
     // Garbage pick-up settings
     private ContactFilter2D garbageFilter;
     private CleaningProduct requiredProduct;
@@ -99,6 +102,9 @@ public class Cleaning : PlayerAction
         
         // Update the carrying count
         playerInfo.CarryingCount++;
+        
+        // Update currency
+        currencyManager.UpdateCurrency(garbage.CleaningReward);
     }
     
     private void HandleDiscard()
