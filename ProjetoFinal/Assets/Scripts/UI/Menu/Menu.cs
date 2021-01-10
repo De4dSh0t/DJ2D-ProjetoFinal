@@ -19,14 +19,17 @@ public abstract class Menu<T> : MonoBehaviour
 
     protected void OnEnable()
     {
+        ClearList();
+        DisplayList();
+    }
+
+    protected void ClearList()
+    {
         foreach (var button in spawnedButtons)
         {
             Destroy(button);
         }
-        
-        DisplayList();
     }
-
     protected virtual void DisplayList() {}
     protected virtual void ShowPrompt() {}
     protected virtual void ShowPrompt(T entity) {}

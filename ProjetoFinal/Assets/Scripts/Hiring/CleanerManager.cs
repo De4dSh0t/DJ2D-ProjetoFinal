@@ -20,6 +20,7 @@ public class CleanerManager : MonoBehaviour
     public void RemoveCleaner(GameObject cleaner)
     {
         HiredCleaners.Remove(cleaner);
+        Destroy(cleaner);
     }
     
     public GameObject GetCleanerByID(string id)

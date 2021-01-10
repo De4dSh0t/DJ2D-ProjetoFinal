@@ -191,7 +191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &59226660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -229,7 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currencyManager: {fileID: 472543257}
   element: []
-  elementPrefab: {fileID: 0}
+  elementPrefab: {fileID: 5556631332350812960, guid: 439253d6c91ea864d9ec62503688be4e,
+    type: 3}
   content: {fileID: 1502557427}
   prompt: {fileID: 1287694428}
   cleanerManager: {fileID: 2116715956}
@@ -9450,7 +9451,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1519685527
 GameObject:
@@ -13399,7 +13400,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

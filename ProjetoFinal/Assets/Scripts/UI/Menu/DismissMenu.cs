@@ -33,6 +33,9 @@ public class DismissMenu : Menu<Cleaner>
     public void DismissCleaner()
     {
         cleanerManager.RemoveCleaner(cleanerManager.GetCleanerByID(selectedCleaner.CleanerID));
+        ClearList();
+        DisplayList();
+        ClosePrompt();
     }
     
     public override void Cancel()
