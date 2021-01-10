@@ -6235,7 +6235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c711c9f4d06992f48a7006f57c862be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCurrency: 10
+  startingCurrency: 100
+  cleanerManager: {fileID: 2116715956}
   currencyText: {fileID: 1996707326}
 --- !u!4 &472543258
 Transform:
