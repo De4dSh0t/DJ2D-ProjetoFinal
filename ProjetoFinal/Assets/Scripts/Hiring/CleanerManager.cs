@@ -7,14 +7,14 @@ public class CleanerManager : MonoBehaviour
     [SerializeField] private GameObject cleanerPrefab;
     [SerializeField] private Vector3 spawnPos;
     
-    public List<GameObject> HiredCleaners { get; } = new List<GameObject>();
+    public Dictionary<GameObject, Cleaner> HiredCleaners { get; } = new Dictionary<GameObject, Cleaner>();
     
     public void AddCleaner(Cleaner cleaner)
     {
         GameObject newCleaner = Instantiate(cleanerPrefab, spawnPos, Quaternion.identity);
         newCleaner.GetComponent<CleaningAI>().Setup(cleaner.CarryingCapacity, cleaner.MovementSpeed);
         
-        HiredCleaners.Add(newCleaner);
+        HiredCleaners.Add(newCleaner, cleaner);
     }
     
     public void RemoveCleaner(GameObject cleaner)
@@ -24,9 +24,9 @@ public class CleanerManager : MonoBehaviour
     
     public GameObject GetCleanerByID(string id)
     {
-        foreach (var cleaner in HiredCleaners)
+        foreach (var kvp in HiredCleaners)
         {
-            if (cleaner.GetComponent<Cleaner>().CleanerID == id) return cleaner;
+            if (kvp.Value.CleanerID == id) return kvp.Key;
         }
         
         print($"No cleaner found named {id}!");
@@ -38,9 +38,9 @@ public class CleanerManager : MonoBehaviour
     {
         int total = 0;
         
-        foreach (var cleaner in HiredCleaners)
+        foreach (var cleaner in HiredCleaners.Values)
         {
-            total += cleaner.GetComponent<Cleaner>().Wage;
+            total += cleaner.Wage;
         }
         
         return total;

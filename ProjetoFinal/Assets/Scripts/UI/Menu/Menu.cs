@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Store<T> : MonoBehaviour
+public abstract class Menu<T> : MonoBehaviour
 {
     [Header("Currency Settings")]
     [SerializeField] protected CurrencyManager currencyManager;

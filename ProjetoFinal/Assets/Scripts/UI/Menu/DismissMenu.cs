@@ -1,26 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-public class CleanerStore : Store<Cleaner>
+public class DismissMenu : Menu<Cleaner>
 {
     [Header("Cleaner Manager Settings")]
     [SerializeField] private CleanerManager cleanerManager;
     private Cleaner selectedCleaner;
-
+    
     protected override void DisplayList()
     {
-        foreach (var cleaner in element)
+        foreach (var kvp in cleanerManager.HiredCleaners)
         {
             GameObject button = Instantiate(elementPrefab, content.transform);
             HiringButton hButton = button.GetComponent<HiringButton>();
-            
-            hButton.Setup(cleaner);
+
+            hButton.Setup(kvp.Value);
             hButton.OnSelect += ShowPrompt;
             spawnedButtons.Add(button);
-            
-            // Disables button interaction if player doesn't have enough money to buy
-            print(currencyManager.CurrentCurrency);
-            if (cleaner.Wage > currencyManager.CurrentCurrency) hButton.GetComponent<Button>().interactable = false;
         }
     }
     
@@ -35,11 +30,9 @@ public class CleanerStore : Store<Cleaner>
         prompt.SetActive(false);
     }
     
-    public override void Buy()
+    public void DismissCleaner()
     {
-        print("Bought.");
-        cleanerManager.AddCleaner(selectedCleaner);
-        ClosePrompt();
+        cleanerManager.RemoveCleaner(cleanerManager.GetCleanerByID(selectedCleaner.CleanerID));
     }
     
     public override void Cancel()
