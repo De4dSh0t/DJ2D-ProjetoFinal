@@ -3,8 +3,12 @@ using UnityEngine;
 
 public abstract class Store<T> : MonoBehaviour
 {
-    [Header("Products Settings")]
+    [Header("Currency Settings")]
+    [SerializeField] protected CurrencyManager currencyManager;
+    
+    [Header("Element Settings")]
     [SerializeField] protected List<T> element;
+    protected readonly List<GameObject> spawnedButtons = new List<GameObject>();
     
     [Header("Prefab Settings")]
     [SerializeField] protected GameObject elementPrefab;
@@ -13,8 +17,13 @@ public abstract class Store<T> : MonoBehaviour
     [SerializeField] protected GameObject content;
     [SerializeField] protected GameObject prompt;
 
-    protected void Start()
+    protected void OnEnable()
     {
+        foreach (var button in spawnedButtons)
+        {
+            Destroy(button);
+        }
+        
         DisplayList();
     }
 

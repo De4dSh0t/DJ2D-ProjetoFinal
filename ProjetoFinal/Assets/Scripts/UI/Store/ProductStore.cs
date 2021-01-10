@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ProductStore : Store<CleaningProduct>
 {
@@ -11,6 +12,10 @@ public class ProductStore : Store<CleaningProduct>
             
             pButton.Setup(product.ProductID, product.NumberOfUses, product.Cost);
             pButton.OnSelect.AddListener(ShowPrompt);
+            spawnedButtons.Add(button);
+            
+            // Disables button interaction if player doesn't have enough money to buy
+            if (product.Cost > currencyManager.CurrentCurrency) pButton.GetComponent<Button>().interactable = false;
         }
     }
     
