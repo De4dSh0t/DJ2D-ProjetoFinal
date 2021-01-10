@@ -11,11 +11,16 @@ public abstract class Store<T> : MonoBehaviour
     
     [Header("UI Settings")]
     [SerializeField] protected GameObject content;
+    [SerializeField] protected GameObject prompt;
 
-    private void Start()
+    protected void Start()
     {
         DisplayList();
     }
 
     protected virtual void DisplayList() {}
+    protected virtual void ShowPrompt() {}
+    protected virtual void ClosePrompt() {}
+    public virtual void Buy() {}
+    public virtual void Cancel() {}
 }

@@ -2,17 +2,37 @@
 
 public class ProductStore : Store<CleaningProduct>
 {
-    private void Start()
-    {
-        DisplayList();
-    }
-
     protected override void DisplayList()
     {
         foreach (var product in element)
         {
             GameObject button = Instantiate(elementPrefab, content.transform);
-            button.GetComponent<ProductButton>().Setup(product.ProductID, product.NumberOfUses, product.Cost);
+            ProductButton pButton = button.GetComponent<ProductButton>();
+            
+            pButton.Setup(product.ProductID, product.NumberOfUses, product.Cost);
+            pButton.OnSelect.AddListener(ShowPrompt);
         }
+    }
+    
+    protected override void ShowPrompt()
+    {
+        prompt.SetActive(true);
+    }
+    
+    protected override void ClosePrompt()
+    {
+        prompt.SetActive(false);
+    }
+    
+    public override void Buy()
+    {
+        print("Bought.");
+        ClosePrompt();
+    }
+    
+    public override void Cancel()
+    {
+        print("Canceled.");
+        ClosePrompt();
     }
 }

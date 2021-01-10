@@ -639,7 +639,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5556631332350812988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2709448054481480835}
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &5556631332350812962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -664,6 +675,9 @@ MonoBehaviour:
   carryingCapacity: {fileID: 5556631332068586436}
   movementSpeed: {fileID: 5556631332523749784}
   price: {fileID: 5556631332053459861}
+  OnSelect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5556631332506143492
 GameObject:
   m_ObjectHideFlags: 0
