@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,19 +9,21 @@ public class HiringButton : MonoBehaviour
     [SerializeField] private TMP_Text carryingCapacity;
     [SerializeField] private TMP_Text movementSpeed;
     [SerializeField] private TMP_Text price;
+    private Cleaner cleanerInfo;
     
-    public UnityEvent OnSelect;
+    public event Action<Cleaner> OnSelect;
     
-    public void Setup(string id, int capacity, float speed, int wage)
+    public void Setup(Cleaner cleaner)
     {
-        title.text = id;
-        carryingCapacity.text = capacity.ToString();
-        movementSpeed.text = speed.ToString();
-        price.text = wage.ToString();
+        title.text = cleaner.CleanerID;
+        carryingCapacity.text = cleaner.CarryingCapacity.ToString();
+        movementSpeed.text = cleaner.MovementSpeed.ToString();
+        price.text = cleaner.Wage.ToString();
+        cleanerInfo = cleaner;
     }
     
     public void Pressed()
     {
-        OnSelect?.Invoke();
+        OnSelect?.Invoke(cleanerInfo);
     }
 }

@@ -29,6 +29,7 @@ public abstract class Store<T> : MonoBehaviour
 
     protected virtual void DisplayList() {}
     protected virtual void ShowPrompt() {}
+    protected virtual void ShowPrompt(T entity) {}
     protected virtual void ClosePrompt() {}
     public virtual void Buy() {}
     public virtual void Cancel() {}

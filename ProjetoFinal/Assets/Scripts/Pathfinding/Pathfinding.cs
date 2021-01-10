@@ -6,6 +6,11 @@ public class Pathfinding : MonoBehaviour
 {
     [SerializeField] private NodeGrid grid;
 
+    private void Awake()
+    {
+        grid = FindObjectOfType<NodeGrid>();
+    }
+    
     public Stack<Node> FindPath(Vector3Int startPos, Vector3Int targetPos)
     {
         if (!CheckTargetNode(targetPos))

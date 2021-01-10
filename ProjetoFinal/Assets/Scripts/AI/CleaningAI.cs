@@ -3,8 +3,8 @@
 public class CleaningAI : AISystem
 {
     [Header("Garbage Settings")]
-    [SerializeField] private GarbageManager garbageManager;
     [SerializeField] private int maxCarryingCapacity;
+    private GarbageManager garbageManager;
     private bool firstScan = true;
     private int garbageCount;
     
@@ -18,9 +18,16 @@ public class CleaningAI : AISystem
 
     private void Start()
     {
+        garbageManager = FindObjectOfType<GarbageManager>();
         DecisionMaking();
     }
-
+    
+    public void Setup(int capacity, float movementSpeed)
+    {
+        maxCarryingCapacity = capacity;
+        speed = movementSpeed;
+    }
+    
     public override void DecisionMaking()
     {
         HandleStates();

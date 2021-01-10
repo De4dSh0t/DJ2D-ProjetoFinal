@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class CleanerStore : Store<Cleaner>
 {
+    [Header("Cleaner Manager Settings")]
+    [SerializeField] private CleanerManager cleanerManager;
+    private Cleaner selectedCleaner;
+
     protected override void DisplayList()
     {
         foreach (var cleaner in element)
@@ -10,8 +14,8 @@ public class CleanerStore : Store<Cleaner>
             GameObject button = Instantiate(elementPrefab, content.transform);
             HiringButton hButton = button.GetComponent<HiringButton>();
             
-            hButton.Setup(cleaner.CleanerID, cleaner.CarryingCapacity, cleaner.MovementSpeed, cleaner.Wage);
-            hButton.OnSelect.AddListener(ShowPrompt);
+            hButton.Setup(cleaner);
+            hButton.OnSelect += ShowPrompt;
             spawnedButtons.Add(button);
             
             // Disables button interaction if player doesn't have enough money to buy
@@ -20,9 +24,10 @@ public class CleanerStore : Store<Cleaner>
         }
     }
     
-    protected override void ShowPrompt()
+    protected override void ShowPrompt(Cleaner cleaner)
     {
         prompt.SetActive(true);
+        selectedCleaner = cleaner;
     }
     
     protected override void ClosePrompt()
@@ -33,6 +38,7 @@ public class CleanerStore : Store<Cleaner>
     public override void Buy()
     {
         print("Bought.");
+        cleanerManager.AddCleaner(selectedCleaner);
         ClosePrompt();
     }
     

@@ -8,7 +8,7 @@ public abstract class AISystem : StateMachine
 
     [Header("Movement Settings")]
     [SerializeField] private Pathfinding pathfinding;
-    [SerializeField] private float speed;
+    [SerializeField] protected float speed;
     private readonly Vector3 offset = new Vector3(0.5f, 0.5f);
     private Stack<Node> path;
     
