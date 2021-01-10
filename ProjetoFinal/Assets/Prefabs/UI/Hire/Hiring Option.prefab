@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 5556631332350812988}
   - component: {fileID: 5556631332350812963}
   - component: {fileID: 5556631332350812962}
+  - component: {fileID: 2709448054481480835}
   m_Layer: 5
   m_Name: Hiring Option
   m_TagString: Untagged
@@ -647,6 +648,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5556631332350812960}
   m_CullTransparentMesh: 0
+--- !u!114 &2709448054481480835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556631332350812960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c5e5e17b1e81a498721757ce15fcef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 5556631333272530655}
+  carryingCapacity: {fileID: 5556631332068586436}
+  movementSpeed: {fileID: 5556631332523749784}
+  price: {fileID: 5556631332053459861}
 --- !u!1 &5556631332506143492
 GameObject:
   m_ObjectHideFlags: 0
