@@ -1,19 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ComputerMenu : MonoBehaviour
 {
+    [Header("Canvas Settings")]
+    [SerializeField] private Canvas hud;
+    
     [Header("Button Settings")] 
     [SerializeField] private Button hiringButton;
     [SerializeField] private Button dismissButton;
     [SerializeField] private Button productsButton;
     [SerializeField] private Button closeButton;
-
+    
     [Header("Screen Settings")] 
     [SerializeField] private GameObject hiringMenu;
     [SerializeField] private GameObject dismissingMenu;
     [SerializeField] private GameObject productsMenu;
     
+    private void OnEnable()
+    {
+        hud.gameObject.SetActive(false);
+    }
+
     public void Start()
     {
         hiringButton.onClick.AddListener(() => ChangeScreen(hiringMenu));
@@ -30,6 +39,7 @@ public class ComputerMenu : MonoBehaviour
     
     private void Close()
     {
+        hud.gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 }
