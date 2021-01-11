@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cleaning : PlayerAction
 {
@@ -9,6 +11,10 @@ public class Cleaning : PlayerAction
     
     [Header("Currency Settings")]
     [SerializeField] private CurrencyManager currencyManager;
+    
+    [Header("UI Settings")]
+    [SerializeField] private Image productImage;
+    [SerializeField] private TMP_Text nUsesText;
     
     // Garbage pick-up settings
     private ContactFilter2D garbageFilter;
@@ -48,6 +54,9 @@ public class Cleaning : PlayerAction
             useLayerMask = true,
             useTriggers = true
         };
+        
+        currentProduct = availableProducts[currentIndex];
+        UpdateProductDisplay();
     }
     
     void Update()
@@ -110,6 +119,11 @@ public class Cleaning : PlayerAction
         
         // Update currency
         currencyManager.UpdateCurrency(garbage.CleaningReward);
+        
+        // Update product in hand (Image and Count)
+        UpdateProductDisplay();
+        
+        if (!playerInfo.CanUseProduct(currentProduct)) ChangeCurrentProduct();
     }
 
     private void HandleCleaningProduct()
@@ -133,6 +147,15 @@ public class Cleaning : PlayerAction
         if (currentIndex > maxIndex) currentIndex = 0;
 
         currentProduct = availableProducts[currentIndex];
+        
+        // Update product in hand (Image and Count)
+        UpdateProductDisplay();
+    }
+    
+    private void UpdateProductDisplay()
+    {
+        productImage.sprite = currentProduct.Sprite;
+        nUsesText.text = playerInfo.GetNumUses(currentProduct).ToString();
     }
     
     private void HandleDiscard()

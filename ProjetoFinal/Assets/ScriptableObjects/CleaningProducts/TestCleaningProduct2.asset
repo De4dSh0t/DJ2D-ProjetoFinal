@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d34ff3482e3e5d44affc9ab62c7836c, type: 3}
   m_Name: TestCleaningProduct2
   m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 5fcb2f4c1cf47b944a9559bd16a21b8a, type: 3}
   productID: TestCleaningProduct2
   timeBoost: 1
   cost: 10

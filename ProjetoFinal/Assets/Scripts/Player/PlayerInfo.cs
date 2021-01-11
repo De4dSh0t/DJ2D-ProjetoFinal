@@ -57,32 +57,28 @@ public class PlayerInfo : MonoBehaviour
         return products;
     }
     
-    /// <summary>
-    /// Returns a product if in "inventory" (otherwise, returns null)
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public CleaningProduct GetProduct(string id)
+    public int GetNumUses(CleaningProduct product)
     {
-        foreach (var product in availableProducts.Keys)
+        if (availableProducts[product] <= 0)
         {
-            // Remove product if number of uses reaches zero
-            if (availableProducts[product] <= 0)
-            {
-                availableProducts.Remove(product);
-                break;
-            }
-            
-            // Return specified product
-            if (product.ProductID == id) return product;
+            availableProducts.Remove(product);
+            return 0;
         }
         
-        return null;
+        return availableProducts[product];
     }
-
+    
     public bool CanUseProduct(CleaningProduct product)
     {
-        return availableProducts[product] > 0;
+        if (!availableProducts.ContainsKey(product)) return false;
+        
+        if (availableProducts[product] <= 0)
+        {
+            availableProducts.Remove(product);
+            return false;
+        }
+        
+        return true;
     }
 
     public void UpdateProductNUses(CleaningProduct product, int value)
