@@ -7,39 +7,39 @@ public class CleanerManager : MonoBehaviour
     [SerializeField] private GameObject cleanerPrefab;
     [SerializeField] private Vector3 spawnPos;
     
-    public Dictionary<GameObject, Cleaner> HiredCleaners { get; } = new Dictionary<GameObject, Cleaner>();
-    
-    public void AddCleaner(Cleaner cleaner)
+    private readonly Dictionary<GameObject, CleanerInfo> hiredCleaners = new Dictionary<GameObject, CleanerInfo>();
+
+    public void AddCleaner(CleanerInfo cleanerInfo)
     {
         GameObject newCleaner = Instantiate(cleanerPrefab, spawnPos, Quaternion.identity);
-        newCleaner.GetComponent<CleaningAI>().Setup(cleaner.CarryingCapacity, cleaner.MovementSpeed);
+        newCleaner.GetComponent<CleaningAI>().Setup(cleanerInfo);
         
-        HiredCleaners.Add(newCleaner, cleaner);
+        hiredCleaners.Add(newCleaner, cleanerInfo);
     }
     
     public void RemoveCleaner(GameObject cleaner)
     {
-        HiredCleaners.Remove(cleaner);
+        hiredCleaners.Remove(cleaner);
         Destroy(cleaner);
     }
     
-    public Cleaner GetCleanerByObject(GameObject gameObj)
+    public CleanerInfo GetCleanerByObject(GameObject gameObj)
     {
-        foreach (var kvp in HiredCleaners)
+        foreach (var kvp in hiredCleaners)
         {
             if (kvp.Key == gameObj) return kvp.Value;
         }
         
         print($"No cleaner found with {gameObj}!");
         
-        return null;
+        return new CleanerInfo();
     }
     
     public int GetTotalExpenses()
     {
         int total = 0;
         
-        foreach (var cleaner in HiredCleaners.Values)
+        foreach (var cleaner in hiredCleaners.Values)
         {
             total += cleaner.Wage;
         }

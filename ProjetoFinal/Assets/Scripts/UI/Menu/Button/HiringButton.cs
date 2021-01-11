@@ -9,17 +9,17 @@ public class HiringButton : MonoBehaviour
     [SerializeField] private TMP_Text carryingCapacity;
     [SerializeField] private TMP_Text movementSpeed;
     [SerializeField] private TMP_Text price;
-    private Cleaner cleanerInfo;
+    public CleanerInfo cleanerInfo;
     
-    public event Action<Cleaner> OnSelect;
+    public event Action<CleanerInfo> OnSelect;
     
-    public void Setup(Cleaner cleaner)
+    public void Setup(CleanerInfo cleanerInfo)
     {
-        title.text = cleaner.CleanerID;
-        carryingCapacity.text = cleaner.CarryingCapacity.ToString();
-        movementSpeed.text = cleaner.MovementSpeed.ToString();
-        price.text = cleaner.Wage.ToString();
-        cleanerInfo = cleaner;
+        title.text = cleanerInfo.CleanerID;
+        carryingCapacity.text = cleanerInfo.CarryingCapacity.ToString();
+        movementSpeed.text = cleanerInfo.MovementSpeed.ToString();
+        price.text = cleanerInfo.Wage.ToString();
+        this.cleanerInfo = cleanerInfo;
     }
     
     public void Pressed()

@@ -27,8 +27,8 @@ public abstract class Menu<T> : MonoBehaviour
         
         closeButton.onClick.AddListener(Close);
     }
-
-    protected void ClearList()
+    
+    protected virtual void ClearList()
     {
         foreach (var button in spawnedButtons)
         {

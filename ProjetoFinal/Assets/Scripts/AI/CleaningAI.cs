@@ -2,8 +2,8 @@
 
 public class CleaningAI : AISystem
 {
-    [Header("Garbage Settings")]
-    [SerializeField] private int maxCarryingCapacity;
+    // Info Settings
+    private CleanerInfo cleanerInfo;
     private GarbageManager garbageManager;
     private bool firstScan = true;
     private int garbageCount;
@@ -19,13 +19,16 @@ public class CleaningAI : AISystem
     private void Start()
     {
         garbageManager = FindObjectOfType<GarbageManager>();
+        
+        // Setup movement speed
+        speed = cleanerInfo.MovementSpeed;
+        
         DecisionMaking();
     }
     
-    public void Setup(int capacity, float movementSpeed)
+    public void Setup(CleanerInfo info)
     {
-        maxCarryingCapacity = capacity;
-        speed = movementSpeed;
+        cleanerInfo = info;
     }
     
     public override void DecisionMaking()
@@ -70,7 +73,7 @@ public class CleaningAI : AISystem
     public void PickUp(Garbage garbage)
     {
         // Garbage Count
-        if (garbageCount >= maxCarryingCapacity) return;
+        if (garbageCount >= cleanerInfo.CarryingCapacity) return;
         garbageCount++;
         
         //Destroy & Remove from list
@@ -81,7 +84,7 @@ public class CleaningAI : AISystem
     private void HandleStates()
     {
         // Goes to the garbage room if the entity has reached its full carrying capacity
-        if (garbageCount >= maxCarryingCapacity)
+        if (garbageCount >= cleanerInfo.CarryingCapacity)
         {
             garbageCount = 0;
             sIndex = 2;

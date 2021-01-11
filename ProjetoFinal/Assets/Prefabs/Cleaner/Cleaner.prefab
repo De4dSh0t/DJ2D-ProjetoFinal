@@ -225,5 +225,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bdb47c3a875c18543baa9f2f57e54e9f, type: 2}
   pathfinding: {fileID: 1398569040684946217}
   speed: 3
-  garbageManager: {fileID: 0}
-  maxCarryingCapacity: 1

@@ -1,33 +1,36 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class CleanerMenu : Menu<Cleaner>
+public class CleanerMenu : Menu<CleanerInfo>
 {
     [Header("Cleaner Manager Settings")]
     [SerializeField] private CleanerManager cleanerManager;
-    private Cleaner selectedCleaner;
+    [SerializeField] private CleanerGenerator cleanerGenerator;
+    private readonly List<HiringButton> hiringButtons = new List<HiringButton>(); 
+    private CleanerInfo selectedCleanerInfo;
 
     protected override void DisplayList()
     {
-        foreach (var cleaner in element)
+        foreach (var info in cleanerGenerator.GenerateCleaners(5))
         {
             GameObject button = Instantiate(elementPrefab, content.transform);
             HiringButton hButton = button.GetComponent<HiringButton>();
             
-            hButton.Setup(cleaner);
+            hButton.Setup(info);
             hButton.OnSelect += ShowPrompt;
             spawnedButtons.Add(button);
+            hiringButtons.Add(hButton);
             
             // Disables button interaction if player doesn't have enough money to buy
-            print(currencyManager.CurrentCurrency);
-            if (cleaner.Wage > currencyManager.CurrentCurrency) hButton.GetComponent<Button>().interactable = false;
+            if (info.Wage > currencyManager.CurrentCurrency) hButton.GetComponent<Button>().interactable = false;
         }
     }
-    
-    protected override void ShowPrompt(Cleaner cleaner)
+
+    protected override void ShowPrompt(CleanerInfo cleanerInfo)
     {
         prompt.SetActive(true);
-        selectedCleaner = cleaner;
+        selectedCleanerInfo = cleanerInfo;
     }
     
     protected override void ClosePrompt()
@@ -38,7 +41,8 @@ public class CleanerMenu : Menu<Cleaner>
     public override void Buy()
     {
         print("Bought.");
-        cleanerManager.AddCleaner(selectedCleaner);
+        cleanerManager.AddCleaner(selectedCleanerInfo);
+        RemoveButton(selectedCleanerInfo);
         ClosePrompt();
     }
     
@@ -46,5 +50,18 @@ public class CleanerMenu : Menu<Cleaner>
     {
         print("Canceled.");
         ClosePrompt();
+    }
+    
+    private void RemoveButton(CleanerInfo info)
+    {
+        foreach (var hButton in hiringButtons)
+        {
+            if (hButton.cleanerInfo.CleanerID == info.CleanerID)
+            {
+                Destroy(hButton.gameObject);
+                hiringButtons.Remove(hButton);
+                break;
+            }
+        }
     }
 }

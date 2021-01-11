@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class DismissMenu : Menu<Cleaner>
+public class DismissMenu : Menu<CleanerInfo>
 {
     [Header("Cleaner Manager Settings")]
     [SerializeField] private CleanerManager cleanerManager;
-    private Cleaner selectedCleaner;
+    private CleanerInfo selectedCleanerInfo;
 
     [Header("CharacterSelection Settings")] 
     [SerializeField] private CharacterSelector characterSelector;
@@ -38,10 +38,10 @@ public class DismissMenu : Menu<Cleaner>
         computerScreen.SetActive(true);
     }
     
-    protected override void ShowPrompt(Cleaner cleaner)
+    protected override void ShowPrompt(CleanerInfo cleanerInfo)
     {
         prompt.SetActive(true);
-        selectedCleaner = cleaner;
+        selectedCleanerInfo = cleanerInfo;
     }
     
     protected override void ClosePrompt()

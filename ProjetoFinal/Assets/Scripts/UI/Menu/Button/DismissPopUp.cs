@@ -8,6 +8,8 @@ public class DismissPopUp : MonoBehaviour
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text perMinute;
     [SerializeField] private TMP_Text total;
+    [SerializeField] private TMP_Text capacity;
+    [SerializeField] private TMP_Text speed;
     [SerializeField] private Button dismiss;
     [SerializeField] private Button close;
     
@@ -21,9 +23,11 @@ public class DismissPopUp : MonoBehaviour
         close.onClick.AddListener(Close);
     }
     
-    public void Setup(GameObject gameObj, Cleaner cleaner)
+    public void Setup(GameObject gameObj, CleanerInfo cleanerInfo)
     {
-        title.text = cleaner.CleanerID;
+        title.text = cleanerInfo.CleanerID;
+        capacity.text = cleanerInfo.CarryingCapacity.ToString();
+        speed.text = cleanerInfo.MovementSpeed.ToString();
         selectedCleaner = gameObj;
     }
     
