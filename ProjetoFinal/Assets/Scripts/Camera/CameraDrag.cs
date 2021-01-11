@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraBehaviour : MonoBehaviour
+public class CameraDrag : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private Transform target;

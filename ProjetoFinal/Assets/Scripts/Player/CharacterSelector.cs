@@ -4,7 +4,7 @@ public class CharacterSelector : MonoBehaviour
 {
     [Header("Camera Settings")] 
     [SerializeField] private Camera main;
-    [SerializeField] private CameraBehaviour camera;
+    [SerializeField] private CameraDrag camera;
 
     [Header("Character Settings")]
     [SerializeField] private LayerMask characterLayer;

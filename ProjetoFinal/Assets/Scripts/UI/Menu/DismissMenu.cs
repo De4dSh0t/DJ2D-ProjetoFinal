@@ -5,18 +5,37 @@ public class DismissMenu : Menu<Cleaner>
     [Header("Cleaner Manager Settings")]
     [SerializeField] private CleanerManager cleanerManager;
     private Cleaner selectedCleaner;
-    
-    protected override void DisplayList()
-    {
-        foreach (var kvp in cleanerManager.HiredCleaners)
-        {
-            GameObject button = Instantiate(elementPrefab, content.transform);
-            HiringButton hButton = button.GetComponent<HiringButton>();
 
-            hButton.Setup(kvp.Value);
-            hButton.OnSelect += ShowPrompt;
-            spawnedButtons.Add(button);
-        }
+    [Header("CharacterSelection Settings")] 
+    [SerializeField] private CharacterSelector characterSelector;
+    [SerializeField] private CameraDrag cameraDrag;
+    [SerializeField] private CameraMovement cameraMovement;
+    
+    protected override void OnEnable()
+    {
+        EnableCharacterSelection();
+        closeButton.onClick.AddListener(Close);
+    }
+
+    private void EnableCharacterSelection()
+    {
+        characterSelector.enabled = true;
+        cameraDrag.enabled = true;
+        cameraMovement.enabled = false;
+    }
+    
+    private void DisableCharacterSelection()
+    {
+        characterSelector.enabled = false;
+        cameraDrag.enabled = false;
+        cameraMovement.enabled = true;
+    }
+    
+    protected override void Close()
+    {
+        DisableCharacterSelection();
+        gameObject.SetActive(false);
+        computerScreen.SetActive(true);
     }
     
     protected override void ShowPrompt(Cleaner cleaner)
@@ -33,8 +52,6 @@ public class DismissMenu : Menu<Cleaner>
     public void DismissCleaner()
     {
         cleanerManager.RemoveCleaner(cleanerManager.GetCleanerByID(selectedCleaner.CleanerID));
-        ClearList();
-        DisplayList();
         ClosePrompt();
     }
     

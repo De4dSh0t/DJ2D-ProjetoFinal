@@ -20,7 +20,7 @@ public abstract class Menu<T> : MonoBehaviour
     [SerializeField] protected Button closeButton;
     [SerializeField] protected GameObject computerScreen;
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         ClearList();
         DisplayList();
@@ -36,7 +36,7 @@ public abstract class Menu<T> : MonoBehaviour
         }
     }
     
-    protected void Close()
+    protected virtual void Close()
     {
         gameObject.SetActive(false);
         computerScreen.SetActive(true);
