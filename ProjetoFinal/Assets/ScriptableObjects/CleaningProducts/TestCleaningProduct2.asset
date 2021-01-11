@@ -16,5 +16,5 @@ MonoBehaviour:
   productID: TestCleaningProduct2
   timeBoost: 1
   cost: 10
-  numberOfUses: 1
+  numberOfUses: 2
   unlimited: 0

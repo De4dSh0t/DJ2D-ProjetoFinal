@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class ProductMenu : Menu<CleaningProduct>
 {
+    [Header("Player Settings")]
+    [SerializeField] private PlayerInfo playerInfo;
+    private CleaningProduct selectedProduct;
+    
     protected override void DisplayList()
     {
         foreach (var product in element)
@@ -10,8 +14,8 @@ public class ProductMenu : Menu<CleaningProduct>
             GameObject button = Instantiate(elementPrefab, content.transform);
             ProductButton pButton = button.GetComponent<ProductButton>();
             
-            pButton.Setup(product.ProductID, product.NumberOfUses, product.Cost);
-            pButton.OnSelect.AddListener(ShowPrompt);
+            pButton.Setup(product);
+            pButton.OnSelect += ShowPrompt;
             spawnedButtons.Add(button);
             
             // Disables button interaction if player doesn't have enough money to buy
@@ -19,9 +23,10 @@ public class ProductMenu : Menu<CleaningProduct>
         }
     }
     
-    protected override void ShowPrompt()
+    protected override void ShowPrompt(CleaningProduct product)
     {
         prompt.SetActive(true);
+        selectedProduct = product;
     }
     
     protected override void ClosePrompt()
@@ -32,6 +37,8 @@ public class ProductMenu : Menu<CleaningProduct>
     public override void Buy()
     {
         print("Bought.");
+        playerInfo.AddProduct(selectedProduct);
+        currencyManager.UpdateCurrency(-selectedProduct.Cost);
         ClosePrompt();
     }
     

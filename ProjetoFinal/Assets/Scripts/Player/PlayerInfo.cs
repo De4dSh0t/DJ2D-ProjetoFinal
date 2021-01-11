@@ -41,8 +41,19 @@ public class PlayerInfo : MonoBehaviour
         availableProducts = new Dictionary<CleaningProduct, int>();
         foreach (var product in cleaningProducts)
         {
-            availableProducts.Add(product, product.NumberOfUses);
+            AddProduct(product);
         }
+    }
+    
+    public void AddProduct(CleaningProduct product)
+    {
+        if (availableProducts.ContainsKey(product))
+        {
+            availableProducts[product] += product.NumberOfUses;
+            return;
+        }
+        
+        availableProducts.Add(product, product.NumberOfUses);
     }
     
     public List<CleaningProduct> GetAvailableProducts()

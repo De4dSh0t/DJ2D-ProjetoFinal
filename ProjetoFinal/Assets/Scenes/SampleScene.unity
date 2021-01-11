@@ -2819,10 +2819,12 @@ MonoBehaviour:
   currencyManager: {fileID: 472543257}
   element:
   - {fileID: 11400000, guid: 5fc7e05503d36724dbc6c8cbed0d0291, type: 2}
+  - {fileID: 11400000, guid: f2aded2117c7aea4db8300692bfe9c8f, type: 2}
   elementPrefab: {fileID: 8036331444853412023, guid: eaf99b9c7ae27674693abd43c5b14414,
     type: 3}
   content: {fileID: 244543258}
   prompt: {fileID: 470144246}
+  playerInfo: {fileID: 685558142}
 --- !u!1 &155731021
 GameObject:
   m_ObjectHideFlags: 0
@@ -6317,7 +6319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &470144247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14030,7 +14032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2143725097
 RectTransform:
   m_ObjectHideFlags: 0
