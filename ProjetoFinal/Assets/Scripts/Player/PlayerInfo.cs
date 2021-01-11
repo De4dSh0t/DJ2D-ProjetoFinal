@@ -9,6 +9,7 @@ public class PlayerInfo : MonoBehaviour
     
     [Header("Cleaning Products Settings")]
     [SerializeField] private CleaningProduct[] cleaningProducts;
+    private Dictionary<CleaningProduct, int> availableProducts = new Dictionary<CleaningProduct, int>();
     
     /// <summary>
     /// Current carrying count
@@ -33,25 +34,27 @@ public class PlayerInfo : MonoBehaviour
     /// Returns a boolean depending on the carrying capacity and its maximum
     /// </summary>
     public bool IsFull => carryingCount >= maxCarryingCapacity;
-
-    /// <summary>
-    /// Returns a dictionary of available products and the remaining num of uses
-    /// </summary>
-    public Dictionary<CleaningProduct, int> AvailableProducts { get; private set; }
     
-    void Start()
+    void Awake()
     {
         // Generate available products dictionary
-        AvailableProducts = new Dictionary<CleaningProduct, int>();
+        availableProducts = new Dictionary<CleaningProduct, int>();
         foreach (var product in cleaningProducts)
         {
-            AvailableProducts.Add(product, product.NumberOfUses);
+            availableProducts.Add(product, product.NumberOfUses);
         }
     }
     
-    void Update()
+    public List<CleaningProduct> GetAvailableProducts()
     {
-        
+        List<CleaningProduct> products = new List<CleaningProduct>();
+
+        foreach (var product in availableProducts.Keys)
+        {
+            products.Add(product);
+        }
+
+        return products;
     }
     
     /// <summary>
@@ -61,12 +64,12 @@ public class PlayerInfo : MonoBehaviour
     /// <returns></returns>
     public CleaningProduct GetProduct(string id)
     {
-        foreach (var product in AvailableProducts.Keys)
+        foreach (var product in availableProducts.Keys)
         {
             // Remove product if number of uses reaches zero
-            if (AvailableProducts[product] <= 0)
+            if (availableProducts[product] <= 0)
             {
-                AvailableProducts.Remove(product);
+                availableProducts.Remove(product);
                 break;
             }
             
@@ -75,5 +78,20 @@ public class PlayerInfo : MonoBehaviour
         }
         
         return null;
+    }
+
+    public bool CanUseProduct(CleaningProduct product)
+    {
+        return availableProducts[product] > 0;
+    }
+
+    public void UpdateProductNUses(CleaningProduct product, int value)
+    {
+        // Check if the product has unlimited num uses or not
+        if (product.Unlimited) return;
+        
+        int temp = availableProducts[product] + value;
+        if (temp <= 0) availableProducts[product] = 0;
+        else availableProducts[product] += value;
     }
 }

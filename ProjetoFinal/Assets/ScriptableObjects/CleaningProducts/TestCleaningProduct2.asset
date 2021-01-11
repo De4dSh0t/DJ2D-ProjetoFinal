@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d34ff3482e3e5d44affc9ab62c7836c, type: 3}
-  m_Name: TestCleaningProduct
+  m_Name: TestCleaningProduct2
   m_EditorClassIdentifier: 
-  productID: TestCleaningProduct
-  timeBoost: 0.5
-  cost: 5
+  productID: TestCleaningProduct2
+  timeBoost: 1
+  cost: 10
   numberOfUses: 1
-  unlimited: 1
+  unlimited: 0

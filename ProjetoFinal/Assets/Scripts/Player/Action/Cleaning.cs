@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Cleaning : PlayerAction
 {
@@ -15,6 +16,11 @@ public class Cleaning : PlayerAction
     private float holdingTime;
     private bool hasCleaned;
     
+    // Cleanign product settings
+    private List<CleaningProduct> availableProducts;
+    private CleaningProduct currentProduct;
+    private int currentIndex;
+
     // Garbage discard settings
     private ContactFilter2D garbageCanFilter;
     
@@ -22,6 +28,9 @@ public class Cleaning : PlayerAction
     {
         // Get player collider
         pCollider = GetComponent<Collider2D>();
+        
+        // Get available products
+        availableProducts = playerInfo.GetAvailableProducts();
         
         // Garbage Filter
         // Configure filter to ignore other collisions (except with the "contactLayer")
@@ -43,6 +52,7 @@ public class Cleaning : PlayerAction
     
     void Update()
     {
+        HandleCleaningProduct();
         HandlePickUp();
         HandleDiscard();
     }
@@ -71,10 +81,14 @@ public class Cleaning : PlayerAction
             
             // Cleaning Time
             holdingTime += Time.deltaTime;
-            if (holdingTime < garbageToPick.CleaningTime) return;
+            
+            // Check whether the product has enough num of uses or not
+            if (!playerInfo.CanUseProduct(currentProduct)) ChangeCurrentProduct();
+            
+            if (holdingTime < Mathf.Clamp(garbageToPick.CleaningTime - currentProduct.TimeBoost, 0, garbageToPick.CleaningTime)) return;
             
             Clean(garbageToPick);
-
+            
             holdingTime = 0;
             hasCleaned = true;
         }
@@ -88,11 +102,37 @@ public class Cleaning : PlayerAction
         // Destroy gameObject
         Destroy(garbage.gameObject);
         
+        // Update num of uses for the cleaning product
+        playerInfo.UpdateProductNUses(currentProduct, -1);
+        
         // Update the carrying count
         playerInfo.CarryingCount++;
         
         // Update currency
         currencyManager.UpdateCurrency(garbage.CleaningReward);
+    }
+
+    private void HandleCleaningProduct()
+    {
+        if (currentProduct == null) currentProduct = availableProducts[currentIndex];
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ChangeCurrentProduct();
+        }
+    }
+
+    private void ChangeCurrentProduct()
+    {
+        // Update List
+        availableProducts = playerInfo.GetAvailableProducts();
+        
+        int maxIndex = availableProducts.Count - 1;
+        
+        currentIndex++;
+        if (currentIndex > maxIndex) currentIndex = 0;
+
+        currentProduct = availableProducts[currentIndex];
     }
     
     private void HandleDiscard()
