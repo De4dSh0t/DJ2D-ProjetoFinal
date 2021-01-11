@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Menu<T> : MonoBehaviour
 {
@@ -16,11 +17,15 @@ public abstract class Menu<T> : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] protected GameObject content;
     [SerializeField] protected GameObject prompt;
+    [SerializeField] protected Button closeButton;
+    [SerializeField] protected GameObject computerScreen;
 
     protected void OnEnable()
     {
         ClearList();
         DisplayList();
+        
+        closeButton.onClick.AddListener(Close);
     }
 
     protected void ClearList()
@@ -30,6 +35,13 @@ public abstract class Menu<T> : MonoBehaviour
             Destroy(button);
         }
     }
+    
+    protected void Close()
+    {
+        gameObject.SetActive(false);
+        computerScreen.SetActive(true);
+    }
+    
     protected virtual void DisplayList() {}
     protected virtual void ShowPrompt() {}
     protected virtual void ShowPrompt(T entity) {}
