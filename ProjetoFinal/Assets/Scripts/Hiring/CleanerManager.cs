@@ -23,14 +23,14 @@ public class CleanerManager : MonoBehaviour
         Destroy(cleaner);
     }
     
-    public GameObject GetCleanerByID(string id)
+    public Cleaner GetCleanerByObject(GameObject gameObj)
     {
         foreach (var kvp in HiredCleaners)
         {
-            if (kvp.Value.CleanerID == id) return kvp.Key;
+            if (kvp.Key == gameObj) return kvp.Value;
         }
         
-        print($"No cleaner found named {id}!");
+        print($"No cleaner found with {gameObj}!");
         
         return null;
     }

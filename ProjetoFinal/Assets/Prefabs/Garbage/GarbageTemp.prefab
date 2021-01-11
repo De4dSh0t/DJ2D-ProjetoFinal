@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -4812602455566084937}
   m_Layer: 10
   m_Name: GarbageTemp
-  m_TagString: Garbage
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cleaningTime: 1
-  requiredProduct: {fileID: 11400000, guid: 5fc7e05503d36724dbc6c8cbed0d0291, type: 2}
   cleaningReward: 1
 --- !u!58 &-4812602455566084937
 CircleCollider2D:

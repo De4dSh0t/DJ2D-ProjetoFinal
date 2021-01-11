@@ -49,12 +49,6 @@ public class DismissMenu : Menu<Cleaner>
         prompt.SetActive(false);
     }
     
-    public void DismissCleaner()
-    {
-        cleanerManager.RemoveCleaner(cleanerManager.GetCleanerByID(selectedCleaner.CleanerID));
-        ClosePrompt();
-    }
-    
     public override void Cancel()
     {
         print("Canceled.");
