@@ -11,6 +11,15 @@ public class DismissMenu : Menu<CleanerInfo>
     [SerializeField] private CameraDrag cameraDrag;
     [SerializeField] private CameraMovement cameraMovement;
     
+    // Camera Settings
+    private float cameraSize;
+
+    private void Start()
+    {
+        // Get orthographicSize
+        cameraSize = Camera.main.orthographicSize;
+    }
+    
     protected override void OnEnable()
     {
         EnableCharacterSelection();
@@ -29,6 +38,9 @@ public class DismissMenu : Menu<CleanerInfo>
         characterSelector.enabled = false;
         cameraDrag.enabled = false;
         cameraMovement.enabled = true;
+        
+        // Reset camera "zoom"
+        Camera.main.orthographicSize = cameraSize;
     }
     
     protected override void Close()
