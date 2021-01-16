@@ -13,13 +13,19 @@ public class CurrencyManager : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private TMP_Text currencyText;
     
+    // Save Settings
+    private SaveData saveData;
+    
     public int CurrentCurrency { get; private set; }
     
     private void Start()
     {
+        // saveData = SaveManager.Load();
+        //
+        // if (saveData != null) CurrentCurrency = saveData.currency;
         CurrentCurrency = startingCurrency;
         DisplayCurrency();
-
+        
         StartCoroutine(UpdateCurrency());
     }
     
