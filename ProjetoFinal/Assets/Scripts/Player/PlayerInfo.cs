@@ -19,7 +19,7 @@ public class PlayerInfo : MonoBehaviour
         get => carryingCount;
         set
         {
-            if (carryingCount + value >= maxCarryingCapacity)
+            if (carryingCount + value > maxCarryingCapacity)
             {
                 carryingCount = maxCarryingCapacity;
                 print("Cannot carry more garbage!");

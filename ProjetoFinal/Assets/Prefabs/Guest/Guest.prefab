@@ -143,6 +143,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 74f5b8632520d3b419521bb040ded8d2, type: 2}
   pathfinding: {fileID: 7862007755475259950}
   speed: 3
+  movementsToChangeRoom: {x: 1, y: 5}
+  spawnRate: {x: 15, y: 20}
   garbageLayer:
     serializedVersion: 2
     m_Bits: 1024

@@ -1,15 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GuestAI : AISystem
 {
     // Food Settings
     private Zone restaurant;
+    private int maxNumOfOrders = 2;
+    private int numOfOrders;
     
     // Decision Settings
-    private int sIndex;
-    private bool hasOrdered;
+    [Header("Decision Settings")]
+    [SerializeField] [Tooltip("X: Min | Y: Max")] private Vector2Int movementsToChangeRoom;
+    [SerializeField] [Tooltip("X: Min | Y: Max")] private Vector2 spawnRate;
     private Vector3Int pickUpPos;
+    private bool isSpawningGarbage;
+    private int nAllowedMovements;
+    private int movementsInRoom;
+    private bool hasOrdered;
+    private int sIndex;
     
     // Garbage Detection Settings
     [Header("Garbage Detection Settings")] 
@@ -29,7 +38,7 @@ public class GuestAI : AISystem
     public GarbageManager GarbageManager { get; private set; }
     
     public bool HasEaten { get; set; }
-
+    
     void Start()
     {
         OrderManager = FindObjectOfType<OrderManager>();
@@ -47,9 +56,15 @@ public class GuestAI : AISystem
             useTriggers = true
         };
         
+        // Determine num of allowed movements in the same room (to control when to change room)
+        nAllowedMovements = Random.Range(movementsToChangeRoom.x, movementsToChangeRoom.y);
+        
         DecisionMaking();
+        
+        // Start random garbage spawn coroutine
+        StartCoroutine(RandomGarbageSpawn());
     }
-
+    
     void Update()
     {
         GarbageDetection();
@@ -64,6 +79,7 @@ public class GuestAI : AISystem
             case 0: // Random Position
             {
                 SetState(new RandomPositionState(this, CurrentZone));
+                movementsInRoom++;
                 break;
             }
             case 1: // Change Room
@@ -85,12 +101,13 @@ public class GuestAI : AISystem
             case 4: // Spawn Garbage (goto Change Room)
             {
                 SetState(new SpawnGarbageState(this));
+                isSpawningGarbage = false;
                 sIndex = 1;
                 break;
             }
         }
     }
-
+    
     /// <summary>
     /// Notifies the guest AI when the order has been prepared
     /// </summary>
@@ -98,22 +115,47 @@ public class GuestAI : AISystem
     {
         sIndex = 3;
     }
-
+    
     private void HandleStates()
     {
         // Check if the entity is in the restaurant and if it hasn't already ordered food
-        if (CurrentZone == restaurant && !hasOrdered)
+        if (CurrentZone == restaurant && !hasOrdered && numOfOrders < maxNumOfOrders)
         {
             sIndex = 2;
             hasOrdered = true;
+            numOfOrders++;
+            return;
         }
-
-        // Once the entity has eaten, it should go to another room
+        
+        // Spawn garbage once the entity eats
         if (HasEaten)
         {
             sIndex = 4;
             HasEaten = false;
+            hasOrdered = false;
+            return;
         }
+        
+        // Wait in restaurant until the entity eats
+        if (hasOrdered && !HasEaten) return;
+        
+        // Checks whether the entity is going to spawn garbage or not
+        if (isSpawningGarbage && movementsInRoom != 0)
+        {
+            sIndex = 4;
+            return;
+        }
+        
+        // Controls when to change room
+        if (movementsInRoom >= nAllowedMovements)
+        {
+            sIndex = 1;
+            movementsInRoom = 0;
+            nAllowedMovements = Random.Range(movementsToChangeRoom.x, movementsToChangeRoom.y);
+            return;
+        }
+        
+        sIndex = 0;
     }
     
     /// <summary>
@@ -132,6 +174,21 @@ public class GuestAI : AISystem
         foreach (var garbage in contacts)
         {
             encounteredGarbage.Add(garbage.gameObject);
+        }
+    }
+    
+    private IEnumerator RandomGarbageSpawn()
+    {
+        float rate = Random.Range(spawnRate.x, spawnRate.y);
+        
+        while (true)
+        {
+            if (hasOrdered && !HasEaten) yield return null;
+            if (isSpawningGarbage) yield return null;
+            
+            yield return new WaitForSeconds(rate);
+            isSpawningGarbage = true;
+            rate = Random.Range(spawnRate.x, spawnRate.y);
         }
     }
 }
