@@ -20,5 +20,6 @@ public class IdleState : IState
     private void Idle()
     {
         // Idle Behaviour
+        aiSystem.Animator.SetBool("isWalking", false);
     }
 }

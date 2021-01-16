@@ -5,12 +5,15 @@ public abstract class AISystem : StateMachine
 {
     [Header("Zone Settings")]
     public Zone[] zones;
-
+    
     [Header("Movement Settings")]
     [SerializeField] private Pathfinding pathfinding;
     [SerializeField] protected float speed;
     private readonly Vector3 offset = new Vector3(0.5f, 0.5f);
     private Stack<Node> path;
+    
+    [Header("Animation Settings")]
+    [SerializeField] private Animator animator;
     
     /// <summary>
     /// Returns entity position in Vector3Int
@@ -75,6 +78,11 @@ public abstract class AISystem : StateMachine
 
         return new ActionZone();
     }
+    
+    /// <summary>
+    /// Returns entity animator
+    /// </summary>
+    public Animator Animator => animator;
 
     public virtual void DecisionMaking() {}
 }

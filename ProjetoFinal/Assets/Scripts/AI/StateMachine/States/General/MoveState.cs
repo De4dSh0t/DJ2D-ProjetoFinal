@@ -11,8 +11,11 @@ public class MoveState : IState
     private readonly Vector3Int startNodePos;
     private readonly Vector3Int targetNodePos;
     private Stack<Node> path;
-
-    //Movement Commands
+    
+    // Animation
+    private Vector2 movementVector;
+    
+    // Movement Commands
     private readonly MoveUp up;
     private readonly MoveLeft left;
     private readonly MoveDown down;
@@ -66,9 +69,36 @@ public class MoveState : IState
             return;
         }
         
-        if (currentPos.x < targetPos.x - .05f) right.Execute();
-        if (currentPos.x > targetPos.x + .05f) left.Execute();
-        if (currentPos.y < targetPos.y - .05f) up.Execute();
-        if (currentPos.y > targetPos.y + .05f) down.Execute();
+        movementVector = Vector2.zero;
+        
+        if (currentPos.x < targetPos.x - .05f)
+        {
+            right.Execute();
+            movementVector += Vector2.right;
+        }
+
+        if (currentPos.x > targetPos.x + .05f)
+        {
+            left.Execute();
+            movementVector += Vector2.left;
+        }
+
+        if (currentPos.y < targetPos.y - .05f)
+        {
+            up.Execute();
+            movementVector += Vector2.up;
+        }
+
+        if (currentPos.y > targetPos.y + .05f)
+        {
+            down.Execute();
+            movementVector += Vector2.down;
+        }
+        
+        // Animation
+        Vector2 normalized = movementVector.normalized;
+        aiSystem.Animator.SetBool("isWalking", true);
+        aiSystem.Animator.SetFloat("Horizontal", normalized.x);
+        aiSystem.Animator.SetFloat("Vertical", normalized.y);
     }
 }
