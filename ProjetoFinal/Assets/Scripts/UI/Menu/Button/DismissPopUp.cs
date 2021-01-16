@@ -33,7 +33,7 @@ public class DismissPopUp : MonoBehaviour
     
     private void Dismiss()
     {
-        cleanerManager.RemoveCleaner(selectedCleaner);
+        cleanerManager.DismissCleaner(selectedCleaner);
     }
     
     private void Close()

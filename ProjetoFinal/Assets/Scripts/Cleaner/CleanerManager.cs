@@ -17,10 +17,10 @@ public class CleanerManager : MonoBehaviour
         hiredCleaners.Add(newCleaner, cleanerInfo);
     }
     
-    public void RemoveCleaner(GameObject cleaner)
+    public void DismissCleaner(GameObject cleaner)
     {
+        cleaner.GetComponent<CleaningAI>().HasBeenDismissed = true;
         hiredCleaners.Remove(cleaner);
-        Destroy(cleaner);
     }
     
     public CleanerInfo GetCleanerByObject(GameObject gameObj)

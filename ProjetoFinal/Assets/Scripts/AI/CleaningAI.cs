@@ -15,7 +15,12 @@ public class CleaningAI : AISystem
     /// Used to rescan the room
     /// </summary>
     public bool GarbageFound { get; set; }
-
+    
+    /// <summary>
+    /// Used to change state to Dismiss State
+    /// </summary>
+    public bool HasBeenDismissed { get; set; }
+    
     private void Start()
     {
         garbageManager = FindObjectOfType<GarbageManager>();
@@ -67,6 +72,11 @@ public class CleaningAI : AISystem
                 if (bRoom != null) SetState(new ChangeRoomState(this, bRoom));
                 break;
             }
+            case 4:
+            {
+                SetState(new DismissState(this, SearchZone("InnEntry")));
+                break;
+            }
         }
     }
 
@@ -83,6 +93,13 @@ public class CleaningAI : AISystem
 
     private void HandleStates()
     {
+        // Dismiss
+        if (HasBeenDismissed)
+        {
+            sIndex = 4;
+            return;
+        }
+        
         // Goes to the garbage room if the entity has reached its full carrying capacity
         if (garbageCount >= cleanerInfo.CarryingCapacity)
         {
@@ -108,5 +125,10 @@ public class CleaningAI : AISystem
                 firstScan = true;
             }
         }
+    }
+    
+    public void DestroyCleaner()
+    {
+        Destroy(gameObject);
     }
 }

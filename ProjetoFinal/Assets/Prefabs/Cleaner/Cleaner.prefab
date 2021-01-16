@@ -223,5 +223,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2dc022ee2cda91449d58a560e63d40a, type: 2}
   - {fileID: 11400000, guid: d7281843bbe0ebc47af749d0782444de, type: 2}
   - {fileID: 11400000, guid: bdb47c3a875c18543baa9f2f57e54e9f, type: 2}
+  - {fileID: 11400000, guid: 74f5b8632520d3b419521bb040ded8d2, type: 2}
   pathfinding: {fileID: 1398569040684946217}
   speed: 3
