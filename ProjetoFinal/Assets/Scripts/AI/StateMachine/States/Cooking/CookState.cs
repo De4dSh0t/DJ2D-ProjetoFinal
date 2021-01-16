@@ -27,8 +27,13 @@ public class CookState : IState
             yield break;
         }
         
-        // Cook (normal food cooking time + extra cooking time)
+        // Go to the kitchen
+        yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, aiSystem.SearchActionZone("Cook").Waypoint));
+        aiSystem.Animator.SetBool("isWalking", false);
+        
+        // Cook (normal food cooking time)
         yield return new WaitForSeconds(order.food.CookingTime);
+        aiSystem.Animator.SetBool("isWalking", true);
         
         // Remove order from order list
         aiSystem.OrderManager.RemoveOrder(order);
