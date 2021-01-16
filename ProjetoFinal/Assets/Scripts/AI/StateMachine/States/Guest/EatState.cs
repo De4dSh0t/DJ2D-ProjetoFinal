@@ -18,13 +18,16 @@ public class EatState : IState
     {
         // Pick up food
         yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, foodPos));
-
+        
         yield return new WaitForSeconds(1);
         
         // Sit
         seat.InUse = true;
         yield return aiSystem.SetState(new MoveState(aiSystem, aiSystem.Pathfinding, aiSystem.PositionInt, seat.Waypoint));
-
+        
+        // Activate idle animation
+        aiSystem.Animator.SetBool("isWalking", false);
+        
         // Eat
         yield return new WaitForSeconds(10); // Eating time
         aiSystem.HasEaten = true;
