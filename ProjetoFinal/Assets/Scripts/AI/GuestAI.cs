@@ -17,7 +17,7 @@ public class GuestAI : AISystem
     private HashSet<GameObject> encounteredGarbage;
     private ContactFilter2D garbageFilter;
     private Collider2D gCollider;
-
+    
     /// <summary>
     /// Returns OrderManager reference to interact with the order list
     /// </summary>

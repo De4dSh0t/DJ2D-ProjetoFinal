@@ -10,6 +10,7 @@ public class Garbage : MonoBehaviour
     
     public Zone Zone { get; set; }
     public Vector3Int Position { get; set; }
+    public int SpawnedBy { get; set; }
     public float CleaningTime => cleaningTime;
     public int CleaningReward => cleaningReward;
 }

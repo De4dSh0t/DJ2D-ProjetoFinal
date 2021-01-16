@@ -37,6 +37,6 @@ public class SpawnGarbageState : IState
     
     private void SpawnGarbage()
     {
-        if (aiSystem.CurrentZone != null) aiSystem.GarbageManager.SpawnGarbage(garbagePrefab, aiSystem.CurrentZone, aiSystem.PositionInt);
+        if (aiSystem.CurrentZone != null) aiSystem.GarbageManager.SpawnGarbage(garbagePrefab, aiSystem.CurrentZone, aiSystem.PositionInt, aiSystem.GetInstanceID());
     }
 }

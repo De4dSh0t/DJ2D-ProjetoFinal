@@ -6,23 +6,24 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int startsAt = 9;
     [SerializeField] private int endsAt = 21;
     private float elapsedTime;
-    private int currentHour;
     private float convertedTime;
     private float rate;
+    
+    public int CurrentHour { get; private set; }
     
     private void Start()
     {
         HandleTimeConversion();
-        currentHour = startsAt;
+        CurrentHour = startsAt;
     }
     
     private void Update()
     {
         if (elapsedTime >= rate)
         {
-            currentHour++;
+            CurrentHour++;
             rate += convertedTime;
-            print(currentHour);
+            print(CurrentHour);
         }
         elapsedTime += Time.deltaTime;
     }

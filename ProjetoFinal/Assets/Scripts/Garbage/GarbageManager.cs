@@ -22,7 +22,7 @@ public class GarbageManager : MonoBehaviour
     /// <param name="garbageElement"></param>
     /// <param name="spawnZone"></param>
     /// <param name="spawnPos"></param>
-    public void SpawnGarbage(GameObject garbageElement, Zone spawnZone, Vector3Int spawnPos)
+    public void SpawnGarbage(GameObject garbageElement, Zone spawnZone, Vector3Int spawnPos, int spawnedBy)
     {
         // Spawn
         GameObject garbageObj = Instantiate(garbageElement, new Vector3(spawnPos.x + .5f, spawnPos.y + .5f, spawnPos.z), Quaternion.identity);
@@ -31,6 +31,7 @@ public class GarbageManager : MonoBehaviour
         Garbage garbage = garbageObj.GetComponent<Garbage>();
         garbage.Zone = spawnZone;
         garbage.Position = spawnPos;
+        garbage.SpawnedBy = spawnedBy;
         
         // Save the reference to spawnedGarbage list
         spawnedGarbage.Add(garbage);
