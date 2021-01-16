@@ -27,4 +27,11 @@ public static class SaveManager
         string json = File.ReadAllText(path);
         return JsonUtility.FromJson<SaveData>(json);
     }
+    
+    public static bool ContainsSave()
+    {
+        string path = Application.persistentDataPath + Dir + FileName;
+        if (File.Exists(path)) return true;
+        return false;
+    }
 }

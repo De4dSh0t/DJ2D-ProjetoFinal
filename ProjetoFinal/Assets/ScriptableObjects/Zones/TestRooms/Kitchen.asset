@@ -20,3 +20,6 @@ MonoBehaviour:
   - actionID: Deliver
     waypoint: {x: 12, y: -13, z: 0}
     inUse: 0
+  - actionID: Cook
+    waypoint: {x: 14, y: -12, z: 0}
+    inUse: 0
