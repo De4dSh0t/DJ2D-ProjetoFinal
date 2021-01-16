@@ -82,13 +82,14 @@ public class CleaningAI : AISystem
 
     public void PickUp(Garbage garbage)
     {
+        //Destroy & Remove from list
+        if (!garbageManager.SpawnedGarbage.Contains(garbage)) return;
+        garbageManager.RemoveGarbage(garbage);
+        Destroy(garbage.gameObject);
+        
         // Garbage Count
         if (garbageCount >= cleanerInfo.CarryingCapacity) return;
         garbageCount++;
-        
-        //Destroy & Remove from list
-        garbageManager.RemoveGarbage(garbage);
-        Destroy(garbage.gameObject);
     }
 
     private void HandleStates()

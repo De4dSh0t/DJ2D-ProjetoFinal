@@ -16,6 +16,9 @@ public class Cleaning : PlayerAction
     [SerializeField] private Image productImage;
     [SerializeField] private TMP_Text nUsesText;
     
+    [Header("Garbage Settings")] 
+    [SerializeField] private GarbageManager garbageManager;
+    
     // Garbage pick-up settings
     private ContactFilter2D garbageFilter;
     private Garbage garbageToPick;
@@ -108,6 +111,9 @@ public class Cleaning : PlayerAction
     
     private void Clean(Garbage garbage)
     {
+        // Removes garbage from garbage manager
+        garbageManager.RemoveGarbage(garbage);
+        
         // Destroy gameObject
         Destroy(garbage.gameObject);
         
