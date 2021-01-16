@@ -19,13 +19,7 @@ public class TimeManager : MonoBehaviour
     
     private void Update()
     {
-        if (elapsedTime >= rate)
-        {
-            CurrentHour++;
-            rate += convertedTime;
-            print(CurrentHour);
-        }
-        elapsedTime += Time.deltaTime;
+        HandleElapsedTime();
     }
     
     private void HandleTimeConversion()
@@ -33,5 +27,24 @@ public class TimeManager : MonoBehaviour
         int hours = Mathf.Abs(endsAt - startsAt);
         convertedTime = levelTime / hours;
         rate = convertedTime;
+    }
+    
+    private void HandleElapsedTime()
+    {
+        if (elapsedTime >= rate)
+        {
+            CurrentHour++;
+            rate += convertedTime;
+            print(CurrentHour);
+            
+            // Check if time reached "endsAt"
+            HandleEnd();
+        }
+        elapsedTime += Time.deltaTime;
+    }
+    
+    private void HandleEnd()
+    {
+        if (CurrentHour == endsAt) GameManager.Instance.EndLevel();
     }
 }
