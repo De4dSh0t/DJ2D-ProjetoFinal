@@ -8,6 +8,7 @@ public class TimeManager : MonoBehaviour
     private float elapsedTime;
     private float convertedTime;
     private float rate;
+    private bool ended;
     
     public int CurrentHour { get; private set; }
     
@@ -31,6 +32,8 @@ public class TimeManager : MonoBehaviour
     
     private void HandleElapsedTime()
     {
+        if (ended) return;
+        
         if (elapsedTime >= rate)
         {
             CurrentHour++;
@@ -45,6 +48,9 @@ public class TimeManager : MonoBehaviour
     
     private void HandleEnd()
     {
-        if (CurrentHour == endsAt) GameManager.Instance.EndLevel();
+        if (CurrentHour != endsAt) return;
+        
+        GameManager.Instance.EndLevel();
+        ended = true;
     }
 }

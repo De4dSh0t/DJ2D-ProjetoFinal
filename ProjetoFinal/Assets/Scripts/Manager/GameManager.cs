@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     [Header("Screen Settings")]
     [SerializeField] private GameObject scoreScreen;
     
+    public event Action OnLevelEnd;
+    
     private void Awake()
     {
         instance = this;
@@ -28,6 +31,9 @@ public class GameManager : MonoBehaviour
     
     public void EndLevel()
     {
+        // Trigger event
+        OnLevelEnd?.Invoke();
+        
         Time.timeScale = 0;
         scoreScreen.SetActive(true);
     }

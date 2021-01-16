@@ -23,9 +23,9 @@ public class GuestAI : AISystem
     // Garbage Detection Settings
     [Header("Garbage Detection Settings")] 
     [SerializeField] private LayerMask garbageLayer;
-    private HashSet<GameObject> encounteredGarbage;
     private ContactFilter2D garbageFilter;
     private Collider2D gCollider;
+    private GuestStatus status;
     
     /// <summary>
     /// Returns OrderManager reference to interact with the order list
@@ -43,11 +43,11 @@ public class GuestAI : AISystem
     {
         OrderManager = FindObjectOfType<OrderManager>();
         GarbageManager = FindObjectOfType<GarbageManager>();
+        status = GetComponent<GuestStatus>();
         restaurant = SearchZone("Restaurant");
         
         // Garbage Detection
         // Using hashset to avoid gameObject repetitions
-        encounteredGarbage = new HashSet<GameObject>();
         gCollider = GetComponent<Collider2D>();
         garbageFilter = new ContactFilter2D
         {
@@ -173,7 +173,7 @@ public class GuestAI : AISystem
         // Fills the hashset with the garbage gameObject
         foreach (var garbage in contacts)
         {
-            encounteredGarbage.Add(garbage.gameObject);
+            status.AddGarbage(garbage.gameObject);
         }
     }
     

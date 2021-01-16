@@ -29,7 +29,7 @@ public class GuestManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnRate.x, spawnRate.y));
             
             int i = 0;
-            if (canSpawnSpecial && nSpecialGuests <= maxNumSpecial) i = Random.Range(0, 2);
+            if (canSpawnSpecial && nSpecialGuests < maxNumSpecial) i = Random.Range(0, 2);
             
             switch (i)
             {
@@ -44,5 +44,17 @@ public class GuestManager : MonoBehaviour
                     break;
             }
         }
+    }
+    
+    public List<GuestStatus> GetAllGuests()
+    {
+        List<GuestStatus> guests = new List<GuestStatus>();
+        
+        foreach (var guest in spawnedGuests)
+        {
+            guests.Add(guest.GetComponent<GuestStatus>());
+        }
+        
+        return guests;
     }
 }
