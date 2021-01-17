@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -105,11 +106,17 @@ public class Cleaning : PlayerAction
             // Check whether the product has enough num of uses or not
             if (!playerInfo.CanUseProduct(currentProduct)) ChangeCurrentProduct();
             
+            // Activate cleaning sound
+            AudioManager.Instance.PlayCleaningSound();
+            
             // Activate cleaning meter
             cleaningMeter.SetActive(true);
             cleaningMeter.SetMeter(holdingTime, Mathf.Clamp(garbageToPick.CleaningTime - currentProduct.TimeBoost, 0, garbageToPick.CleaningTime));
             
             if (holdingTime < Mathf.Clamp(garbageToPick.CleaningTime - currentProduct.TimeBoost, 0, garbageToPick.CleaningTime)) return;
+            
+            // Deactivate cleaning sound
+            AudioManager.Instance.StopCleaingSound();
             
             // Deactivate cleaning meter
             cleaningMeter.SetActive(false);
@@ -123,6 +130,9 @@ public class Cleaning : PlayerAction
         // Reset holding time
         if (Input.GetKeyUp(KeyCode.E))
         {
+            // Deactivate cleaning sound
+            AudioManager.Instance.StopCleaingSound();
+            
             // Deactivate cleaning meter
             cleaningMeter.SetActive(false);
             
@@ -209,6 +219,9 @@ public class Cleaning : PlayerAction
         // Discards garbage
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // Play dump sound
+            AudioManager.Instance.PlaySound(SoundType.DumpingGarbage, 1);
+            
             // Reset carrying count
             playerInfo.CarryingCount = 0;
             print("Garbage discarded!");
