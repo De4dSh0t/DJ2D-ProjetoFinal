@@ -64,6 +64,9 @@ public class Cleaning : PlayerAction
     
     void Update()
     {
+        // Pause any interaction when game is paused
+        if (GameManager.Instance.GameIsPaused) return;
+        
         HandleCleaningProduct();
         HandlePickUp();
         HandleDiscard();

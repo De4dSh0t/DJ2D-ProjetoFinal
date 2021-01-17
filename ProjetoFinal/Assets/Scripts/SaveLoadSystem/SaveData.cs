@@ -4,5 +4,5 @@ public class SaveData
 {
     public int currency;
     public string currentScene;
-    public List<CleanerInfo> hiredCleaner;
+    public List<CleanerInfo> hiredCleaners;
 }

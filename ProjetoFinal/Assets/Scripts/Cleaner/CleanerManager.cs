@@ -40,6 +40,18 @@ public class CleanerManager : MonoBehaviour
         
         return new CleanerInfo();
     }
+
+    public List<CleanerInfo> GetAllCleaners()
+    {
+        List<CleanerInfo> cleaners = new List<CleanerInfo>();
+        
+        foreach (var info in hiredCleaners.Values)
+        {
+            cleaners.Add(info);
+        }
+        
+        return cleaners;
+    }
     
     public int GetTotalExpenses()
     {

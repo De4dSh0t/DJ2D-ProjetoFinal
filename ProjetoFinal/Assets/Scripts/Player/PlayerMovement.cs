@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        // Disable input when game is paused
+        if (GameManager.Instance.GameIsPaused) return;
+        
         HandleMoveInput();
     }
 

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     [Header("Screen Settings")]
     [SerializeField] private GameObject scoreScreen;
     
+    public bool GameIsPaused { get; set; }
+    
     public event Action OnLevelEnd;
     
     private void Awake()
