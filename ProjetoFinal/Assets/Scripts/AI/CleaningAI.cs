@@ -21,6 +21,11 @@ public class CleaningAI : AISystem
     /// </summary>
     public bool HasBeenDismissed { get; set; }
     
+    /// <summary>
+    /// Returns CleanerInfo struct
+    /// </summary>
+    public CleanerInfo CleanerInfo => cleanerInfo;
+    
     private void Start()
     {
         garbageManager = FindObjectOfType<GarbageManager>();
@@ -90,6 +95,9 @@ public class CleaningAI : AISystem
         // Garbage Count
         if (garbageCount >= cleanerInfo.CarryingCapacity) return;
         garbageCount++;
+        
+        // Update total garbage collected
+        cleanerInfo.TotalGarbageCollected++;
     }
 
     private void HandleStates()

@@ -6,10 +6,10 @@ public class DismissPopUp : MonoBehaviour
 {
     [Header("UI Settings")]
     [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text perMinute;
     [SerializeField] private TMP_Text total;
     [SerializeField] private TMP_Text capacity;
     [SerializeField] private TMP_Text speed;
+    [SerializeField] private TMP_Text wage;
     [SerializeField] private Button dismiss;
     [SerializeField] private Button close;
     
@@ -26,8 +26,10 @@ public class DismissPopUp : MonoBehaviour
     public void Setup(GameObject gameObj, CleanerInfo cleanerInfo)
     {
         title.text = cleanerInfo.CleanerID;
+        total.text = cleanerInfo.TotalGarbageCollected.ToString();
         capacity.text = cleanerInfo.CarryingCapacity.ToString();
         speed.text = cleanerInfo.MovementSpeed.ToString();
+        wage.text = cleanerInfo.Wage.ToString();
         selectedCleaner = gameObj;
     }
     

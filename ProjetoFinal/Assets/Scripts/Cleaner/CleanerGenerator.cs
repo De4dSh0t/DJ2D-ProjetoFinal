@@ -22,7 +22,7 @@ public class CleanerGenerator : MonoBehaviour
             float speed = (float) Math.Round(Random.Range(movementSpeed.x, movementSpeed.y), 2);
             int wage = CalculateWage(capacity, speed);
             
-            CleanerInfo info = new CleanerInfo(id, capacity, speed, wage);
+            CleanerInfo info = new CleanerInfo(id, capacity, speed, wage, 0);
             cleaners.Add(info);
             
             // Removes name to prevent duplicates

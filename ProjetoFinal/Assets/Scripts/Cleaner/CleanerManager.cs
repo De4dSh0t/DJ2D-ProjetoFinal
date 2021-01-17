@@ -27,7 +27,13 @@ public class CleanerManager : MonoBehaviour
     {
         foreach (var kvp in hiredCleaners)
         {
-            if (kvp.Key == gameObj) return kvp.Value;
+            if (kvp.Key == gameObj)
+            {
+                // Update value
+                hiredCleaners[kvp.Key] = kvp.Key.GetComponent<CleaningAI>().CleanerInfo;
+                
+                return kvp.Value;
+            }
         }
         
         print($"No cleaner found with {gameObj}!");
