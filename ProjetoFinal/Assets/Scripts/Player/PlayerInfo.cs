@@ -31,6 +31,11 @@ public class PlayerInfo : MonoBehaviour
     }
     
     /// <summary>
+    /// Returns the max carying capacity of the player
+    /// </summary>
+    public int MaxCarryingCapacity => maxCarryingCapacity;
+    
+    /// <summary>
     /// Returns a boolean depending on the carrying capacity and its maximum
     /// </summary>
     public bool IsFull => carryingCount >= maxCarryingCapacity;

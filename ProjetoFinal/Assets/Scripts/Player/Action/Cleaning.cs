@@ -15,9 +15,13 @@ public class Cleaning : PlayerAction
     [Header("UI Settings")]
     [SerializeField] private Image productImage;
     [SerializeField] private TMP_Text nUsesText;
+    [SerializeField] private TMP_Text garbageCount;
     
     [Header("Garbage Settings")] 
     [SerializeField] private GarbageManager garbageManager;
+    
+    [Header("Meter Settings")]
+    [SerializeField] private CleaningMeter cleaningMeter;
     
     // Garbage pick-up settings
     private ContactFilter2D garbageFilter;
@@ -60,6 +64,7 @@ public class Cleaning : PlayerAction
         
         currentProduct = availableProducts[currentIndex];
         UpdateProductDisplay();
+        UpdateGarbageDisplay();
     }
     
     void Update()
@@ -100,7 +105,14 @@ public class Cleaning : PlayerAction
             // Check whether the product has enough num of uses or not
             if (!playerInfo.CanUseProduct(currentProduct)) ChangeCurrentProduct();
             
+            // Activate cleaning meter
+            cleaningMeter.SetActive(true);
+            cleaningMeter.SetMeter(holdingTime, Mathf.Clamp(garbageToPick.CleaningTime - currentProduct.TimeBoost, 0, garbageToPick.CleaningTime));
+            
             if (holdingTime < Mathf.Clamp(garbageToPick.CleaningTime - currentProduct.TimeBoost, 0, garbageToPick.CleaningTime)) return;
+            
+            // Deactivate cleaning meter
+            cleaningMeter.SetActive(false);
             
             Clean(garbageToPick);
             
@@ -109,7 +121,13 @@ public class Cleaning : PlayerAction
         }
         
         // Reset holding time
-        if (Input.GetKeyUp(KeyCode.E)) holdingTime = 0;
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            // Deactivate cleaning meter
+            cleaningMeter.SetActive(false);
+            
+            holdingTime = 0;
+        }
     }
     
     private void Clean(Garbage garbage)
@@ -131,6 +149,9 @@ public class Cleaning : PlayerAction
         
         // Update product in hand (Image and Count)
         UpdateProductDisplay();
+        
+        // Update garbage count display
+        UpdateGarbageDisplay();
         
         if (!playerInfo.CanUseProduct(currentProduct)) ChangeCurrentProduct();
     }
@@ -167,6 +188,15 @@ public class Cleaning : PlayerAction
         nUsesText.text = playerInfo.GetNumUses(currentProduct).ToString();
     }
     
+    private void UpdateGarbageDisplay()
+    {
+        garbageCount.text = $"{playerInfo.CarryingCount}/{playerInfo.MaxCarryingCapacity}";
+        
+        // Change color
+        if (playerInfo.IsFull) garbageCount.color = Color.red;
+        else garbageCount.color = Color.white;
+    }
+    
     private void HandleDiscard()
     {
         // Checks if player has any garbage to discard
@@ -182,6 +212,7 @@ public class Cleaning : PlayerAction
             // Reset carrying count
             playerInfo.CarryingCount = 0;
             print("Garbage discarded!");
+            UpdateGarbageDisplay();
         }
         
         // Reset variable
