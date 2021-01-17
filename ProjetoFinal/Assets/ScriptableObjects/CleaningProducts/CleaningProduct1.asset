@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d34ff3482e3e5d44affc9ab62c7836c, type: 3}
-  m_Name: TestCleaningProduct
+  m_Name: CleaningProduct1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d2c50044b0860cd44a386bb98994b296, type: 3}
-  productID: TestCleaningProduct
-  timeBoost: 0.5
-  cost: 5
-  numberOfUses: 1
+  sprite: {fileID: 21300000, guid: 8f0dda71e94afa64fabff39074307158, type: 3}
+  productID: Basic
+  timeBoost: 0
+  cost: 0
+  numberOfUses: 100
   unlimited: 1

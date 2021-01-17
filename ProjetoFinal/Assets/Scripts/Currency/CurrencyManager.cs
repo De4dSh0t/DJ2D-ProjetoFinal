@@ -59,6 +59,6 @@ public class CurrencyManager : MonoBehaviour
     
     private void DisplayCurrency()
     {
-        currencyText.text = $"Coins: {CurrentCurrency}";
+        currencyText.text = CurrentCurrency.ToString();
     }
 }

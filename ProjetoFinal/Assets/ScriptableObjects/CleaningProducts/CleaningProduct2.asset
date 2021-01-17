@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50cfc3c20ffda0540a1e90f69b1d9632, type: 3}
-  m_Name: TestCleaner
+  m_Script: {fileID: 11500000, guid: 7d34ff3482e3e5d44affc9ab62c7836c, type: 3}
+  m_Name: CleaningProduct2
   m_EditorClassIdentifier: 
-  cleanerID: TestCleaner
-  carryingCapacity: 2
-  movementSpeed: 3
-  wage: 2
+  sprite: {fileID: 21300000, guid: c5584e48951c2cd46a105f8feb2ae211, type: 3}
+  productID: Medium
+  timeBoost: 1
+  cost: 2
+  numberOfUses: 5
+  unlimited: 0
