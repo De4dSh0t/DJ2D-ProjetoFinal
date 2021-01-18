@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2fb08e5f9a8a4cb80eeba4580dbbe, type: 3}
+  m_Name: Room3
+  m_EditorClassIdentifier: 
+  zoneID: Room3
+  entryWaypoint: {x: -12, y: 33, z: 0}
+  zoneTilemap: {fileID: 5315297477239461142, guid: 0c4cc4d3a9617e54ea677a84fdc88137,
+    type: 3}
+  actionZones: []

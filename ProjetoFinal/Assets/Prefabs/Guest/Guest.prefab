@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: 2311305495605277879, guid: fbaf6649297aad04592f7f7284570a7e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -180,10 +180,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zones:
-  - {fileID: 11400000, guid: 03b968d60119d8d43863457904e472f2, type: 2}
-  - {fileID: 11400000, guid: 17a40b151d2c00a429f12d7cbe9a228c, type: 2}
-  - {fileID: 11400000, guid: d7281843bbe0ebc47af749d0782444de, type: 2}
-  - {fileID: 11400000, guid: 74f5b8632520d3b419521bb040ded8d2, type: 2}
+  - {fileID: 11400000, guid: be0974bab7c9c274e86c59498d62570b, type: 2}
+  - {fileID: 11400000, guid: 9cdf9b904d0ea09418bb25a0ea255558, type: 2}
+  - {fileID: 11400000, guid: e8b0b892d6b6465469d855f585fdd026, type: 2}
+  - {fileID: 11400000, guid: 2f484ed32d99e534eab60e0b6a192706, type: 2}
+  - {fileID: 11400000, guid: 896d2b2c55220e045b331ed37c276278, type: 2}
+  - {fileID: 11400000, guid: 0de3d85cf7ad7b2479368dc93324559e, type: 2}
+  - {fileID: 11400000, guid: d4963bcf474986640a952bf4cb40f36b, type: 2}
+  - {fileID: 11400000, guid: 520a16e346965b848995d6b5ad4231ae, type: 2}
+  - {fileID: 11400000, guid: 2cae49ea6e573ec45a98b0cec1145a5e, type: 2}
   pathfinding: {fileID: 7862007755475259950}
   speed: 3
   animator: {fileID: 3180028077972441191}

@@ -13481,7 +13481,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 47430561}
   m_HandleRect: {fileID: 167541181}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
@@ -15864,6 +15864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1438944827}
+  - component: {fileID: 1438944828}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -15897,6 +15898,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1438944828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438944826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7280376955c544491057a04c665fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx: {fileID: 1087120693}
+  music: {fileID: 2103535985}
+  sfxToggle: {fileID: 734606257}
+  musicToggle: {fileID: 798664757}
+  mixer: {fileID: 24100000, guid: a4077352fd5f788479fde1146b17ead9, type: 2}
+  audioSettings: {fileID: 11400000, guid: 2f838c29acfeef147a133fc5ef0f18ac, type: 2}
 --- !u!1 &1477479748
 GameObject:
   m_ObjectHideFlags: 0
@@ -23402,7 +23421,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 625502805}
   m_HandleRect: {fileID: 846064415}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
