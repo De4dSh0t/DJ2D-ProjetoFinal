@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Audio;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ProductMenu : Menu<CleaningProduct>
@@ -36,7 +37,9 @@ public class ProductMenu : Menu<CleaningProduct>
     
     public override void Buy()
     {
-        print("Bought.");
+        // Play cash sound effect
+        AudioManager.Instance.PlaySound(SoundType.Cash, 1);
+        
         playerInfo.AddProduct(selectedProduct);
         currencyManager.UpdateCurrency(-selectedProduct.Cost);
         ClosePrompt();

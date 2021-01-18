@@ -3,6 +3,7 @@
     public enum SoundType
     {
         DumpingGarbage,
-        Cleaning
+        Cleaning,
+        Cash
     }
 }

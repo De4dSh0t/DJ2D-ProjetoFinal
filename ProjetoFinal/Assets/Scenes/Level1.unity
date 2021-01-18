@@ -14075,6 +14075,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: fc3bf96a0fe8f7c478740082a503645a, type: 3}
   - soundType: 1
     audioClip: {fileID: 8300000, guid: 4f6e6342d79ad3b4f82168fbbbc9127b, type: 3}
+  - soundType: 2
+    audioClip: {fileID: 8300000, guid: ca24d57d6eb674b42a98789f89410e0a, type: 3}
   playerAudioSource: {fileID: 998906015}
   mixerGroup: {fileID: 6569357741871663653, guid: a4077352fd5f788479fde1146b17ead9,
     type: 2}
@@ -19783,7 +19785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clock: {fileID: 354991674}
-  levelTime: 120
+  levelTime: 300
   startsAt: 9
   endsAt: 21
 --- !u!1 &710393423

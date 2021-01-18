@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +41,9 @@ public class CleanerMenu : Menu<CleanerInfo>
     
     public override void Buy()
     {
-        print("Bought.");
+        // Play cash sound effect
+        AudioManager.Instance.PlaySound(SoundType.Cash, 1);
+        
         cleanerManager.AddCleaner(selectedCleanerInfo);
         RemoveButton(selectedCleanerInfo);
         ClosePrompt();
