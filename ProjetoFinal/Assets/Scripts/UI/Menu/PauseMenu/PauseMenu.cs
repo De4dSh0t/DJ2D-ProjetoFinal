@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -73,5 +74,10 @@ public class PauseMenu : MonoBehaviour
         
         // Return to main menu
         SceneManager.LoadScene("MainMenu");
+    }
+    
+    private void OnDestroy()
+    {
+        Time.timeScale = 1;
     }
 }
