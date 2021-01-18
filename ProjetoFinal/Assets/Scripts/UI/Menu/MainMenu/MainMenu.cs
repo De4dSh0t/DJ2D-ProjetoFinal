@@ -33,10 +33,12 @@ public class MainMenu : MonoBehaviour
     private void ContinueGame()
     {
         print("Continue!");
+        SceneManager.LoadScene("Level1");
     }
     
     private void NewGame()
     {
+        SaveManager.DeleteSave();
         SceneManager.LoadScene("Level1");
     }
     

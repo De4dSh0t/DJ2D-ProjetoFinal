@@ -34,4 +34,14 @@ public static class SaveManager
         if (File.Exists(path)) return true;
         return false;
     }
+    
+    public static void DeleteSave()
+    {
+        string path = Application.persistentDataPath + Dir + FileName;
+        
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+    }
 }

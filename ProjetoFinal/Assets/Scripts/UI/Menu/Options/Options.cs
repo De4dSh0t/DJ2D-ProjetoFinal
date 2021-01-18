@@ -29,18 +29,25 @@ public class Options : MonoBehaviour
     
     private void UpdateSfxVolume(float value)
     {
-        mixer.SetFloat("sfxVolume", Mathf.Log10(value) * 20);
         audioSettings.sfxVolume = value;
+        
+        if (!audioSettings.sfx) return;
+        mixer.SetFloat("sfxVolume", Mathf.Log10(value) * 20);
+        
     }
     
     private void UpdateMusicVolume(float value)
     {
-        mixer.SetFloat("musicVolume", Mathf.Log10(value) * 20);
         audioSettings.musicVolume = value;
+        
+        if (!audioSettings.music) return;
+        mixer.SetFloat("musicVolume", Mathf.Log10(value) * 20);
     }
     
     private void UpdateSfx(bool state)
     {
+        audioSettings.sfx = state;
+        
         switch (state)
         {
             case true:
@@ -50,12 +57,12 @@ public class Options : MonoBehaviour
                 mixer.SetFloat("sfxVolume", -80f);
                 break;
         }
-        
-        audioSettings.sfx = state;
     }
     
     private void UpdateMusic(bool state)
     {
+        audioSettings.music = state;
+        
         switch (state)
         {
             case true:
@@ -65,7 +72,5 @@ public class Options : MonoBehaviour
                 mixer.SetFloat("musicVolume", -80f);
                 break;
         }
-        
-        audioSettings.music = state;
     }
 }
