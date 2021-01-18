@@ -17,7 +17,7 @@ public class CleanerGenerator : MonoBehaviour
         
         for (int i = 0; i < nCleaners; i++)
         {
-            string id = possibleNames[Random.Range(0, names.Count)];
+            string id = possibleNames[Random.Range(0, possibleNames.Count)];
             int capacity = Random.Range(carryingCapacity.x, carryingCapacity.y);
             float speed = (float) Math.Round(Random.Range(movementSpeed.x, movementSpeed.y), 2);
             int wage = CalculateWage(capacity, speed);
