@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    [Header("UI Settings")]
+    [SerializeField] private TMP_Text clock;
+    
     [SerializeField] private float levelTime;
     [SerializeField] private int startsAt = 9;
     [SerializeField] private int endsAt = 21;
@@ -16,6 +20,7 @@ public class TimeManager : MonoBehaviour
     {
         HandleTimeConversion();
         CurrentHour = startsAt;
+        UpdateDisplay();
     }
     
     private void Update()
@@ -37,6 +42,7 @@ public class TimeManager : MonoBehaviour
         if (elapsedTime >= rate)
         {
             CurrentHour++;
+            UpdateDisplay();
             rate += convertedTime;
             print(CurrentHour);
             
@@ -52,5 +58,10 @@ public class TimeManager : MonoBehaviour
         
         GameManager.Instance.EndLevel();
         ended = true;
+    }
+    
+    private void UpdateDisplay()
+    {
+        clock.text = $"{CurrentHour}:00";
     }
 }

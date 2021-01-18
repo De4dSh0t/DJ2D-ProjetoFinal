@@ -17,6 +17,11 @@ public class GuestManager : MonoBehaviour
     [SerializeField] private int maxNumSpecial;
     private int nSpecialGuests;
     
+    /// <summary>
+    /// Returns the number of total spawned guests
+    /// </summary>
+    public int GuestCount => spawnedGuests.Count;
+    
     private void Start()
     {
         StartCoroutine(SpawnGuest());

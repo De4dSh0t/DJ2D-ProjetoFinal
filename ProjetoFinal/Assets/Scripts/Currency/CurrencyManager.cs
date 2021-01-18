@@ -9,6 +9,7 @@ public class CurrencyManager : MonoBehaviour
     
     [Header("Dependencies Settings")]
     [SerializeField] private CleanerManager cleanerManager;
+    [SerializeField] private GuestManager guestManager;
     
     [Header("UI Settings")]
     [SerializeField] private TMP_Text currencyText;
@@ -45,7 +46,13 @@ public class CurrencyManager : MonoBehaviour
         while (canUpdate)
         {
             int value = 0;
+            
+            // Wage (Cleaners)
             value += -cleanerManager.GetTotalExpenses();
+            
+            // Reward (Guests)
+            value += guestManager.GuestCount;
+            
             CurrentCurrency += value;
 
             if (CurrentCurrency <= 0) canUpdate = false;

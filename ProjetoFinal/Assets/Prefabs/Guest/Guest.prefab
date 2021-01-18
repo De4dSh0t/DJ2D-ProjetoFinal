@@ -193,7 +193,7 @@ MonoBehaviour:
   speed: 3
   animator: {fileID: 3180028077972441191}
   movementsToChangeRoom: {x: 1, y: 5}
-  spawnRate: {x: 25, y: 35}
+  spawnRate: {x: 10, y: 20}
   garbageLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingPoints: 100
-  pointsPerGarbage: 5
+  pointsPerGarbage: 15
 --- !u!1 &7862007757096719665
 GameObject:
   m_ObjectHideFlags: 0

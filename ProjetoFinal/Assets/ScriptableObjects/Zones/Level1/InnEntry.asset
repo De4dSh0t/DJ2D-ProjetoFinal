@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneID: InnEntry
   entryWaypoint: {x: 0, y: -2, z: 0}
-  zoneTilemap: {fileID: 6290402331830872521, guid: 07c364798f4cd0749b84807ac29721c4,
+  zoneTilemap: {fileID: 5388346224133138070, guid: 07c364798f4cd0749b84807ac29721c4,
     type: 3}
   actionZones: []

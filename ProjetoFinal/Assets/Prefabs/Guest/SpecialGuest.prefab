@@ -291,4 +291,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingPoints: 100
-  pointsPerGarbage: 10
+  pointsPerGarbage: 25
