@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37d2fb08e5f9a8a4cb80eeba4580dbbe, type: 3}
-  m_Name: GarbageRoom1
+  m_Name: GarbageRoom
   m_EditorClassIdentifier: 
-  zoneID: GarbageRoom1
+  zoneID: GarbageRoom
   entryWaypoint: {x: 8, y: 1, z: 0}
   zoneTilemap: {fileID: 8766453077458293494, guid: cfc5eae358338a04686ffc11ad854d0b,
     type: 3}
