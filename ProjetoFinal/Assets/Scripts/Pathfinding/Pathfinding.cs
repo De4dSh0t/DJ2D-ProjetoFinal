@@ -15,7 +15,7 @@ public class Pathfinding : MonoBehaviour
     {
         if (!CheckTargetNode(targetPos))
         {
-            Debug.Log($"No walkable node in {targetPos}");
+            Debug.Log($"{gameObject.name}: No walkable node in {targetPos}");
             return null;
         }
         

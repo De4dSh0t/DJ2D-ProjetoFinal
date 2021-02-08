@@ -33,12 +33,16 @@ public class CookState : IState
         
         // Cook (normal food cooking time)
         yield return new WaitForSeconds(order.food.CookingTime);
-        aiSystem.Animator.SetBool("isWalking", true);
         
         // Remove order from order list
         aiSystem.OrderManager.RemoveOrder(order);
+        aiSystem.IsCooking = false;
         
-        aiSystem.SetState(new DeliverState(aiSystem, order.guest, order.food));
+        // Notifies the guest that his order has been delivered
+        order.guest.PickUpOrder();
+        
+        // Idle
+        aiSystem.SetState(new IdleState(aiSystem));
     }
 
     private bool HasIngredients()
