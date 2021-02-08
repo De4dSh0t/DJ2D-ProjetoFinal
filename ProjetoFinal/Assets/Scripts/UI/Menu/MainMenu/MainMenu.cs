@@ -7,10 +7,12 @@ public class MainMenu : MonoBehaviour
     [Header("Button Settings")]
     [SerializeField] private Button continueButton;
     [SerializeField] private Button newGameButton;
+    [SerializeField] private Button guideButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
     
-    [Header("Screen Settings")]
+    [Header("Screen Settings")] 
+    [SerializeField] private GameObject guideScreen;
     [SerializeField] private GameObject optionsScreen;
     
     public void Awake()
@@ -20,6 +22,7 @@ public class MainMenu : MonoBehaviour
         // Add Listeners
         continueButton.onClick.AddListener(ContinueGame);
         newGameButton.onClick.AddListener(NewGame);
+        guideButton.onClick.AddListener(Guide);
         optionsButton.onClick.AddListener(Options);
         quitButton.onClick.AddListener(QuitGame);
     }
@@ -40,6 +43,12 @@ public class MainMenu : MonoBehaviour
     {
         SaveManager.DeleteSave();
         SceneManager.LoadScene("Level1");
+    }
+    
+    private void Guide()
+    {
+        gameObject.SetActive(false);
+        guideScreen.SetActive(true);
     }
     
     private void Options()
