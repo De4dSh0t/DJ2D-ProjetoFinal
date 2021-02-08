@@ -84,7 +84,20 @@ public class Cleaning : PlayerAction
         
         // Tries to get the closest object
         GameObject closestObject = GetClosestObject(garbageFilter);
-        if (closestObject == null) return;
+        
+        if (closestObject == null)
+        {
+            // Deactivate cleaning meter
+            cleaningMeter.SetActive(false);
+            
+            // Deactivate cleaning sound
+            AudioManager.Instance.StopCleaingSound();
+            
+            // Reset holding time
+            holdingTime = 0;
+            
+            return;
+        }
         
         // Gets the Garbage component
         if (Input.GetKeyDown(KeyCode.E))
