@@ -35,14 +35,18 @@ public class ScanRoomState : IState
     {
         foreach (var garbage in garbageManager.SpawnedGarbage)
         {
+            // Check if the garbage is already being cleaned by another entity
+            if (garbage.BeingCleaned) return;
+            
             // Check if the garbage is in the same room as the AI entity
             if (garbage.Zone.ZoneID == r.ZoneID)
             {
+                garbage.BeingCleaned = true;
                 garbageToCollect = garbage;
                 return;
             }
         }
-
+        
         garbageToCollect = null;
     }
 }
