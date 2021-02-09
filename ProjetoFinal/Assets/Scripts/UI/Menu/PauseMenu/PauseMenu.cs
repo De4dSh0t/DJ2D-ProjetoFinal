@@ -7,11 +7,13 @@ public class PauseMenu : MonoBehaviour
 {
     [Header("Button Settings")]
     [SerializeField] private Button continueButton;
+    [SerializeField] private Button guideButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button returnButton;
     
     [Header("Screen Settings")]
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject guideScreen;
     [SerializeField] private GameObject optionsScreen;
     
     [Header("Save Settings")]
@@ -22,6 +24,7 @@ public class PauseMenu : MonoBehaviour
     {
         // Add listeners
         continueButton.onClick.AddListener(Continue);
+        guideButton.onClick.AddListener(Guide);
         optionsButton.onClick.AddListener(Options);
         returnButton.onClick.AddListener(Return);
     }
@@ -36,13 +39,13 @@ public class PauseMenu : MonoBehaviour
         if (!Input.GetKeyDown(KeyCode.Escape)) return;
         
         // Activate/Deactivate Pause Menu
-        if (!pauseScreen.activeInHierarchy && !optionsScreen.activeInHierarchy)
+        if (!pauseScreen.activeInHierarchy && !optionsScreen.activeInHierarchy && !guideScreen.activeInHierarchy)
         {
             Time.timeScale = 0;
             pauseScreen.SetActive(true);
             GameManager.Instance.GameIsPaused = true;
         }
-        else if (pauseScreen.activeInHierarchy && !optionsScreen.activeInHierarchy)
+        else if (pauseScreen.activeInHierarchy && !optionsScreen.activeInHierarchy && !guideScreen.activeInHierarchy)
         {
             Continue();
         }
@@ -53,6 +56,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         pauseScreen.SetActive(false);
         GameManager.Instance.GameIsPaused = false;
+    }
+    
+    private void Guide()
+    {
+        pauseScreen.SetActive(false);
+        guideScreen.SetActive(true);
     }
     
     private void Options()
