@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        // Wait until starting animation ends
+        if (Time.time <= 3) return;
+        
         // Disable input when game is paused
         if (GameManager.Instance.GameIsPaused) return;
         

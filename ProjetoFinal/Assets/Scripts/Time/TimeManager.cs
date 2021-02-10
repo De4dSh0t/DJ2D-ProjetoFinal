@@ -26,6 +26,9 @@ public class TimeManager : MonoBehaviour
     
     private void Update()
     {
+        // Wait until the start animation plays
+        if (Time.time <= 3) return;
+        
         HandleElapsedTime();
     }
     
