@@ -23,6 +23,7 @@ public class GuestAI : AISystem
     // Garbage Detection Settings
     [Header("Garbage Detection Settings")] 
     [SerializeField] private LayerMask garbageLayer;
+    [SerializeField] private GameObject warning;
     private ContactFilter2D garbageFilter;
     private Collider2D gCollider;
     private GuestStatus status;
@@ -168,7 +169,15 @@ public class GuestAI : AISystem
         gCollider.OverlapCollider(garbageFilter, contacts);
         
         // Returns null if no collider has been detected
-        if (contacts.Count <= 0) return;
+        if (contacts.Count <= 0)
+        {
+            // Deactivate warning indicator
+            warning.SetActive(false);
+            return;
+        }
+        
+        // Activate warning indicator
+        warning.SetActive(true);
         
         // Fills the hashset with the garbage gameObject
         foreach (var garbage in contacts)
