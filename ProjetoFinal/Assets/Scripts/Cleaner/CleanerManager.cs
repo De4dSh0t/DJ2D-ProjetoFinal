@@ -20,6 +20,7 @@ public class CleanerManager : MonoBehaviour
     public void DismissCleaner(GameObject cleaner)
     {
         cleaner.GetComponent<CleaningAI>().HasBeenDismissed = true;
+        cleaner.layer = 0;
         hiredCleaners.Remove(cleaner);
     }
     
