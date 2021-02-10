@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
@@ -11,10 +12,10 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int endsAt = 21;
     private float elapsedTime;
     private float convertedTime;
-    private float rate;
     private bool ended;
+    private float min;
     
-    public int CurrentHour { get; private set; }
+    public float CurrentHour { get; private set; }
     
     private void Start()
     {
@@ -32,29 +33,23 @@ public class TimeManager : MonoBehaviour
     {
         int hours = Mathf.Abs(endsAt - startsAt);
         convertedTime = levelTime / hours;
-        rate = convertedTime;
     }
     
     private void HandleElapsedTime()
     {
         if (ended) return;
         
-        if (elapsedTime >= rate)
-        {
-            CurrentHour++;
-            UpdateDisplay();
-            rate += convertedTime;
-            print(CurrentHour);
-            
-            // Check if time reached "endsAt"
-            HandleEnd();
-        }
-        elapsedTime += Time.deltaTime;
+        CurrentHour += 60 / (convertedTime * 60) * Time.deltaTime;
+        if (min >= 60) min = 0;
+        min += 60 / convertedTime * Time.deltaTime;
+        
+        UpdateDisplay();
+        HandleEnd();
     }
     
     private void HandleEnd()
     {
-        if (CurrentHour != endsAt) return;
+        if (CurrentHour < endsAt) return;
         
         GameManager.Instance.EndLevel();
         ended = true;
@@ -62,6 +57,7 @@ public class TimeManager : MonoBehaviour
     
     private void UpdateDisplay()
     {
-        clock.text = $"{CurrentHour}:00";
+        DateTime.TryParse($"{(int) CurrentHour}:{(int) min}", out var dt);
+        clock.text = $"{dt:HH:mm}";
     }
 }
