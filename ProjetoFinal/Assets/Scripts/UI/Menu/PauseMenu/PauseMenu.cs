@@ -31,6 +31,9 @@ public class PauseMenu : MonoBehaviour
     
     private void Update()
     {
+        // Wait until starting animation ends
+        if (Time.time <= 3) return;
+        
         HandleInput();
     }
     
