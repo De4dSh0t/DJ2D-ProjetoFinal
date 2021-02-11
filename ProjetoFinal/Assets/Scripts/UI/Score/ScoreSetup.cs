@@ -9,10 +9,13 @@ public class ScoreSetup : MonoBehaviour
     [SerializeField] private TMP_Text requiredPoints;
     [SerializeField] private TMP_Text playerPoints;
     [SerializeField] private TMP_Text stateText;
+    private bool canUpdate;
     private bool state;
     
     private void Update()
     {
+        if (!canUpdate) return;
+        
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (state)
@@ -35,5 +38,7 @@ public class ScoreSetup : MonoBehaviour
         
         if (state) stateText.text = "You did it!";
         else stateText.text = "Try again...";
+
+        canUpdate = true;
     }
 }
