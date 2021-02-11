@@ -11,6 +11,7 @@ public class ScoreSetup : MonoBehaviour
     [SerializeField] private TMP_Text stateText;
     private bool canUpdate;
     private bool state;
+    private bool first = true;
     
     // Timer Settings
     private float startingTime;
@@ -36,6 +37,8 @@ public class ScoreSetup : MonoBehaviour
     
     public void Setup(float requiredP, float playerP, bool s)
     {
+        if (!first) return;
+        
         requiredPoints.text = requiredP.ToString();
         playerPoints.text = playerP.ToString();
         state = s;
@@ -52,6 +55,7 @@ public class ScoreSetup : MonoBehaviour
         }
         
         canUpdate = true;
+        first = true;
         startingTime = Time.time;
     }
 }

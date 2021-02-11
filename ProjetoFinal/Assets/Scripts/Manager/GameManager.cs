@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
         // Trigger event
         OnLevelEnd?.Invoke();
         
-        Time.timeScale = 0;
         scoreScreen.SetActive(true);
     }
 }

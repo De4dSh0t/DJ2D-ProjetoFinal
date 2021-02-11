@@ -45,19 +45,4 @@ public class GuestStatus : MonoBehaviour
             guestManager.RemoveGuest(gameObject);
         }
     }
-    
-    public float GetEvaluation()
-    {
-        float evaluation = startingPoints;
-        
-        foreach (var garbage in encounteredGarbage)
-        {
-            // Check if the garbage was spawned by this entity (to ignore that garbage)
-            if (garbage.SpawnedBy == GetInstanceID()) continue;
-            
-            evaluation -= pointsPerGarbage;
-        }
-        
-        return evaluation;
-    }
 }
