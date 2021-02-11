@@ -61,7 +61,7 @@ public class CleanerMenu : Menu<CleanerInfo>
         {
             if (hButton.cleanerInfo.CleanerID == info.CleanerID)
             {
-                Destroy(hButton.gameObject);
+                if (hButton != null) Destroy(hButton.gameObject);
                 hiringButtons.Remove(hButton);
                 break;
             }

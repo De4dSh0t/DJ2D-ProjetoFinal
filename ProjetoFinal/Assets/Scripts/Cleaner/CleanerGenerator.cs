@@ -13,11 +13,14 @@ public class CleanerGenerator : MonoBehaviour
     public List<CleanerInfo> GenerateCleaners(int nCleaners)
     {
         List<CleanerInfo> cleaners = new List<CleanerInfo>();
-        List<string> possibleNames = names;
+        List<string> possibleNames = new List<string>();
+        possibleNames.AddRange(names);
         
         for (int i = 0; i < nCleaners; i++)
         {
-            string id = possibleNames[Random.Range(0, possibleNames.Count)];
+            int r = Random.Range(0, possibleNames.Count);
+            print("Random: " + r + " | Count: " + possibleNames.Count);
+            string id = possibleNames[r];
             int capacity = Random.Range(carryingCapacity.x, carryingCapacity.y);
             float speed = (float) Math.Round(Random.Range(movementSpeed.x, movementSpeed.y), 2);
             int wage = CalculateWage(capacity, speed);
