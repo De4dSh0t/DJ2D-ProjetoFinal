@@ -15,6 +15,9 @@ public class TimeManager : MonoBehaviour
     private bool ended;
     private float min;
     
+    // Starting Animation Settings
+    private float startingTime;
+    
     public float CurrentHour { get; private set; }
     
     private void Start()
@@ -22,12 +25,14 @@ public class TimeManager : MonoBehaviour
         HandleTimeConversion();
         CurrentHour = startsAt;
         UpdateDisplay();
+
+        startingTime = Time.time;
     }
     
     private void Update()
     {
         // Wait until the start animation plays
-        if (Time.time <= 3) return;
+        if (Time.time - startingTime <= 3) return;
         
         HandleElapsedTime();
     }

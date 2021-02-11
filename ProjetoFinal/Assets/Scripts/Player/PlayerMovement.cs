@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementVector;
     private bool isWalking;
     
+    // Starting Animation Settings
+    private float startingTime;
+    
     //Movement Commands
     private MoveUp up;
     private MoveLeft left;
@@ -25,12 +28,14 @@ public class PlayerMovement : MonoBehaviour
         right = new MoveRight(transform, speed);
 
         collisionDetector = GetComponent<CollisionDetector>();
+
+        startingTime = Time.time;
     }
     
     void Update()
     {
         // Wait until starting animation ends
-        if (Time.time <= 3) return;
+        if (Time.time - startingTime <= 3) return;
         
         // Disable input when game is paused
         if (GameManager.Instance.GameIsPaused) return;
