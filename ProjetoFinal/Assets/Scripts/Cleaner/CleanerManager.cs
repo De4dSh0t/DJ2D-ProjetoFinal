@@ -24,6 +24,19 @@ public class CleanerManager : MonoBehaviour
         hiredCleaners.Remove(cleaner);
     }
     
+    public void DismissAllCleaners()
+    {
+        if (hiredCleaners.Count == 0) return;
+        
+        foreach (var cleaner in hiredCleaners.Keys)
+        {
+            cleaner.GetComponent<CleaningAI>().HasBeenDismissed = true;
+            cleaner.layer = 0;
+        }
+        
+        hiredCleaners.Clear();
+    }
+    
     public CleanerInfo GetCleanerByObject(GameObject gameObj)
     {
         foreach (var kvp in hiredCleaners)
@@ -40,18 +53,6 @@ public class CleanerManager : MonoBehaviour
         print($"No cleaner found with {gameObj}!");
         
         return new CleanerInfo();
-    }
-
-    public List<CleanerInfo> GetAllCleaners()
-    {
-        List<CleanerInfo> cleaners = new List<CleanerInfo>();
-        
-        foreach (var info in hiredCleaners.Values)
-        {
-            cleaners.Add(info);
-        }
-        
-        return cleaners;
     }
     
     public int GetTotalExpenses()

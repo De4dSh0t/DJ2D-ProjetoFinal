@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -21,9 +22,6 @@ public class CurrencyManager : MonoBehaviour
     
     private void Start()
     {
-        // saveData = SaveManager.Load();
-        //
-        // if (saveData != null) CurrentCurrency = saveData.currency;
         CurrentCurrency = startingCurrency;
         DisplayCurrency();
         
@@ -41,9 +39,7 @@ public class CurrencyManager : MonoBehaviour
     
     private IEnumerator UpdateCurrency()
     {
-        bool canUpdate = true;
-        
-        while (canUpdate)
+        while (true)
         {
             int value = 0;
             
@@ -54,14 +50,20 @@ public class CurrencyManager : MonoBehaviour
             value += guestManager.GuestCount;
             
             CurrentCurrency += value;
-
-            if (CurrentCurrency <= 0) canUpdate = false;
+            
+            if (CurrentCurrency <= 0)
+            {
+                CurrentCurrency = 0;
+                
+                // Dismiss all cleaners
+                cleanerManager.DismissAllCleaners();
+                
+                print("No more money!");
+            }
             
             DisplayCurrency();
             yield return new WaitForSeconds(1);
         }
-        
-        print("No more money!");
     }
     
     private void DisplayCurrency()
