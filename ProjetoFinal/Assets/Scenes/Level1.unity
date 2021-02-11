@@ -64792,7 +64792,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "You\u2019ll begin with a certain amount of coins that you can use to hire
     and buy cleaning products. You earn coins by cleaning garbage (5 coins per garbage)
-    and by guest (1 coin per second). "
+    and by guest (1 coin per second). If you don\u2019t have more coins, all hired
+    cleaners will be dismissed!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
