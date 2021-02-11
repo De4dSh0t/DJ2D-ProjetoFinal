@@ -208,7 +208,9 @@ public class Cleaning : PlayerAction
     private void UpdateProductDisplay()
     {
         productImage.sprite = currentProduct.Sprite;
-        nUsesText.text = playerInfo.GetNumUses(currentProduct).ToString();
+        
+        if (currentProduct.Unlimited) nUsesText.text = "∞";
+        else nUsesText.text = playerInfo.GetNumUses(currentProduct).ToString();
     }
     
     private void UpdateGarbageDisplay()
