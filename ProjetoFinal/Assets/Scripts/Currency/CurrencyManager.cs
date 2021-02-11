@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class CurrencyManager : MonoBehaviour
 {
     [Header("Currency Settings")]
     [SerializeField] private int startingCurrency;
+    private int coinsPerSecond;
     
     [Header("Dependencies Settings")]
     [SerializeField] private CleanerManager cleanerManager;
@@ -14,9 +14,7 @@ public class CurrencyManager : MonoBehaviour
     
     [Header("UI Settings")]
     [SerializeField] private TMP_Text currencyText;
-    
-    // Save Settings
-    private SaveData saveData;
+    [SerializeField] private TMP_Text earnText;
     
     public int CurrentCurrency { get; private set; }
     
@@ -41,15 +39,15 @@ public class CurrencyManager : MonoBehaviour
     {
         while (true)
         {
-            int value = 0;
+            coinsPerSecond = 0;
             
             // Wage (Cleaners)
-            value += -cleanerManager.GetTotalExpenses();
+            coinsPerSecond += -cleanerManager.GetTotalExpenses();
             
             // Reward (Guests)
-            value += guestManager.GuestCount;
+            coinsPerSecond += guestManager.GuestCount;
             
-            CurrentCurrency += value;
+            CurrentCurrency += coinsPerSecond;
             
             if (CurrentCurrency <= 0)
             {
@@ -69,5 +67,16 @@ public class CurrencyManager : MonoBehaviour
     private void DisplayCurrency()
     {
         currencyText.text = CurrentCurrency.ToString();
+
+        if (coinsPerSecond >= 0)
+        {
+            earnText.text = $"+ {coinsPerSecond}";
+            earnText.color = Color.green;
+        }
+        else
+        {
+            earnText.text = coinsPerSecond.ToString();
+            earnText.color = Color.red;
+        }
     }
 }

@@ -40,9 +40,17 @@ public class ScoreSetup : MonoBehaviour
         playerPoints.text = playerP.ToString();
         state = s;
         
-        if (state) stateText.text = "You did it!";
-        else stateText.text = "Try again...";
-
+        if (state)
+        {
+            stateText.text = "You did it!";
+            stateText.color = Color.green;
+        }
+        else
+        {
+            stateText.text = "Try again...";
+            stateText.color = Color.red;
+        }
+        
         canUpdate = true;
         startingTime = Time.time;
     }

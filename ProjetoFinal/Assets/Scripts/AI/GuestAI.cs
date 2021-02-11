@@ -40,6 +40,8 @@ public class GuestAI : AISystem
     
     public bool HasEaten { get; set; }
     
+    public bool Exited { get; set; }
+    
     void Start()
     {
         OrderManager = FindObjectOfType<OrderManager>();
@@ -106,6 +108,11 @@ public class GuestAI : AISystem
                 sIndex = 1;
                 break;
             }
+            case 5: // Quit Inn
+            {
+                SetState(new QuitState(this, SearchZone("InnEntry")));
+                break;
+            }
         }
     }
     
@@ -119,6 +126,13 @@ public class GuestAI : AISystem
     
     private void HandleStates()
     {
+        // Quit
+        if (Exited)
+        {
+            sIndex = 5;
+            return;
+        }
+        
         // Check if the entity is in the restaurant and if it hasn't already ordered food
         if (CurrentZone == restaurant && !hasOrdered && numOfOrders < maxNumOfOrders)
         {
@@ -199,5 +213,10 @@ public class GuestAI : AISystem
             isSpawningGarbage = true;
             rate = Random.Range(spawnRate.x, spawnRate.y);
         }
+    }
+    
+    public void DestroyCleaner()
+    {
+        Destroy(gameObject);
     }
 }

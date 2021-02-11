@@ -62,4 +62,9 @@ public class GuestManager : MonoBehaviour
         
         return guests;
     }
+    
+    public void RemoveGuest(GameObject guest)
+    {
+        if (spawnedGuests.Contains(guest)) spawnedGuests.Remove(guest);
+    }
 }
