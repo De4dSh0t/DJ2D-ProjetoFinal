@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09dc12b0f12877841a9b0b5c519f7a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredPoints: 500
+  requiredPoints: 250
   currencyManager: {fileID: 1666313603}
   scoreScreen: {fileID: 1911125337}
 --- !u!1 &368111226
@@ -5754,7 +5754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Normal guests will decrease 15 points for each garbage detected.
+  m_text: Normal guests will remove 15 coins per garbage detected.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -6395,11 +6395,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In this game, you want to keep your inn as clean as possible.
-
-    Prevent
-    the guests from noticing garbage, so they give a good evaluation at the end of
-    the day.'
+  m_text: "In this game, you want to keep your inn as clean as possible.\nPrevent
+    the guests from noticing garbage, so they don\u2019t quit the inn."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -12382,7 +12379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clock: {fileID: 963446032}
-  levelTime: 60
+  levelTime: 300
   startsAt: 9
   endsAt: 21
 --- !u!1 &782097459
@@ -14229,8 +14226,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 900.3006, y: -604.44403}
-  m_SizeDelta: {x: 1742.6453, y: 214.69568}
+  m_AnchoredPosition: {x: 900.3006, y: -590.4}
+  m_SizeDelta: {x: 1742.6453, y: 186.64062}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &956542363
 GameObject:
@@ -15870,7 +15867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reputation System
+  m_text: Progression
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -22196,7 +22193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1350963046}
   m_Layer: 5
-  m_Name: Reputation System
+  m_Name: Progression
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36580,7 +36577,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Special guests will decrease 20 points for each garbage detected. '
+  m_text: Special guests will remove 20 coins per garbage detected.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -41425,9 +41422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '500
-
-'
+  m_text: 250
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -48508,10 +48503,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The reputation system is what controls your progress in the game. A day
-    will have a minimum required amount of evaluation points to progress to the next
-    day. Each guest starts with 100 evaluation points. These evaluation points decrease
-    for each garbage that guest notices. '
+  m_text: The Currency System is what controls your progress in the game. A day will
+    have a minimum required amount of coins to progress to the next day. Each guest
+    has a limit regarding the maximum number of detected garbage. If that maximum
+    is reached, the guest will exit the inn.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,

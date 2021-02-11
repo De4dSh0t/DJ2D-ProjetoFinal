@@ -16,9 +16,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject guideScreen;
     [SerializeField] private GameObject optionsScreen;
     
-    [Header("Save Settings")]
-    [SerializeField] private CurrencyManager currencyManager;
-    [SerializeField] private CleanerManager cleanerManager;
+    // Timer Settings
+    private float startingTime;
     
     private void Start()
     {
@@ -27,12 +26,14 @@ public class PauseMenu : MonoBehaviour
         guideButton.onClick.AddListener(Guide);
         optionsButton.onClick.AddListener(Options);
         returnButton.onClick.AddListener(Return);
+        
+        startingTime = Time.time;
     }
     
     private void Update()
     {
         // Wait until starting animation ends
-        if (Time.time <= 3) return;
+        if (Time.time - startingTime <= 3) return;
         
         HandleInput();
     }
