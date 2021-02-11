@@ -12,9 +12,13 @@ public class ScoreSetup : MonoBehaviour
     private bool canUpdate;
     private bool state;
     
+    // Timer Settings
+    private float startingTime;
+    
     private void Update()
     {
         if (!canUpdate) return;
+        if (Time.time - startingTime <= 1.5f) return;
         
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
@@ -40,5 +44,6 @@ public class ScoreSetup : MonoBehaviour
         else stateText.text = "Try again...";
 
         canUpdate = true;
+        startingTime = Time.time;
     }
 }
