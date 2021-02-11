@@ -76,12 +76,7 @@ public class PauseMenu : MonoBehaviour
     private void Return()
     {
         // Save current progress
-        SaveData saveData = new SaveData()
-        {
-            currency = currencyManager.CurrentCurrency,
-            currentScene = SceneManager.GetActiveScene().name,
-            hiredCleaners = cleanerManager.GetAllCleaners()
-        };
+        SaveData saveData = new SaveData {currentScene = SceneManager.GetActiveScene().buildIndex};
         SaveManager.Save(saveData);
         
         // Return to main menu

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ReputationManager : MonoBehaviour
 {
@@ -30,6 +31,17 @@ public class ReputationManager : MonoBehaviour
             print(guest.GetInstanceID() + ": " + guest.GetEvaluation());
         }
         
-        scoreScreen.Setup(requiredPoints, points);
+        if (points >= requiredPoints)
+        {
+            scoreScreen.Setup(requiredPoints, points, true);
+
+            int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+            SaveManager.Save(new SaveData {currentScene = nextScene});
+        }
+        else
+        {
+            scoreScreen.Setup(requiredPoints, points, false);
+            SaveManager.DeleteSave();
+        }
     }
 }

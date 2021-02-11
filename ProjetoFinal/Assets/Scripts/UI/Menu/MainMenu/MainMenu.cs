@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
     private void ContinueGame()
     {
         print("Continue!");
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(SaveManager.Load().currentScene);
     }
     
     private void NewGame()
