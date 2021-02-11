@@ -21,7 +21,7 @@ public class CleanState : IState
         aiSystem.Animator.SetBool("isWalking", false);
         
         // Cleaning Time
-        yield return new WaitForSeconds(garbageToCollect.CleaningTime);
+        yield return new WaitForSeconds(garbageToCollect.CleaningTime - 2);
         Clean();
         
         aiSystem.SetState(new IdleState(aiSystem));
