@@ -19,7 +19,7 @@ public class CleanerGenerator : MonoBehaviour
         for (int i = 0; i < nCleaners; i++)
         {
             int r = Random.Range(0, possibleNames.Count);
-            print("Random: " + r + " | Count: " + possibleNames.Count);
+            
             string id = possibleNames[r];
             int capacity = Random.Range(carryingCapacity.x, carryingCapacity.y);
             float speed = (float) Math.Round(Random.Range(movementSpeed.x, movementSpeed.y), 2);
