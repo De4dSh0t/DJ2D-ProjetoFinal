@@ -4857,7 +4857,7 @@ MonoBehaviour:
   specialGuestPrefab: {fileID: 1999322922270925005, guid: fde8e76b5ce2f5f4d825f33f9d2e35c9,
     type: 3}
   spawnZone: {fileID: 11400000, guid: be0974bab7c9c274e86c59498d62570b, type: 2}
-  spawnRate: {x: 15, y: 20}
+  spawnRate: {x: 25, y: 30}
   canSpawnSpecial: 1
   maxNumSpecial: 1
 --- !u!4 &334214966

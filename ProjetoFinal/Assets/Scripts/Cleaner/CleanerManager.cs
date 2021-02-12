@@ -43,10 +43,12 @@ public class CleanerManager : MonoBehaviour
         {
             if (kvp.Key == gameObj)
             {
-                // Update value
-                hiredCleaners[kvp.Key] = kvp.Key.GetComponent<CleaningAI>().CleanerInfo;
+                CleanerInfo temp = kvp.Key.GetComponent<CleaningAI>().CleanerInfo;
                 
-                return kvp.Value;
+                // Update value
+                hiredCleaners[kvp.Key] = temp;
+                
+                return temp;
             }
         }
         
