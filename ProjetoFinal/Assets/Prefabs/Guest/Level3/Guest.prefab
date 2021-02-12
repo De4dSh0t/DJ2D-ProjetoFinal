@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingPoints: 100
-  pointsPerGarbage: 15
+  pointsPerGarbage: 20
   maxGarbageDetected: 3
 --- !u!1 &7862007757096719665
 GameObject:

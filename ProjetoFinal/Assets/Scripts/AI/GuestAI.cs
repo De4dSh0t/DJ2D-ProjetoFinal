@@ -88,6 +88,7 @@ public class GuestAI : AISystem
             case 1: // Change Room
             {
                 SetState(new ChangeRoomState(this, zones[Random.Range(0, zones.Length)]));
+                if (hasOrdered) hasOrdered = false;
                 break;
             }
             case 2: // Order Food (goto Random Position)
@@ -147,7 +148,7 @@ public class GuestAI : AISystem
         {
             sIndex = 4;
             HasEaten = false;
-            hasOrdered = false;
+            // hasOrdered = false;
             return;
         }
         

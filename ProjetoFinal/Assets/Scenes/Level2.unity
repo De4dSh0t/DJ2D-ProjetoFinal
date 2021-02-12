@@ -4859,7 +4859,7 @@ MonoBehaviour:
   spawnZone: {fileID: 11400000, guid: be0974bab7c9c274e86c59498d62570b, type: 2}
   spawnRate: {x: 15, y: 20}
   canSpawnSpecial: 1
-  maxNumSpecial: 2
+  maxNumSpecial: 1
 --- !u!4 &334214966
 Transform:
   m_ObjectHideFlags: 0
@@ -4930,7 +4930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Special guests will remove 20 coins per garbage detected.
+  m_text: Special guests will remove 30 coins per garbage detected.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -9096,7 +9096,7 @@ MonoBehaviour:
   currencyManager: {fileID: 1499861188}
   productImage: {fileID: 2114033005}
   nUsesText: {fileID: 1344020738}
-  garbageCount: {fileID: 0}
+  garbageCount: {fileID: 484134174}
   garbageManager: {fileID: 1743137160}
   cleaningMeter: {fileID: 233384539}
 --- !u!114 &568392743
@@ -49990,7 +49990,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Normal guests will remove 15 coins per garbage detected.
+  m_text: Normal guests will remove 20 coins per garbage detected.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,

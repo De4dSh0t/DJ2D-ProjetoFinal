@@ -374,5 +374,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingPoints: 100
-  pointsPerGarbage: 20
+  pointsPerGarbage: 30
   maxGarbageDetected: 3

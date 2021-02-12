@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09dc12b0f12877841a9b0b5c519f7a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredPoints: 250
+  requiredPoints: 350
   currencyManager: {fileID: 1666313603}
   scoreScreen: {fileID: 1911125337}
 --- !u!1 &368111226
@@ -4585,8 +4585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guestPrefab: {fileID: 5718402359362336241, guid: 1d86b57523da49c4e87a2546c4d2c84f,
     type: 3}
-  specialGuestPrefab: {fileID: 4126153435483577169, guid: 68b8b383f1e069642a0fd3d949dc723d,
-    type: 3}
+  specialGuestPrefab: {fileID: 0}
   spawnZone: {fileID: 11400000, guid: be0974bab7c9c274e86c59498d62570b, type: 2}
   spawnRate: {x: 30, y: 40}
   canSpawnSpecial: 0
@@ -5754,7 +5753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Normal guests will remove 15 coins per garbage detected.
+  m_text: Normal guests will remove 20 coins per garbage detected.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -36575,7 +36574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Special guests will remove 20 coins per garbage detected.
+  m_text: Special guests will remove 30 coins per garbage detected.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -41420,7 +41419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 250
+  m_text: 350
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
