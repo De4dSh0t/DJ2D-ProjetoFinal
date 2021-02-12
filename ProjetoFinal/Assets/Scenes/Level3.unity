@@ -10722,7 +10722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09dc12b0f12877841a9b0b5c519f7a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredPoints: 500
+  requiredPoints: 450
   currencyManager: {fileID: 1855489877}
   scoreScreen: {fileID: 1960655206}
 --- !u!1 &72670142
@@ -14984,7 +14984,7 @@ MonoBehaviour:
   specialGuestPrefab: {fileID: 4741452836818986399, guid: b1b12297542cf0941970ad8545807023,
     type: 3}
   spawnZone: {fileID: 11400000, guid: be0974bab7c9c274e86c59498d62570b, type: 2}
-  spawnRate: {x: 15, y: 20}
+  spawnRate: {x: 20, y: 25}
   canSpawnSpecial: 1
   maxNumSpecial: 2
 --- !u!4 &395234079
@@ -16690,7 +16690,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3662292476122320578, guid: a4077352fd5f788479fde1146b17ead9,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 5812a79bba7c8a24d9cd00a654edd246, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ad086d75642e30f4fa5673c6d5a88c00, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -28792,9 +28792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '500
-
-'
+  m_text: 450
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a2d6176b84d25489b6f743664fc605, type: 2}
   m_sharedMaterial: {fileID: -1809598181163507439, guid: f4a2d6176b84d25489b6f743664fc605,
@@ -29089,7 +29087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2691edb0da25940864df8a9e126b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCarryingCapacity: 2
+  maxCarryingCapacity: 3
   cleaningProducts:
   - {fileID: 11400000, guid: c3b926a568e15ac468c1eb752a0ef181, type: 2}
   - {fileID: 11400000, guid: 9ec4266950c4a8e4cb2edc53dd6d6b23, type: 2}
@@ -29106,7 +29104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01077d09135a8544b6ce1da40ca2df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 4.5
   animator: {fileID: 448063896}
 --- !u!114 &1051859414
 MonoBehaviour:

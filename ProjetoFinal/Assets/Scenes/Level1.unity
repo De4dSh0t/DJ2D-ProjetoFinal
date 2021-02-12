@@ -24875,7 +24875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2691edb0da25940864df8a9e126b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCarryingCapacity: 2
+  maxCarryingCapacity: 3
   cleaningProducts:
   - {fileID: 11400000, guid: c3b926a568e15ac468c1eb752a0ef181, type: 2}
   - {fileID: 11400000, guid: 9ec4266950c4a8e4cb2edc53dd6d6b23, type: 2}
@@ -24892,7 +24892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01077d09135a8544b6ce1da40ca2df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 4.5
   animator: {fileID: 1288131219}
 --- !u!114 &1641825203
 MonoBehaviour:

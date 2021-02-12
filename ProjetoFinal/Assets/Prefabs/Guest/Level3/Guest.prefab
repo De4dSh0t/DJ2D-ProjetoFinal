@@ -275,7 +275,7 @@ MonoBehaviour:
   speed: 3
   animator: {fileID: 3180028077972441191}
   movementsToChangeRoom: {x: 1, y: 5}
-  spawnRate: {x: 10, y: 20}
+  spawnRate: {x: 15, y: 20}
   garbageLayer:
     serializedVersion: 2
     m_Bits: 1024
